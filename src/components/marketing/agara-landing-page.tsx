@@ -343,7 +343,7 @@ const ABOUT_PILLARS = [
 
 function AboutSection() {
   return (
-    <section id="about" className="px-6 py-16 lg:px-10 lg:py-20">
+    <section id="about" className="px-6 pt-8 pb-0 lg:px-10">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -417,7 +417,7 @@ const CONTACT_DETAILS = [
 
 function ContactSection() {
   return (
-    <section id="contact" className="px-6 py-8 lg:px-10 lg:py-10">
+    <section id="contact" className="px-6 pt-8 pb-0 lg:px-10">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -497,7 +497,7 @@ function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="px-6 py-20 lg:px-10">
+    <section id="services" className="px-6 pt-8 pb-0 lg:px-10">
       <div className="mx-auto grid max-w-[1440px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item, i) => (
           <motion.div
@@ -528,7 +528,7 @@ function ServicesSection() {
 
 function FooterSection() {
   return (
-    <footer className="px-6 pb-10 lg:px-10">
+    <footer className="px-6 pt-8 pb-0 lg:px-10">
       <div className="agara-glass mx-auto flex max-w-[1440px] flex-col gap-5 rounded-[28px] px-7 py-8 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <p className="font-serif text-xl text-agara-charcoal">AGARA Architects</p>
