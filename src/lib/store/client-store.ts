@@ -1,0 +1,63 @@
+import { Client } from "@/types";
+import { clients as seedClients } from "@/lib/mock/clients-seed";
+
+let clients: Client[] = [...seedClients];
+
+function slugify(name: string) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function generateClientId(name: string) {
+  const base = `client-${slugify(name)}`;
+  let id = base;
+  let counter = 1;
+  while (clients.some((c) => c.id === id)) {
+    id = `${base}-${counter++}`;
+  }
+  return id;
+}
+
+export function getAllClients() {
+  return clients;
+}
+
+export function getClientById(id: string): Client | undefined {
+  return clients.find((c) => c.id === id);
+}
+
+export function createClient(name: string, city = ""): Client {
+  const trimmed = name.trim();
+  const existing = clients.find(
+    (c) => c.name.toLowerCase() === trimmed.toLowerCase()
+  );
+  if (existing) return existing;
+
+  const client: Client = {
+    id: generateClientId(trimmed),
+    name: trimmed,
+    email: "",
+    phone: "",
+    city,
+    type: "Residential",
+    projectCount: 0,
+    activeProjects: 0,
+    totalRevenue: 0,
+    lastContact: new Date().toISOString().split("T")[0],
+  };
+
+  clients = [client, ...clients];
+  return client;
+}
+
+export function incrementClientProjectStats(clientId: string) {
+  clients = clients.map((c) =>
+    c.id === clientId
+      ? {
+          ...c,
+          projectCount: c.projectCount + 1,
+          activeProjects: c.activeProjects + 1,
+          lastContact: new Date().toISOString().split("T")[0],
+        }
+      : c
+  );
+}

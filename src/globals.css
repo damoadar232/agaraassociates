@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand */
+    --primary: 32 19% 88%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 33 13% 82%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 30 36% 46%;
+    --accent-foreground: 0 0% 0%;
+
+    /* Surfaces */
+    --background: 40 20% 96%;
+    --foreground: 0 0% 0%;
+    --body: 0 0% 0%;
+    --heading: 0 0% 0%;
+    --card: 34 21% 92%;
+    --card-foreground: 0 0% 0%;
+    --popover: 34 21% 92%;
+    --popover-foreground: 0 0% 0%;
+    --surface: 34 21% 92%;
+    --surface-hover: 32 19% 88%;
+    --muted: 32 19% 88%;
+    --muted-foreground: 0 0% 0%;
+
+    /* Semantic */
+    --destructive: 0 42% 54%;
+    --destructive-foreground: 40 20% 96%;
+    --success: 127 19% 45%;
+    --success-foreground: 40 20% 96%;
+    --warning: 32 54% 51%;
+    --warning-foreground: 0 0% 0%;
+    --info: 207 27% 54%;
+    --info-foreground: 40 20% 96%;
+
+    /* Borders */
+    --border: 28 12% 76%;
+    --divider: 32 17% 84%;
+    --input: 28 12% 76%;
+    --ring: 30 36% 46%;
+
+    --radius: 1.25rem;
+
+    /* Charts */
+    --chart-1: 30 36% 46%;
+    --chart-2: 207 27% 54%;
+    --chart-3: 127 19% 45%;
+    --chart-4: 32 54% 51%;
+    --chart-5: 0 42% 54%;
+
+    --font-elms: "Elms Sans Variable", "Elms Sans", system-ui, sans-serif;
+    --font-inter: "Inter", system-ui, sans-serif;
+    --font-serif-display: "Cormorant Garamond", Georgia, serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background antialiased text-foreground;
+    color: #000000;
+    font-family: var(--font-elms);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  label,
+  li,
+  td,
+  th {
+    color: #000000;
+  }
+  a {
+    color: #000000;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: #000000;
+    opacity: 0.55;
+  }
+  .text-muted-foreground,
+  .text-accent,
+  .text-accent-foreground,
+  .text-destructive,
+  .text-success,
+  .text-warning,
+  .text-info,
+  .text-primary,
+  .text-secondary-foreground,
+  .text-white,
+  .text-card-foreground,
+  .text-popover-foreground {
+    color: #000000;
+  }
+}
+
+@layer utilities {
+  .text-heading {
+    color: hsl(var(--heading));
+  }
+  .text-body {
+    color: hsl(var(--body));
+  }
+
+  .dashboard-bg {
+    background:
+      radial-gradient(ellipse 80% 60% at 85% 5%, hsl(30 36% 46% / 0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 10% 95%, hsl(33 13% 82% / 0.45) 0%, transparent 50%),
+      linear-gradient(160deg, #f7f5f2 0%, #efebe6 45%, #f7f5f2 100%);
+  }
+
+  .glass {
+    @apply backdrop-blur-xl border shadow-glass;
+    background: hsl(var(--surface) / 0.65);
+    border-color: hsl(var(--border) / 0.5);
+  }
+
+  .glass-subtle {
+    @apply backdrop-blur-lg;
+    background: hsl(var(--surface) / 0.45);
+    border-color: hsl(var(--border) / 0.35);
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-xl shadow-glass-dark;
+    background: hsl(var(--primary) / 0.92);
+    border-color: hsl(var(--border) / 0.15);
+    color: hsl(var(--primary-foreground));
+  }
+
+  .glass-pill {
+    @apply rounded-full backdrop-blur-md;
+    background: hsl(var(--surface) / 0.7);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .glass-pill-active {
+    @apply rounded-full shadow-sm border border-border/60;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.25);
+    border-radius: 999px;
+  }
+
+  .agara-page {
+    background-color: #f7f4ef;
+  }
+
+  .agara-texture {
+    background-image:
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 90% 70% at 15% 0%, rgba(255, 255, 255, 0.55) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 60% at 90% 100%, rgba(34, 34, 34, 0.03) 0%, transparent 50%);
+  }
+
+  .agara-glass {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(36px);
+    -webkit-backdrop-filter: blur(36px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow:
+      0 8px 32px -8px rgba(34, 34, 34, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+}
