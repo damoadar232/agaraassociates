@@ -81,8 +81,8 @@ export function QuotationCreateDialog({ open, onOpenChange, clientId }: Quotatio
             <Label>Valid until</Label>
             <Input type="date" value={validUntil} onChange={(e) => setValidUntil(e.target.value)} className="rounded-xl" />
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            <div className="col-span-2 space-y-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="sm:col-span-2 space-y-2">
               <Label>Line item</Label>
               <Input value={line1} onChange={(e) => setLine1(e.target.value)} placeholder="Living room finishes" className="rounded-xl" />
             </div>

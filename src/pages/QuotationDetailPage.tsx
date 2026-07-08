@@ -33,12 +33,14 @@ export function QuotationDetailPage() { const { id } = useParams() as { id: stri
         </div>
 
         <Card className="flex-1">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <div>
-              <CardTitle className="text-2xl">{quote.title}</CardTitle>
+          <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <CardTitle className="text-xl sm:text-2xl">{quote.title}</CardTitle>
               <p className="text-muted-foreground mt-1">{quote.clientName} · {quote.projectName}</p>
             </div>
-            <StatusChip status={quote.status} type="quotation" />
+            <div className="shrink-0">
+              <StatusChip status={quote.status} type="quotation" />
+            </div>
           </CardHeader>
           <CardContent className="space-y-6">
             <QuotationDetailActions quoteId={quote.id} status={quote.status} />

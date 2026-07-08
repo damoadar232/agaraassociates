@@ -173,7 +173,7 @@ export function MaterialLibrary() {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-4 lg:h-[calc(100vh-16rem)] lg:min-h-[520px]">
-        <div className="lg:w-[260px] shrink-0 lg:h-full">
+        <div className="h-[60vh] lg:h-full lg:w-[260px] shrink-0">
           <MaterialCategorySidebar
             selectedCategoryId={filters.categoryId}
             selectedSubcategoryId={filters.subcategoryId}

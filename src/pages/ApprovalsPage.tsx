@@ -78,7 +78,7 @@ function ApprovalCard({
             {approval.projectName} · Due {approval.dueDate}
           </p>
         </div>
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex flex-wrap items-center gap-2">
           {approval.status === "pending" && onAction ? (
             <>
               <Button size="sm" className="rounded-xl gap-1" onClick={() => onAction(approval.id, "approved")}>

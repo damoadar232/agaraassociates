@@ -220,18 +220,20 @@ export function ConstructionDetailsForm({ value, onChange }: ConstructionDetails
         </CardHeader>
         <CardContent className="space-y-3">
           {value.milestones.map((milestone, index) => (
-            <div key={index} className="flex gap-3 items-end">
+            <div key={index} className="flex flex-col gap-3 sm:flex-row sm:items-end">
               <FormField label={index === 0 ? "Milestone" : undefined} className="flex-1">
                 <Input value={milestone.title} onChange={(e) => updateMilestone(index, "title", e.target.value)} placeholder="Foundation Complete" />
               </FormField>
-              <FormField label={index === 0 ? "Target Date" : undefined} className="w-40">
-                <Input type="date" value={milestone.targetDate} onChange={(e) => updateMilestone(index, "targetDate", e.target.value)} />
-              </FormField>
-              {value.milestones.length > 1 && (
-                <Button type="button" variant="ghost" size="icon" className="shrink-0 rounded-xl" onClick={() => removeMilestone(index)}>
-                  <Trash2 className="h-4 w-4 text-muted-foreground" />
-                </Button>
-              )}
+              <div className="flex items-end gap-2">
+                <FormField label={index === 0 ? "Target Date" : undefined} className="flex-1 sm:w-40 sm:flex-none">
+                  <Input type="date" value={milestone.targetDate} onChange={(e) => updateMilestone(index, "targetDate", e.target.value)} />
+                </FormField>
+                {value.milestones.length > 1 && (
+                  <Button type="button" variant="ghost" size="icon" className="shrink-0 rounded-xl" onClick={() => removeMilestone(index)}>
+                    <Trash2 className="h-4 w-4 text-muted-foreground" />
+                  </Button>
+                )}
+              </div>
             </div>
           ))}
         </CardContent>

@@ -51,7 +51,7 @@ export const ReportsClient = memo(function ReportsClient({
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
       <PageHeader title="Reports" description="Analytics and business intelligence">
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {["3m", "6m", "1y"].map((r) => (
             <Button key={r} variant={range === r ? "default" : "outline"} size="sm" className="rounded-xl" onClick={() => setRange(r)}>
               {r}

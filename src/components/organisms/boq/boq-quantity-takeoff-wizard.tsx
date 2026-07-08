@@ -291,8 +291,8 @@ export function BoqQuantityTakeoffWizard({ clientId }: BoqQuantityTakeoffWizardP
 
       {step === 2 && (
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <div>
+          <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
               <CardTitle>Room-wise Schedule</CardTitle>
               <p className="text-sm text-muted-foreground mt-1">
                 Optional per-room breakdown — floor, wall, and ceiling areas auto-calculate from dimensions

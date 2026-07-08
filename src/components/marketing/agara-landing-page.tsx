@@ -269,7 +269,7 @@ function FeaturedProjectsBar() {
 
 function HeroViewport() {
   return (
-    <section className="relative flex h-screen max-h-[100dvh] min-h-[640px] flex-col overflow-hidden">
+    <section className="relative flex min-h-[100dvh] flex-col overflow-hidden lg:h-screen lg:max-h-[100dvh] lg:min-h-[640px]">
       {/* Warm cream base + architectural image */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-agara-cream agara-texture" />
@@ -288,7 +288,7 @@ function HeroViewport() {
       <SocialScrollBar />
 
       {/* Hero middle — fills space between nav and bottom bar */}
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-center px-6 lg:px-10">
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-center px-6 py-10 lg:px-10 lg:py-0">
         <div className="mx-auto grid w-full max-w-[1440px] items-center gap-8 lg:grid-cols-12 lg:gap-6">
           <motion.div
             className="lg:col-span-5 xl:col-span-4"
@@ -507,7 +507,7 @@ function ServicesSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="agara-glass flex flex-col rounded-[28px] p-7 transition-transform duration-300 hover:-translate-y-0.5"
+            className="flex flex-col rounded-[28px] border border-white/40 bg-white/25 p-7 shadow-[0_8px_32px_-14px_rgba(34,34,34,0.12)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/35"
           >
             <item.icon className="h-9 w-9 text-agara-charcoal/55" strokeWidth={1} aria-hidden />
             <h3 className="mt-6 font-serif text-xl text-agara-charcoal">{item.title}</h3>

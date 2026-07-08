@@ -79,7 +79,7 @@ export function MaterialFormDialog({ open, onOpenChange, material, onSaved }: Ma
           <DialogTitle>{isEdit ? "Edit Material" : "Add Material"}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="col-span-2 space-y-2">
               <Label>Name</Label>
               <Input value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl" required />

@@ -24,6 +24,11 @@ export function ProgressRing({
     value >= 60 ? COLORS.accent :
     value >= 40 ? COLORS.warning :
     COLORS.danger;
+  const valueTextClass =
+    size <= 48 ? "text-xs" :
+    size <= 72 ? "text-sm" :
+    size <= 100 ? "text-lg" :
+    "text-2xl";
 
   return (
     <div className={cn("relative inline-flex items-center justify-center", className)}>
@@ -49,8 +54,8 @@ export function ProgressRing({
           className="transition-all duration-700"
         />
       </svg>
-      <div className="absolute flex flex-col items-center">
-        <span className="text-2xl font-bold text-heading">{value}</span>
+      <div className="absolute flex flex-col items-center leading-none">
+        <span className={cn("font-bold text-heading tabular-nums", valueTextClass)}>{value}</span>
         {label && <span className="text-xs text-muted-foreground">{label}</span>}
       </div>
     </div>
