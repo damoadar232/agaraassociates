@@ -69,6 +69,14 @@
    */
   html {
     scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+  }
+  /*
+   * Offset anchor scrolling on the landing page so the fixed navbar never
+   * covers a section heading when navigating between sections.
+   */
+  .agara-page section[id] {
+    scroll-margin-top: 5.5rem;
   }
   body {
     @apply bg-background antialiased text-foreground;
