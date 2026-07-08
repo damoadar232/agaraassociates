@@ -2,7 +2,24 @@
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Instagram, Linkedin, Menu, Play, X } from "lucide-react";
+import {
+  Armchair,
+  ArrowRight,
+  Box,
+  Flag,
+  Globe,
+  Grid3x3,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  Play,
+  Trees,
+  Users,
+  X,
+} from "lucide-react";
 import { useState } from "react";
 
 const NAV_LINKS = [
@@ -306,16 +323,182 @@ function HeroViewport() {
   );
 }
 
+const ABOUT_PILLARS = [
+  {
+    icon: Globe,
+    title: "Context",
+    description: "We design with sensitivity to place, climate and culture.",
+  },
+  {
+    icon: Users,
+    title: "Purpose",
+    description: "Every space is intentional, functional and future-ready.",
+  },
+  {
+    icon: Flag,
+    title: "Commitment",
+    description: "We are committed to quality, integrity and lasting relationships.",
+  },
+] as const;
+
+function AboutSection() {
+  return (
+    <section id="about" className="px-6 py-16 lg:px-10 lg:py-20">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={fadeUp}
+        className="agara-glass mx-auto max-w-[1440px] overflow-hidden rounded-[32px] shadow-agara-soft"
+      >
+        <div className="flex flex-col lg:min-h-[300px] lg:flex-row">
+          {/* Architectural image with right-edge fade */}
+          <div className="relative h-56 w-full shrink-0 overflow-hidden lg:h-auto lg:w-[26%] xl:w-[24%]">
+            <img
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=85"
+              alt="AGARA Architects — interior corridor with natural light"
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F7F4EF]/15 to-[#F7F4EF]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#F7F4EF]/50 via-transparent to-transparent lg:hidden" />
+          </div>
+
+          {/* Intro copy */}
+          <div className="flex flex-1 flex-col justify-center border-b border-agara-charcoal/8 px-7 py-8 lg:border-b-0 lg:px-8 lg:py-10 xl:px-10">
+            <h2 className="font-serif text-[clamp(1.75rem,2.5vw,2.125rem)] leading-tight text-agara-charcoal">
+              About AGARA
+            </h2>
+            <span className="mt-3 block h-px w-14 bg-agara-charcoal/25" aria-hidden />
+            <p className="mt-5 max-w-[420px] text-[13px] leading-[1.75] text-agara-charcoal/70 lg:text-sm">
+              AGARA Architects is a multidisciplinary design practice based in Hyderabad, creating architecture,
+              interiors, landscapes and construction solutions that are contextually rooted, functionally driven and
+              aesthetically timeless.
+            </p>
+            <a
+              href="#about"
+              className="group mt-6 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.18em] text-agara-charcoal/75 transition-colors hover:text-agara-charcoal"
+            >
+              Our Story
+              <ArrowRight
+                className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+                strokeWidth={1.5}
+              />
+            </a>
+          </div>
+
+          {/* Three pillars */}
+          <div className="grid shrink-0 sm:grid-cols-3 lg:w-[46%] xl:w-[44%]">
+            {ABOUT_PILLARS.map((pillar, index) => (
+              <div
+                key={pillar.title}
+                className={`flex flex-col items-center justify-center px-5 py-9 text-center lg:px-4 lg:py-8 xl:px-6 ${index > 0 ? "border-t border-agara-charcoal/8 sm:border-l sm:border-t-0" : ""
+                  }`}
+              >
+                <pillar.icon className="h-7 w-7 text-agara-charcoal/50" strokeWidth={1} aria-hidden />
+                <h3 className="mt-5 font-serif text-lg text-agara-charcoal">{pillar.title}</h3>
+                <p className="mt-3 max-w-[190px] text-[11px] leading-relaxed text-agara-charcoal/60">
+                  {pillar.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+const CONTACT_DETAILS = [
+  { icon: Phone, label: "+91 9XXXXXXXX", href: "tel:+919000000000" },
+  { icon: Mail, label: "hello@agara.in", href: "mailto:hello@agara.in" },
+  { icon: MapPin, label: "Hyderabad, India", href: null },
+] as const;
+
+function ContactSection() {
+  return (
+    <section id="contact" className="px-6 py-8 lg:px-10 lg:py-10">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={fadeUp}
+        className="agara-glass relative mx-auto max-w-[1440px] overflow-hidden rounded-[32px] shadow-agara-soft"
+      >
+        {/* Architectural line-art on the right, faded into the card */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] md:block lg:w-[38%]">
+          <img
+            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80"
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover object-center opacity-25 mix-blend-luminosity"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#F7F4EF] via-[#F7F4EF]/60 to-transparent" />
+        </div>
+
+        <div className="relative z-10 flex flex-col gap-8 px-7 py-8 md:flex-row md:items-center md:gap-10 lg:px-12 lg:py-10">
+          {/* Left — heading + CTA */}
+          <div className="shrink-0 md:w-[42%] lg:w-[38%]">
+            <h2 className="font-serif text-[clamp(1.6rem,2.6vw,2.125rem)] leading-tight text-agara-charcoal">
+              Let&rsquo;s create something timeless together.
+            </h2>
+            <Link
+              to="/login?redirect=/dashboard"
+              className="group mt-6 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.18em] text-agara-charcoal/75 transition-colors hover:text-agara-charcoal"
+            >
+              Get In Touch
+              <ArrowRight
+                className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+                strokeWidth={1.5}
+              />
+            </Link>
+          </div>
+
+          {/* Middle — contact details */}
+          <div className="flex flex-col gap-4 md:gap-5">
+            {CONTACT_DETAILS.map((item) => {
+              const content = (
+                <>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center text-agara-charcoal/55">
+                    <item.icon className="h-4 w-4" strokeWidth={1.5} aria-hidden />
+                  </span>
+                  <span className="text-[13px] tracking-wide text-agara-charcoal/75">{item.label}</span>
+                </>
+              );
+
+              return item.href ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="flex items-center gap-3 transition-colors hover:text-agara-charcoal [&_span]:hover:text-agara-charcoal"
+                >
+                  {content}
+                </a>
+              ) : (
+                <div key={item.label} className="flex items-center gap-3">
+                  {content}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
 function ServicesSection() {
   const items = [
-    { title: "Architecture", desc: "Concept to construction documentation for residential and commercial programs." },
-    { title: "Interiors", desc: "Material-led interior environments with bespoke joinery and lighting design." },
-    { title: "Master Planning", desc: "Campus, mixed-use, and hospitality frameworks rooted in context." },
+    { icon: Box, title: "Architecture", desc: "Contextual architecture crafted with clarity, function and detail." },
+    { icon: Armchair, title: "Interiors", desc: "Interiors that reflect identity and elevate everyday living." },
+    { icon: Trees, title: "Landscape", desc: "Outdoor environments that connect nature and architecture." },
+    { icon: Grid3x3, title: "Construction", desc: "Precision execution with quality and transparency." },
   ];
 
   return (
     <section id="services" className="px-6 py-20 lg:px-10">
-      <div className="mx-auto grid max-w-[1440px] gap-5 lg:grid-cols-3">
+      <div className="mx-auto grid max-w-[1440px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item, i) => (
           <motion.div
             key={item.title}
@@ -324,10 +507,18 @@ function ServicesSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="agara-glass rounded-[28px] p-7 transition-transform duration-300 hover:-translate-y-0.5"
+            className="agara-glass flex flex-col rounded-[28px] p-7 transition-transform duration-300 hover:-translate-y-0.5"
           >
-            <h3 className="font-serif text-xl text-agara-charcoal">{item.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-agara-charcoal/65">{item.desc}</p>
+            <item.icon className="h-9 w-9 text-agara-charcoal/55" strokeWidth={1} aria-hidden />
+            <h3 className="mt-6 font-serif text-xl text-agara-charcoal">{item.title}</h3>
+            <p className="mt-3 text-[13px] leading-relaxed text-agara-charcoal/60">{item.desc}</p>
+            <a
+              href="#contact"
+              aria-label={`Learn more about ${item.title}`}
+              className="mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full border border-agara-charcoal/15 bg-white/25 text-agara-charcoal/70 transition-all duration-300 hover:bg-white/45 hover:text-agara-charcoal"
+            >
+              <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+            </a>
           </motion.div>
         ))}
       </div>
@@ -337,7 +528,7 @@ function ServicesSection() {
 
 function FooterSection() {
   return (
-    <footer id="contact" className="px-6 pb-10 lg:px-10">
+    <footer className="px-6 pb-10 lg:px-10">
       <div className="agara-glass mx-auto flex max-w-[1440px] flex-col gap-5 rounded-[28px] px-7 py-8 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <p className="font-serif text-xl text-agara-charcoal">AGARA Architects</p>
@@ -361,7 +552,9 @@ export function AgaraLandingPage() {
     <div className="agara-page font-inter text-agara-charcoal">
       <HeroViewport />
       <ServicesSection />
-      <section id="about" className="sr-only">About AGARA Architects</section>
+      <AboutSection />
+      <ContactSection />
+
       <section id="journal" className="sr-only">Journal</section>
       <FooterSection />
     </div>

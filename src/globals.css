@@ -61,10 +61,27 @@
   * {
     @apply border-border;
   }
+  /*
+   * Reserve the vertical scrollbar gutter at the root so toggling the
+   * scrollbar never changes the content width. Without this, every
+   * `mx-auto`-centered section re-centers whenever the scrollbar appears or
+   * disappears, which makes the whole page appear to shake horizontally.
+   */
+  html {
+    scrollbar-gutter: stable;
+  }
   body {
     @apply bg-background antialiased text-foreground;
     color: #000000;
     font-family: var(--font-elms);
+    /*
+     * Contain transient horizontal overflow from entrance/hover transforms
+     * (translate-x, scale, rotated writing-mode text). `clip` is used instead
+     * of `hidden` because it does not create a scroll container and therefore
+     * preserves `position: sticky`/`fixed` behavior elsewhere in the app.
+     */
+    overflow-x: clip;
+    max-width: 100%;
   }
   h1,
   h2,
