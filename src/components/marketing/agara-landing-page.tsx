@@ -77,10 +77,12 @@ function PinterestIcon({ className }: { className?: string }) {
 
 function AgaraLogo() {
   return (
-    <Link to="/" className="flex items-center gap-3 shrink-0">
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-agara-charcoal/15 bg-white/30">
-        <span className="font-serif text-sm font-semibold tracking-tight text-agara-charcoal">AR</span>
-      </div>
+    <Link to="/" className="flex items-center gap-2.5 shrink-0">
+      <img
+        src="/logo.png"
+        alt="Agara Architects logo"
+        className="h-10 w-10 shrink-0 object-contain"
+      />
       <span className="hidden sm:block text-[11px] font-medium uppercase tracking-[0.22em] text-agara-charcoal">
         Agara Architects
       </span>
