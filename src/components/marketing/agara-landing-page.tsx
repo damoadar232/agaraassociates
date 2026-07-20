@@ -814,7 +814,7 @@ const CONTACT_DETAILS = [
 
 function ContactSection() {
   return (
-    <section id="contact" className="px-6 pt-8 pb-0 lg:px-10">
+    <section id="contact" className="px-6 pt-8 pb-0 lg:px-10 mb-12">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -822,17 +822,17 @@ function ContactSection() {
         variants={fadeUp}
         className="agara-glass mx-auto max-w-[1440px] overflow-hidden rounded-[32px] shadow-agara-soft"
       >
-        <div className="flex flex-col lg:min-h-[165px] lg:flex-row">
+        <div className="flex flex-col lg:flex-row">
 
           {/* Left */}
-          <div className="flex flex-col justify-center border-b border-agara-charcoal/8 px-6 py-3 lg:w-[36%] lg:border-b-0 lg:border-r lg:px-8 lg:py-4">
-            <h2 className="font-serif text-[clamp(1.35rem,2vw,1.7rem)] leading-tight text-agara-charcoal">
+          <div className="flex flex-col justify-center border-b border-agara-charcoal/8 px-6 py-2 lg:w-[36%] lg:border-b-0 lg:border-r lg:px-8 lg:py-3">
+            <h2 className="font-serif text-[clamp(1.25rem,1.8vw,1.55rem)] leading-tight text-agara-charcoal">
               Let's create something timeless together.
             </h2>
 
             <Link
               to="/login?redirect=/dashboard"
-              className="group mt-2 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.18em] text-agara-charcoal/75 transition-colors hover:text-agara-charcoal"
+              className="group mt-1 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.18em] text-agara-charcoal/75 transition-colors hover:text-agara-charcoal"
             >
               Get In Touch
 
@@ -844,7 +844,7 @@ function ContactSection() {
           </div>
 
           {/* Middle */}
-          <div className="flex flex-col justify-center gap-2 border-b border-agara-charcoal/8 px-6 py-3 lg:w-[30%] lg:border-b-0 lg:border-r lg:px-7 lg:py-4">
+          <div className="flex flex-col justify-center gap-1.5 border-b border-agara-charcoal/8 px-6 py-2 lg:w-[30%] lg:border-b-0 lg:border-r lg:px-7 lg:py-3">
             {CONTACT_DETAILS.map((item) => {
               const content = (
                 <>
@@ -856,7 +856,7 @@ function ContactSection() {
                     />
                   </span>
 
-                  <span className="text-[12px] text-agara-charcoal/75">
+                  <span className="text-[11px] text-agara-charcoal/75">
                     {item.label}
                   </span>
                 </>
@@ -879,7 +879,7 @@ function ContactSection() {
           </div>
 
           {/* Right */}
-          <div className="relative h-32 overflow-hidden lg:h-auto lg:w-[34%]">
+          <div className="relative h-40 overflow-hidden lg:h-[180px] lg:w-[34%]">
             <img
               src={ContactSectionImage}
               alt="Architectural blueprint"
