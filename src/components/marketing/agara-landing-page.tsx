@@ -7,9 +7,12 @@ import {
   Armchair,
   ArrowRight,
   Box,
+  Building2,
+  Compass,
   Flag,
   Globe,
   Grid3x3,
+  Infinity,
   Instagram,
   Linkedin,
   Mail,
@@ -19,9 +22,12 @@ import {
   Play,
   Trees,
   Users,
+  Users2,
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import HeroImage from "../../../public/HeroImage.png";
+import ContactSectionImage from "../../../public/ContactSectionImage.png";
 
 const NAV_LINKS = [
   { label: "Projects", href: "#projects" },
@@ -30,6 +36,92 @@ const NAV_LINKS = [
   { label: "Journal", href: "#journal" },
   { label: "Contact", href: "#contact" },
 ];
+
+const JOURNAL_ARTICLES = [
+  {
+    title: "Choosing the right materials for Indian climate",
+    category: "Materials",
+    readTime: "5 min read",
+    image:
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "How to plan a courtyard that brings life in",
+    category: "Design",
+    readTime: "4 min read",
+    image:
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "Natural light — Designing with sun and shadow",
+    category: "Architecture",
+    readTime: "6 min read",
+    image:
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=500&q=80",
+  },
+];
+
+function JournalSection() {
+  return (
+    <section id="journal" className="px-6 pt-8 pb-8 lg:px-10">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="font-serif text-2xl leading-tight text-agara-charcoal lg:text-3xl">
+            From the Journal
+          </h2>
+          <Link
+            to="#journal"
+            className="agara-glass hidden shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-agara-charcoal shadow-agara-soft transition-transform duration-300 hover:scale-[1.02] sm:inline-flex"
+          >
+            Visit Journal
+            <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+          </Link>
+        </div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp}
+          className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3"
+        >
+          {JOURNAL_ARTICLES.map((article) => (
+            <article
+              key={article.title}
+              className="agara-glass group flex items-center gap-4 rounded-[20px] p-3 shadow-agara-soft transition-transform duration-300 hover:-translate-y-0.5"
+            >
+              <div className="h-20 w-24 shrink-0 overflow-hidden rounded-[14px] sm:h-24 sm:w-28">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-serif text-sm leading-snug text-agara-charcoal line-clamp-2">
+                  {article.title}
+                </h3>
+                <p className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-agara-charcoal/50">
+                  {article.category}
+                  <span className="mx-1.5 text-agara-charcoal/30">•</span>
+                  {article.readTime}
+                </p>
+              </div>
+              <button
+                type="button"
+                aria-label={`Read ${article.title}`}
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-agara-charcoal/15 bg-white/40 text-agara-charcoal transition-transform duration-300 group-hover:scale-105"
+              >
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </button>
+            </article>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
 
 const FEATURED_PROJECTS = [
   {
@@ -92,15 +184,7 @@ function AgaraLogo() {
 
 function LandingNav() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const sections = NAV_LINKS.map((link) => document.getElementById(link.href.slice(1))).filter(
@@ -123,10 +207,7 @@ function LandingNav() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-[60] px-6 transition-all duration-300 lg:px-10",
-        scrolled
-          ? "border-b border-agara-charcoal/10 bg-[#F7F4EF]/85 py-2 shadow-[0_4px_24px_-12px_rgba(34,34,34,0.25)] backdrop-blur-xl"
-          : "border-b border-transparent py-4 lg:py-5",
+        "fixed inset-x-0 top-0 z-[60] px-6 border-b border-agara-charcoal/10 bg-[#F7F4EF]/85 py-2 shadow-[0_4px_24px_-12px_rgba(34,34,34,0.25)] backdrop-blur-xl transition-all duration-300 lg:px-10 lg:py-2",
       )}
     >
       <nav className="mx-auto flex h-12 max-w-[1440px] items-center">
@@ -226,7 +307,7 @@ function LandingNav() {
 function SocialScrollBar() {
   return (
     <aside className="absolute right-5 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-5 lg:flex xl:right-8">
-      <div className="agara-glass flex flex-col items-center gap-3.5 rounded-full px-2.5 py-4">
+      <div className="agara-glass flex flex-col items-center gap-3.5 rounded-full px-2.5 py-3">
         <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-agara-charcoal/65 transition-colors hover:text-agara-charcoal">
           <Instagram className="h-3.5 w-3.5" strokeWidth={1.5} />
         </a>
@@ -236,13 +317,13 @@ function SocialScrollBar() {
         <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-agara-charcoal/65 transition-colors hover:text-agara-charcoal">
           <Linkedin className="h-3.5 w-3.5" strokeWidth={1.5} />
         </a>
+
+        <div className="flex flex-col items-center gap-2">
+          <span className="h-8 w-px bg-agara-charcoal/20" />
+
+        </div>
       </div>
-      <div className="flex flex-col items-center gap-2">
-        <span className="h-8 w-px bg-agara-charcoal/20" />
-        <p className="text-[9px] uppercase tracking-[0.35em] text-agara-charcoal/45 [writing-mode:vertical-rl] rotate-180">
-          Scroll
-        </p>
-      </div>
+
     </aside>
   );
 }
@@ -253,7 +334,7 @@ function FeaturedProjectCard() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="agara-glass w-[300px] rounded-[28px] p-5 shadow-agara-soft sm:w-[340px] lg:w-[380px] lg:p-7"
+      className="agara-glass w-[300px] rounded-[28px] p-5 shadow-agara-soft sm:w-[340px] lg:w-[380px] lg:p-5"
     >
       <div className="flex items-start gap-4">
         <button
@@ -279,51 +360,100 @@ function FeaturedProjectCard() {
     </motion.div>
   );
 }
+const PHILOSOPHY_PILLARS = [
+  {
+    icon: Building2,
+    title: "Purpose-driven design",
+    description: "We begin with meaning, not just style.",
+  },
+  {
+    icon: Compass,
+    title: "Context matters",
+    description: "We respond to the site, climate and culture.",
+  },
+  {
+    icon: Infinity,
+    title: "Timeless approach",
+    description: "Designs that age beautifully and meaningfully.",
+  },
+  {
+    icon: Users2,
+    title: "Built with integrity",
+    description: "From concept to completion, we take responsibility.",
+  },
+] as const;
 
-function ProjectsSection() {
+function PhilosophySection() {
   return (
-    <section id="projects" className="px-6 pt-8 pb-0 lg:px-10">
+    <section className="px-6 pt-8 pb-0 lg:px-10">
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: true }}
         variants={fadeUp}
-        className="agara-glass mx-auto max-w-[1440px] rounded-[28px] px-5 py-3.5 lg:px-8 lg:py-4"
+        className="mx-auto grid max-w-[1440px] gap-6 lg:grid-cols-[380px_1fr]"
       >
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-8">
-          <div className="shrink-0 lg:w-[220px] xl:w-[260px]">
-            <h2 className="font-serif text-xl leading-tight text-agara-charcoal lg:text-2xl">Featured Projects</h2>
-            <p className="mt-2 text-[11px] leading-relaxed text-agara-charcoal/60 lg:text-xs">
-              A curated selection of our most recent architectural and interior design work.
-            </p>
-            <Link
-              to="#projects"
-              className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-agara-charcoal/65 transition-colors hover:text-agara-charcoal"
-            >
-              View All Projects
-              <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
-            </Link>
-          </div>
+        {/* LEFT CARD */}
+        <div className="agara-glass rounded-[28px] border border-white/40 px-9 py-8 shadow-agara-soft">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-agara-charcoal/45">
+            OUR PHILOSOPHY
+          </p>
 
-          <div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4">
-            {FEATURED_PROJECTS.map((project) => (
-              <article key={project.title} className="group cursor-pointer">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/25 bg-white/10">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="mt-2 flex items-start justify-between gap-1">
-                  <div className="min-w-0">
-                    <h3 className="truncate font-serif text-sm text-agara-charcoal">{project.title}</h3>
-                    <p className="text-[10px] text-agara-charcoal/50">{project.category}</p>
-                  </div>
-                  <ArrowRight className="mt-0.5 h-3 w-3 shrink-0 text-agara-charcoal/35 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-agara-charcoal/60" strokeWidth={1.5} />
-                </div>
-              </article>
+          <h2 className="mt-2 font-serif text-[2rem] leading-[1.08] text-agara-charcoal">
+            No two projects.
+            <br />
+            No repeated ideas.
+          </h2>
+
+          <p className="mt-2 max-w-[285px] text-[12px] leading-[1.8] text-agara-charcoal/65">
+            Every site is unique.
+            Every client is unique.
+            <br />
+            So every design we create is unique.
+          </p>
+
+          <a
+            href="#about"
+            className="group mt-3 inline-flex items-center gap-3 text-[11px] font-semibold text-agara-charcoal"
+          >
+            Discover Our Philosophy
+
+            <ArrowRight
+              className="h-4 w-4 transition-transform group-hover:translate-x-1"
+              strokeWidth={1.5}
+            />
+          </a>
+        </div>
+
+        {/* RIGHT CARD */}
+        <div className="agara-glass rounded-[28px] border border-white/40 shadow-agara-soft">
+          <div className="grid h-full grid-cols-2 lg:grid-cols-4">
+            {PHILOSOPHY_PILLARS.map((pillar, index) => (
+              <div
+                key={pillar.title}
+                className={cn(
+                  "flex flex-col items-center justify-center px-6 py-8 text-center",
+
+                  index !== 0 &&
+                  "border-l border-agara-charcoal/[0.06]",
+
+                  index >= 2 &&
+                  "border-t border-agara-charcoal/[0.06] lg:border-t-0"
+                )}
+              >
+                <pillar.icon
+                  className="h-6 w-6 text-agara-charcoal/45"
+                  strokeWidth={1}
+                />
+
+                <h3 className="mt-4 font-serif text-[16px] leading-tight text-agara-charcoal">
+                  {pillar.title}
+                </h3>
+
+                <p className="mt-3 max-w-[150px] text-[11px] leading-[1.75] text-agara-charcoal/60">
+                  {pillar.description}
+                </p>
+              </div>
             ))}
           </div>
         </div>
@@ -332,13 +462,180 @@ function ProjectsSection() {
   );
 }
 
+const PROJECTS = [
+  {
+    title: "Palo Alto House",
+    category: "Residence",
+    size: "420 SQ.YD",
+    location: "Hyderabad",
+    image:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "The Courtyard House",
+    category: "Residence",
+    size: "310 SQ.YD",
+    location: "Hyderabad",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Alora Cafe",
+    category: "Hospitality",
+    size: "1800 SQ.FT",
+    location: "Hyderabad",
+    image:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "AG Office",
+    category: "Commercial",
+    size: "4500 SQ.FT",
+    location: "Hyderabad",
+    image:
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80",
+  },
+];
+
+function ProjectCard({ project }: { project: (typeof PROJECTS)[number] }) {
+  return (
+    <article className="group">
+      <div className="relative overflow-hidden rounded-[24px] shadow-agara-soft">
+
+        {/* Full Card Image */}
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          className="h-[300px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+
+        {/* Soft gradient behind info */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+
+        {/* Floating Glass Info */}
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="agara-glass flex min-h-[52px] items-center justify-between px-4 py-3 rounded-t-[8px]">
+
+            <div className="flex min-h-[30px] flex-1 flex-col justify-between">
+              <h3 className="line-clamp-2  font-serif text-[18px] leading-[1.2] text-agara-charcoal">
+                {project.title}
+              </h3>
+
+              <p className="h-[16px] text-[11px] text-agara-charcoal/65 whitespace-nowrap overflow-hidden text-ellipsis">
+                {project.category}
+                <span className="mx-1.5">•</span>
+                {project.size}
+                <span className="mx-1.5">•</span>
+                {project.location}
+              </p>
+            </div>
+
+            <button
+              className="ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/35 bg-white/15 backdrop-blur-xl"
+            >
+              <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+function ProjectsSection() {
+  return (
+    <section id="projects" className="px-6 pt-8 pb-0 lg:px-10">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="font-serif text-3xl leading-tight text-agara-charcoal lg:text-4xl">
+            Selected Projects
+          </h2>
+          <Link
+            to="#projects"
+            className="agara-glass hidden shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-agara-charcoal shadow-agara-soft transition-transform duration-300 hover:scale-[1.02] sm:inline-flex"
+          >
+            Explore All Projects
+            <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+          </Link>
+        </div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp}
+          className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5"
+        >
+          {PROJECTS.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// function ProjectsSection() {
+//   return (
+//     <section id="projects" className="px-6 pt-8 pb-0 lg:px-10">
+//       <motion.div
+//         initial="hidden"
+//         whileInView="visible"
+//         viewport={{ once: true, margin: "-80px" }}
+//         variants={fadeUp}
+//         className="agara-glass mx-auto max-w-[1440px] rounded-[28px] px-5 py-3.5 lg:px-8 lg:py-4"
+//       >
+//         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-8">
+//           <div className="shrink-0 lg:w-[220px] xl:w-[260px]">
+//             <h2 className="font-serif text-xl leading-tight text-agara-charcoal lg:text-2xl">Featured Projects</h2>
+//             <p className="mt-2 text-[11px] leading-relaxed text-agara-charcoal/60 lg:text-xs">
+//               A curated selection of our most recent architectural and interior design work.
+//             </p>
+//             <Link
+//               to="#projects"
+//               className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-agara-charcoal/65 transition-colors hover:text-agara-charcoal"
+//             >
+//               View All Projects
+//               <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
+//             </Link>
+//           </div>
+
+//           <div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4">
+//             {FEATURED_PROJECTS.map((project) => (
+//               <article key={project.title} className="group cursor-pointer">
+//                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/25 bg-white/10">
+//                   <img
+//                     src={project.image}
+//                     alt={project.title}
+//                     loading="lazy"
+//                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+//                   />
+//                 </div>
+//                 <div className="mt-2 flex items-start justify-between gap-1">
+//                   <div className="min-w-0">
+//                     <h3 className="truncate font-serif text-sm text-agara-charcoal">{project.title}</h3>
+//                     <p className="text-[10px] text-agara-charcoal/50">{project.category}</p>
+//                   </div>
+//                   <ArrowRight className="mt-0.5 h-3 w-3 shrink-0 text-agara-charcoal/35 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-agara-charcoal/60" strokeWidth={1.5} />
+//                 </div>
+//               </article>
+//             ))}
+//           </div>
+//         </div>
+//       </motion.div>
+//     </section>
+//   );
+// }
+
 function HeroViewport() {
   return (
     <section className="relative h-[100dvh] min-h-[640px] w-full overflow-hidden">
       {/* Full-width, full-bleed background image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85"
+          src={HeroImage}
+          loading="eager"
           alt="Casa Aranya — luxury residence by AGARA Architects"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
@@ -351,7 +648,7 @@ function HeroViewport() {
       <SocialScrollBar />
 
       {/* Featured project — glass card overlaid on the image, top-right */}
-      <div className="absolute right-6 top-24 z-10 hidden sm:block lg:right-10 lg:top-28 xl:right-16">
+      <div className="absolute top-[15.5rem] right-6 z-10 hidden sm:block lg:right-[6rem] xl:right-[6rem]">
         <FeaturedProjectCard />
       </div>
 
@@ -387,7 +684,7 @@ function HeroViewport() {
                 strokeWidth={1.5}
               />
             </Link>
-            <button
+            {/* <button
               type="button"
               className="group flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.14em] text-agara-charcoal/75 transition-colors hover:text-agara-charcoal"
               aria-label="Watch studio film"
@@ -396,7 +693,7 @@ function HeroViewport() {
                 <Play className="ml-0.5 h-3.5 w-3.5 fill-agara-charcoal text-agara-charcoal" />
               </span>
               Watch Studio
-            </button>
+            </button> */}
           </div>
         </motion.div>
       </div>
@@ -432,35 +729,44 @@ function AboutSection() {
         variants={fadeUp}
         className="agara-glass mx-auto max-w-[1440px] overflow-hidden rounded-[32px] shadow-agara-soft"
       >
-        <div className="flex flex-col lg:min-h-[300px] lg:flex-row">
-          {/* Architectural image with right-edge fade */}
-          <div className="relative h-56 w-full shrink-0 overflow-hidden lg:h-auto lg:w-[26%] xl:w-[24%]">
+        <div className="flex flex-col lg:min-h-[260px] lg:flex-row">
+          {/* Architectural image */}
+          <div className="relative h-52 w-full shrink-0 overflow-hidden lg:h-auto lg:w-[26%] xl:w-[24%]">
             <img
               src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=85"
               alt="AGARA Architects — interior corridor with natural light"
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
+
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F7F4EF]/15 to-[#F7F4EF]" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#F7F4EF]/50 via-transparent to-transparent lg:hidden" />
           </div>
 
-          {/* Intro copy */}
-          <div className="flex flex-1 flex-col justify-center border-b border-agara-charcoal/8 px-7 py-8 lg:border-b-0 lg:px-8 lg:py-10 xl:px-10">
+          {/* Intro */}
+          <div className="flex flex-1 flex-col justify-center border-b border-agara-charcoal/8 px-4 py-5 lg:border-b-0 lg:px-8 lg:py-6 xl:px-9">
             <h2 className="font-serif text-[clamp(1.75rem,2.5vw,2.125rem)] leading-tight text-agara-charcoal">
               About AGARA
             </h2>
-            <span className="mt-3 block h-px w-14 bg-agara-charcoal/25" aria-hidden />
-            <p className="mt-5 max-w-[420px] text-[13px] leading-[1.75] text-agara-charcoal/70 lg:text-sm">
-              AGARA Architects is a multidisciplinary design practice based in Hyderabad, creating architecture,
-              interiors, landscapes and construction solutions that are contextually rooted, functionally driven and
-              aesthetically timeless.
+
+            <span
+              className="mt-2 block h-px w-14 bg-agara-charcoal/25"
+              aria-hidden
+            />
+
+            <p className="mt-4 max-w-[420px] text-[13px] leading-[1.7] text-agara-charcoal/70 lg:text-sm">
+              AGARA Architects is a multidisciplinary design practice based in
+              Hyderabad, creating architecture, interiors, landscapes and
+              construction solutions that are contextually rooted,
+              functionally driven and aesthetically timeless.
             </p>
+
             <a
               href="#about"
-              className="group mt-6 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.18em] text-agara-charcoal/75 transition-colors hover:text-agara-charcoal"
+              className="group mt-4 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.18em] text-agara-charcoal/75 transition-colors hover:text-agara-charcoal"
             >
               Our Story
+
               <ArrowRight
                 className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
                 strokeWidth={1.5}
@@ -473,12 +779,22 @@ function AboutSection() {
             {ABOUT_PILLARS.map((pillar, index) => (
               <div
                 key={pillar.title}
-                className={`flex flex-col items-center justify-center px-5 py-9 text-center lg:px-4 lg:py-8 xl:px-6 ${index > 0 ? "border-t border-agara-charcoal/8 sm:border-l sm:border-t-0" : ""
+                className={`flex flex-col items-center justify-center px-5 py-4 text-center lg:px-4 lg:py-5 xl:px-5 ${index > 0
+                  ? "border-t border-agara-charcoal/8 sm:border-l sm:border-t-0"
+                  : ""
                   }`}
               >
-                <pillar.icon className="h-7 w-7 text-agara-charcoal/50" strokeWidth={1} aria-hidden />
-                <h3 className="mt-5 font-serif text-lg text-agara-charcoal">{pillar.title}</h3>
-                <p className="mt-3 max-w-[190px] text-[11px] leading-relaxed text-agara-charcoal/60">
+                <pillar.icon
+                  className="h-6 w-6 text-agara-charcoal/50"
+                  strokeWidth={1}
+                  aria-hidden
+                />
+
+                <h3 className="mt-3 font-serif text-[17px] leading-tight text-agara-charcoal">
+                  {pillar.title}
+                </h3>
+
+                <p className="mt-2 max-w-[180px] text-[11px] leading-relaxed text-agara-charcoal/60">
                   {pillar.description}
                 </p>
               </div>
@@ -504,31 +820,22 @@ function ContactSection() {
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
         variants={fadeUp}
-        className="agara-glass relative mx-auto max-w-[1440px] overflow-hidden rounded-[32px] shadow-agara-soft"
+        className="agara-glass mx-auto max-w-[1440px] overflow-hidden rounded-[32px] shadow-agara-soft"
       >
-        {/* Architectural line-art on the right, faded into the card */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] md:block lg:w-[38%]">
-          <img
-            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80"
-            alt=""
-            aria-hidden
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover object-center opacity-25 mix-blend-luminosity"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#F7F4EF] via-[#F7F4EF]/60 to-transparent" />
-        </div>
+        <div className="flex flex-col lg:min-h-[165px] lg:flex-row">
 
-        <div className="relative z-10 flex flex-col gap-8 px-7 py-8 md:flex-row md:items-center md:gap-10 lg:px-12 lg:py-10">
-          {/* Left — heading + CTA */}
-          <div className="shrink-0 md:w-[42%] lg:w-[38%]">
-            <h2 className="font-serif text-[clamp(1.6rem,2.6vw,2.125rem)] leading-tight text-agara-charcoal">
-              Let&rsquo;s create something timeless together.
+          {/* Left */}
+          <div className="flex flex-col justify-center border-b border-agara-charcoal/8 px-6 py-3 lg:w-[36%] lg:border-b-0 lg:border-r lg:px-8 lg:py-4">
+            <h2 className="font-serif text-[clamp(1.35rem,2vw,1.7rem)] leading-tight text-agara-charcoal">
+              Let's create something timeless together.
             </h2>
+
             <Link
               to="/login?redirect=/dashboard"
-              className="group mt-6 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.18em] text-agara-charcoal/75 transition-colors hover:text-agara-charcoal"
+              className="group mt-2 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.18em] text-agara-charcoal/75 transition-colors hover:text-agara-charcoal"
             >
               Get In Touch
+
               <ArrowRight
                 className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
                 strokeWidth={1.5}
@@ -536,15 +843,22 @@ function ContactSection() {
             </Link>
           </div>
 
-          {/* Middle — contact details */}
-          <div className="flex flex-col gap-4 md:gap-5">
+          {/* Middle */}
+          <div className="flex flex-col justify-center gap-2 border-b border-agara-charcoal/8 px-6 py-3 lg:w-[30%] lg:border-b-0 lg:border-r lg:px-7 lg:py-4">
             {CONTACT_DETAILS.map((item) => {
               const content = (
                 <>
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center text-agara-charcoal/55">
-                    <item.icon className="h-4 w-4" strokeWidth={1.5} aria-hidden />
+                    <item.icon
+                      className="h-4 w-4"
+                      strokeWidth={1.5}
+                      aria-hidden
+                    />
                   </span>
-                  <span className="text-[13px] tracking-wide text-agara-charcoal/75">{item.label}</span>
+
+                  <span className="text-[12px] text-agara-charcoal/75">
+                    {item.label}
+                  </span>
                 </>
               );
 
@@ -552,7 +866,7 @@ function ContactSection() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="flex items-center gap-3 transition-colors hover:text-agara-charcoal [&_span]:hover:text-agara-charcoal"
+                  className="flex items-center gap-3 transition-colors hover:text-agara-charcoal"
                 >
                   {content}
                 </a>
@@ -563,12 +877,22 @@ function ContactSection() {
               );
             })}
           </div>
+
+          {/* Right */}
+          <div className="relative h-32 overflow-hidden lg:h-auto lg:w-[34%]">
+            <img
+              src={ContactSectionImage}
+              alt="Architectural blueprint"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </div>
+
         </div>
       </motion.div>
     </section>
   );
 }
-
 function ServicesSection() {
   const items = [
     { icon: Box, title: "Architecture", desc: "Contextual architecture crafted with clarity, function and detail." },
@@ -633,11 +957,12 @@ export function AgaraLandingPage() {
 
       <ServicesSection />
       <ProjectsSection />
+      <PhilosophySection />
+      <JournalSection />
       <AboutSection />
       <ContactSection />
 
-      <section id="journal" className="sr-only">Journal</section>
-      <FooterSection />
+      {/* <FooterSection /> */}
     </div>
   );
 }
