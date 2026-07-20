@@ -343,8 +343,8 @@ function HeroViewport() {
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
         {/* Left-to-right fade so the overlaid copy stays legible on any image */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#F7F4EF]/95 via-[#F7F4EF]/55 to-transparent lg:from-[#F7F4EF]/85 lg:via-[#F7F4EF]/20 lg:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#F7F4EF]/30 via-transparent to-transparent" />
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-[#F7F4EF]/95 via-[#F7F4EF]/55 to-transparent lg:from-[#F7F4EF]/85 lg:via-[#F7F4EF]/20 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#F7F4EF]/30 via-transparent to-transparent" /> */}
       </div>
 
       <LandingNav />
