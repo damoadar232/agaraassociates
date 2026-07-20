@@ -13,13 +13,13 @@ export function GlassCard({
   return (
     <div
       className={cn(
-        "rounded-3xl border backdrop-blur-xl transition-shadow",
+        "rounded-[32px] border backdrop-blur-[28px] transition-shadow",
         variant === "light" &&
-          "bg-surface/65 border-border/50 shadow-glass",
+        "bg-white/18 border-white/28 shadow-glass",
         variant === "subtle" &&
-          "bg-surface/45 border-border/35 shadow-glass-sm",
+        "bg-white/14 border-white/24 shadow-glass-sm",
         variant === "dark" &&
-          "bg-primary/92 border-border/15 shadow-glass-dark text-primary-foreground",
+        "bg-black/70 border-white/15 shadow-glass-dark text-primary-foreground",
         className
       )}
       {...props}

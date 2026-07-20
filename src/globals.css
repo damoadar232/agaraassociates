@@ -5,42 +5,44 @@
 @layer base {
   :root {
     /* Brand */
-    --primary: 32 19% 88%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 33 13% 82%;
-    --secondary-foreground: 0 0% 0%;
-    --accent: 30 36% 46%;
-    --accent-foreground: 0 0% 0%;
+    --primary: 33 27% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 33 18% 84%;
+    --secondary-foreground: 23 13% 17%;
+    --accent: 33 27% 50%;
+    --accent-foreground: 0 0% 100%;
+    --gold: 30 27% 49%;
+    --gold-foreground: 0 0% 100%;
 
     /* Surfaces */
-    --background: 40 20% 96%;
-    --foreground: 0 0% 0%;
-    --body: 0 0% 0%;
-    --heading: 0 0% 0%;
-    --card: 34 21% 92%;
-    --card-foreground: 0 0% 0%;
-    --popover: 34 21% 92%;
-    --popover-foreground: 0 0% 0%;
-    --surface: 34 21% 92%;
-    --surface-hover: 32 19% 88%;
-    --muted: 32 19% 88%;
-    --muted-foreground: 0 0% 0%;
+    --background: 28 16% 95%;
+    --foreground: 23 13% 17%;
+    --body: 22 12% 42%;
+    --heading: 23 13% 17%;
+    --card: 40 96% 98%;
+    --card-foreground: 23 13% 17%;
+    --popover: 40 96% 98%;
+    --popover-foreground: 23 13% 17%;
+    --surface: 29 18% 92%;
+    --surface-hover: 29 16% 88%;
+    --muted: 22 11% 57%;
+    --muted-foreground: 22 11% 57%;
 
     /* Semantic */
-    --destructive: 0 42% 54%;
-    --destructive-foreground: 40 20% 96%;
-    --success: 127 19% 45%;
-    --success-foreground: 40 20% 96%;
-    --warning: 32 54% 51%;
-    --warning-foreground: 0 0% 0%;
-    --info: 207 27% 54%;
-    --info-foreground: 40 20% 96%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 28 16% 95%;
+    --success: 137 20% 38%;
+    --success-foreground: 28 16% 95%;
+    --warning: 33 27% 50%;
+    --warning-foreground: 0 0% 100%;
+    --info: 205 25% 55%;
+    --info-foreground: 28 16% 95%;
 
     /* Borders */
-    --border: 28 12% 76%;
-    --divider: 32 17% 84%;
-    --input: 28 12% 76%;
-    --ring: 30 36% 46%;
+    --border: 30 22% 82%;
+    --divider: 30 18% 88%;
+    --input: 30 22% 82%;
+    --ring: 33 27% 50%;
 
     --radius: 1.25rem;
 
@@ -61,6 +63,7 @@
   * {
     @apply border-border;
   }
+
   /*
    * Reserve the vertical scrollbar gutter at the root so toggling the
    * scrollbar never changes the content width. Without this, every
@@ -71,6 +74,7 @@
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
   }
+
   /*
    * Offset anchor scrolling on the landing page so the fixed navbar never
    * covers a section heading when navigating between sections.
@@ -78,10 +82,12 @@
   .agara-page section[id] {
     scroll-margin-top: 5.5rem;
   }
+
   body {
     @apply bg-background antialiased text-foreground;
-    color: #000000;
-    font-family: var(--font-elms);
+    color: hsl(var(--body));
+    font-family: var(--font-inter);
+    letter-spacing: 0.01em;
     /*
      * Contain transient horizontal overflow from entrance/hover transforms
      * (translate-x, scale, rotated writing-mode text). `clip` is used instead
@@ -91,28 +97,39 @@
     overflow-x: clip;
     max-width: 100%;
   }
+
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6,
+  h6 {
+    color: hsl(var(--heading));
+    font-family: var(--font-serif-display);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
   p,
   span,
   label,
   li,
   td,
   th {
-    color: #000000;
+    color: hsl(var(--body));
   }
+
   a {
-    color: #000000;
+    color: hsl(var(--foreground));
+    text-decoration-color: rgba(165, 141, 111, 0.5);
   }
+
   input::placeholder,
   textarea::placeholder {
-    color: #000000;
-    opacity: 0.55;
+    color: hsl(var(--muted));
+    opacity: 0.7;
   }
+
   .text-muted-foreground,
   .text-accent,
   .text-accent-foreground,
@@ -133,6 +150,7 @@
   .text-heading {
     color: hsl(var(--heading));
   }
+
   .text-body {
     color: hsl(var(--body));
   }
@@ -145,33 +163,34 @@
   }
 
   .glass {
-    @apply backdrop-blur-xl border shadow-glass;
-    background: hsl(var(--surface) / 0.65);
-    border-color: hsl(var(--border) / 0.5);
+    @apply backdrop-blur-[28px] border shadow-glass;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.18));
+    border-color: rgba(255, 255, 255, 0.4);
   }
 
   .glass-subtle {
-    @apply backdrop-blur-lg;
-    background: hsl(var(--surface) / 0.45);
-    border-color: hsl(var(--border) / 0.35);
+    @apply backdrop-blur-[28px];
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.32);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
   }
 
   .glass-dark {
-    @apply backdrop-blur-xl shadow-glass-dark;
-    background: hsl(var(--primary) / 0.92);
-    border-color: hsl(var(--border) / 0.15);
+    @apply backdrop-blur-[28px] shadow-glass-dark;
+    background: rgba(31, 31, 31, 0.92);
+    border-color: rgba(255, 255, 255, 0.12);
     color: hsl(var(--primary-foreground));
   }
 
   .glass-pill {
     @apply rounded-full backdrop-blur-md;
-    background: hsl(var(--surface) / 0.7);
-    border: 1px solid hsl(var(--border) / 0.5);
+    background: rgba(255, 255, 255, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.45);
   }
 
   .glass-pill-active {
-    @apply rounded-full shadow-sm border border-border/60;
-    background: hsl(var(--primary));
+    @apply rounded-full shadow-sm border border-white/60;
+    background: hsl(var(--primary) / 0.18);
     color: hsl(var(--primary-foreground));
   }
 
@@ -202,12 +221,11 @@
   }
 
   .agara-glass {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(36px);
-    -webkit-backdrop-filter: blur(36px);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    box-shadow:
-      0 8px 32px -8px rgba(34, 34, 34, 0.06),
-      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+    inset: 0;
   }
 }

@@ -356,7 +356,7 @@ function HeroViewport() {
       </div>
 
       {/* Left-aligned hero copy, overlaid on the image */}
-      <div className="relative z-10 flex h-full flex-col justify-center px-6 pb-20 pt-24 lg:px-10 lg:pb-16 xl:px-16">
+      <div className="relative z-10 flex h-full flex-col justify-center px-6 pb-32 pt-24 lg:px-10 lg:pb-28 xl:px-16">
         <motion.div
           className="max-w-[420px] lg:max-w-[480px]"
           initial="hidden"
@@ -578,31 +578,29 @@ function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="px-6 pt-8 pb-0 lg:px-10">
-      <div className="mx-auto grid max-w-[1440px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {items.map((item, i) => (
-          <motion.div
-            key={item.title}
-            variants={fadeUp}
-            transition={{ delay: i * 0.08 }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="flex flex-col rounded-[28px] border border-white/40 bg-white/25 p-7 shadow-[0_8px_32px_-14px_rgba(34,34,34,0.12)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/35"
-          >
-            <item.icon className="h-9 w-9 text-agara-charcoal/55" strokeWidth={1} aria-hidden />
-            <h3 className="mt-6 font-serif text-xl text-agara-charcoal">{item.title}</h3>
-            <p className="mt-3 text-[13px] leading-relaxed text-agara-charcoal/60">{item.desc}</p>
-            <a
-              href="#contact"
-              aria-label={`Learn more about ${item.title}`}
-              className="mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full border border-agara-charcoal/15 bg-white/25 text-agara-charcoal/70 transition-all duration-300 hover:bg-white/45 hover:text-agara-charcoal"
+    <section id="services" className="relative z-20 -mt-24 px-6 pb-0 lg:-mt-28 lg:px-10">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={fadeUp}
+        className="agara-glass mx-auto max-w-[1400px] rounded-[32px] border border-white/50 bg-[#F7F4EF]/55 shadow-agara-soft backdrop-blur-[28px]"
+      >
+        <div className="grid divide-y divide-agara-charcoal/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+          {items.map((item) => (
+            <div
+              key={item.title}
+              className="flex flex-col items-center px-6 py-6 text-center transition-colors duration-300 hover:bg-white/25 lg:px-8 lg:py-6"
             >
-              <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
-            </a>
-          </motion.div>
-        ))}
-      </div>
+              <item.icon className="h-8 w-8 text-agara-charcoal/50" strokeWidth={1} aria-hidden />
+              <h3 className="mt-2 font-serif text-lg text-agara-charcoal lg:text-xl">{item.title}</h3>
+              <p className="mt-2 max-w-[200px] text-[12px] leading-relaxed text-agara-charcoal/60 lg:text-[13px]">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }
@@ -632,8 +630,9 @@ export function AgaraLandingPage() {
   return (
     <div className="agara-page font-inter text-agara-charcoal">
       <HeroViewport />
-      <ProjectsSection />
+
       <ServicesSection />
+      <ProjectsSection />
       <AboutSection />
       <ContactSection />
 
