@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { useState } from "react";
-import HeroImage from "../../../../public/HeroImage.png";
+import { project_info } from "@/constants";
 import { fadeUp } from "@/components/marketing/motion";
 import { SocialScrollBar } from "@/components/marketing/social-scroll-bar";
 import { VideoModal } from "@/components/marketing/video-modal";
+
+const featuredProject = project_info?.[0] ?? null;
 
 function FeaturedProjectCard({ onPlayClick }) {
   return (
@@ -29,13 +31,15 @@ function FeaturedProjectCard({ onPlayClick }) {
             Featured Project
           </p>
           <p className="mt-1 font-serif text-2xl leading-tight text-agara-charcoal">
-            Casa Aranya
+            {featuredProject?.title || "Featured Project"}
           </p>
-          <p className="mt-1 text-xs text-agara-charcoal/55">Hyderabad, India</p>
+          <p className="mt-1 text-xs text-agara-charcoal/55">
+            {featuredProject?.subTittle || "Hyderabad, India"}
+          </p>
         </div>
       </div>
       <Link
-        to="/projects/casa-aranya"
+        to={featuredProject ? `/projects/${featuredProject.id}` : "/projects"}
         className="mt-5 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.16em] text-agara-charcoal/65 transition-colors hover:text-agara-charcoal"
       >
         View Project
@@ -52,7 +56,7 @@ export function HeroSection() {
     <section className="relative h-[100dvh] min-h-[640px] w-full overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
         <img
-          src={HeroImage}
+          src="/HeroImage.png"
           loading="eager"
           alt="Casa Aranya — luxury residence by AGARA Architects"
           className="absolute inset-0 h-full w-full object-cover object-center"
@@ -103,8 +107,8 @@ export function HeroSection() {
         isOpen={videoModalOpen}
         onClose={() => setVideoModalOpen(false)}
         videoSrc="/videos/casa-aranya.mp4"
-        title="Casa Aranya"
-        location="Hyderabad, India"
+        title={featuredProject?.title || "Featured Project"}
+        location={featuredProject?.subTittle || "Hyderabad, India"}
       />
     </section>
   );

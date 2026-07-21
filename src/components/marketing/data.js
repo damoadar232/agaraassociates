@@ -70,89 +70,6 @@ export const JOURNAL_ARTICLES = [
   },
 ];
 
-export const PROJECTS = [
-  {
-    slug: "palo-alto-house",
-    title: "Palo Alto House",
-    category: "Residence",
-    size: "420 SQ.YD",
-    location: "Hyderabad",
-    image:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
-    featured: true,
-  },
-  {
-    slug: "the-courtyard-house",
-    title: "The Courtyard House",
-    category: "Residence",
-    size: "310 SQ.YD",
-    location: "Hyderabad",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-    featured: true,
-  },
-  {
-    slug: "alora-cafe",
-    title: "Alora Cafe",
-    category: "Hospitality",
-    size: "1800 SQ.FT",
-    location: "Hyderabad",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
-    featured: true,
-  },
-  {
-    slug: "ag-office",
-    title: "AG Office",
-    category: "Commercial",
-    size: "4500 SQ.FT",
-    location: "Hyderabad",
-    image:
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80",
-    featured: true,
-  },
-  {
-    slug: "casa-aranya",
-    title: "Casa Aranya",
-    category: "Residence",
-    size: "480 SQ.YD",
-    location: "Hyderabad",
-    image:
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80",
-    featured: false,
-  },
-  {
-    slug: "lakeview-pavilion",
-    title: "Lakeview Pavilion",
-    category: "Hospitality",
-    size: "2200 SQ.FT",
-    location: "Hyderabad",
-    image:
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80",
-    featured: false,
-  },
-  {
-    slug: "amber-residence",
-    title: "Amber Residence",
-    category: "Residence",
-    size: "360 SQ.YD",
-    location: "Hyderabad",
-    image:
-      "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?auto=format&fit=crop&w=800&q=80",
-    featured: false,
-  },
-  {
-    slug: "northline-studio",
-    title: "Northline Studio",
-    category: "Commercial",
-    size: "3200 SQ.FT",
-    location: "Hyderabad",
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-    featured: false,
-  },
-];
-
 export const PHILOSOPHY_PILLARS = [
   {
     icon: "Building2",
@@ -229,10 +146,6 @@ export const FOOTER_SERVICES = [
   "Landscape",
   "Construction",
 ];
-
-export function getProjectBySlug(slug) {
-  return PROJECTS.find((p) => p.slug === slug) ?? null;
-}
 
 export function getArticleBySlug(slug) {
   return JOURNAL_ARTICLES.find((a) => a.slug === slug) ?? null;

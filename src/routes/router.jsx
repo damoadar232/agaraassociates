@@ -75,7 +75,7 @@ export const router = createBrowserRouter([
         element: withMarketingSuspense(<MarketingProjectsPage />),
       },
       {
-        path: "/projects/:slug",
+        path: "/projects/:id",
         element: withMarketingSuspense(<MarketingProjectDetailPage />),
       },
       {

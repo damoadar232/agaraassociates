@@ -1,11 +1,11 @@
+import { Infinity as InfinityIcon, Building2, Compass, Users2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Building2, Compass, Infinity, Users2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { fadeUp } from "@/components/marketing/motion";
 import { PHILOSOPHY_PILLARS } from "@/components/marketing/data";
 
-const ICONS = { Building2, Compass, Infinity, Users2 };
+const ICONS = { Building2, Compass, Infinity: InfinityIcon, Users2 };
 
 export function PhilosophySection() {
   return (
