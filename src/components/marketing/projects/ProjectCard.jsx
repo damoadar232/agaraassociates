@@ -17,7 +17,7 @@ function ProjectCardComponent({ project }) {
           />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
           <div className="absolute inset-x-0 bottom-0">
-            <div className="agara-glass flex min-h-[52px] items-center justify-between px-4 py-3 rounded-t-[8px]">
+            <div className="agara-glass flex min-h-[52px] items-center justify-between rounded-t-[8px] p-2">
               <div className="flex min-h-[30px] flex-1 flex-col justify-between">
                 <h3 className="line-clamp-2 font-serif text-[18px] leading-[1.2] text-agara-charcoal">
                   {project.title}

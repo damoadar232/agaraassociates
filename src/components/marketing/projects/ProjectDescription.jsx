@@ -26,7 +26,7 @@ function ProjectDescriptionComponent({ project }) {
         <div className="flex shrink-0 justify-start lg:justify-end">
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-3 rounded-full bg-agara-charcoal px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-agara-cream transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            className=" mt-5 group inline-flex items-center gap-3 rounded-full bg-agara-charcoal px-4 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-agara-cream transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
             Start a Similar Project
 
