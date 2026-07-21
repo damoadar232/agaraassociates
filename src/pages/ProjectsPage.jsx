@@ -11,54 +11,56 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { SERVICE_TYPE_LABELS } from "@/lib/constants/onboarding";
 import { formatCurrency, getInitials } from "@/lib/utils";
+import "@/assets/styles/pages/ProjectsPage.scss";
+
 export function ProjectsPage() {
     const projects = getAllProjects();
-    return (<div className="space-y-6 animate-in fade-in duration-500">
+    return (<div className="projects-page">
       <PageHeader title="Projects" description="Manage your architecture and design projects">
-        <Button className="rounded-xl" asChild>
+        <Button className="projects-page__action-btn" asChild>
           <Link to="/app/projects/new">
-            <Plus className="h-4 w-4"/> New Project
+            <Plus className="projects-page__action-icon"/> New Project
           </Link>
         </Button>
       </PageHeader>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {projects.map((project) => (<Link key={project.id} to={`/app/projects/${project.id}`}>
-            <Card className="card-hover h-full">
-              <CardContent className="p-6 space-y-4">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-1">
-                    <h3 className="font-semibold text-lg">{project.name}</h3>
-                    <p className="text-sm text-muted-foreground">
+      <div className="projects-page__grid">
+        {projects.map((project) => (<Link key={project.id} to={`/app/projects/${project.id}`} className="projects-page__card-link">
+            <Card className="projects-page__card">
+              <CardContent className="projects-page__card-content">
+                <div className="projects-page__card-top">
+                  <div className="projects-page__card-heading">
+                    <h3 className="projects-page__project-name">{project.name}</h3>
+                    <p className="projects-page__project-location">
                       {project.location}, {project.city}
                     </p>
                   </div>
                   <ProgressRing value={project.progress} size={64} strokeWidth={5}/>
                 </div>
-                <div className="flex flex-wrap gap-1">
-                  {project.serviceTypes.slice(0, 3).map((service) => (<Badge key={service} variant={service === "construction" ? "secondary" : "outline"} className="text-[10px]">
+                <div className="projects-page__badges">
+                  {project.serviceTypes.slice(0, 3).map((service) => (<Badge key={service} variant={service === "construction" ? "secondary" : "outline"} className="projects-page__badge">
                       {SERVICE_TYPE_LABELS[service]}
                     </Badge>))}
-                  {project.serviceTypes.length > 3 && (<Badge variant="outline" className="text-[10px]">
+                  {project.serviceTypes.length > 3 && (<Badge variant="outline" className="projects-page__badge">
                       +{project.serviceTypes.length - 3}
                     </Badge>)}
                 </div>
-                <div className="flex items-center gap-2">
-                  <Avatar className="h-6 w-6">
-                    <AvatarFallback className="text-[10px] bg-secondary text-white">
+                <div className="projects-page__client-row">
+                  <Avatar className="projects-page__client-avatar">
+                    <AvatarFallback className="projects-page__client-avatar-fallback">
                       {getInitials(project.clientName)}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="text-sm text-muted-foreground">{project.clientName}</span>
+                  <span className="projects-page__client-name">{project.clientName}</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="projects-page__status-row">
                   <StatusChip status={project.status}/>
-                  <span className="text-xs text-muted-foreground ml-auto">{project.progress}% complete</span>
+                  <span className="projects-page__progress-label">{project.progress}% complete</span>
                 </div>
-                <Progress value={project.progress} className="h-1.5"/>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Budget</span>
-                  <span className="font-medium">{formatCurrency(project.budget)}</span>
+                <Progress value={project.progress} className="projects-page__progress"/>
+                <div className="projects-page__budget-row">
+                  <span className="projects-page__budget-label">Budget</span>
+                  <span className="projects-page__budget-value">{formatCurrency(project.budget)}</span>
                 </div>
               </CardContent>
             </Card>

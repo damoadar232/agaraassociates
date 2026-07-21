@@ -12,6 +12,8 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/utils";
 import { MessageCircle } from "lucide-react";
+import "@/assets/styles/components/SettingsForm.scss";
+
 export function SettingsForm() {
     const initial = getStudioSettingsSnapshot();
     const [studioName, setStudioName] = useState(initial.studioName);
@@ -22,58 +24,58 @@ export function SettingsForm() {
         updateStudioSettings({ studioName, email, phone });
         toast.success("Settings saved");
     };
-    return (<div className="space-y-8 animate-in fade-in duration-500 max-w-3xl">
+    return (<div className="settings-form">
       <PageHeader title="Settings" description="Manage your studio profile and preferences"/>
 
       <Card>
         <CardHeader><CardTitle>Your Profile</CardTitle></CardHeader>
-        <CardContent className="flex items-center gap-4">
-          <Avatar className="h-16 w-16">
+        <CardContent className="settings-form__profile-content">
+          <Avatar className="settings-form__profile-avatar">
             <AvatarImage src={CURRENT_USER.avatar} alt={CURRENT_USER.name}/>
             <AvatarFallback>{getInitials(CURRENT_USER.name)}</AvatarFallback>
           </Avatar>
           <div>
-            <p className="font-semibold">{CURRENT_USER.name}</p>
-            <p className="text-sm text-muted-foreground">{CURRENT_USER.role}</p>
-            <p className="text-sm text-muted-foreground">{CURRENT_STUDIO}</p>
+            <p className="settings-form__profile-name">{CURRENT_USER.name}</p>
+            <p className="settings-form__profile-role">{CURRENT_USER.role}</p>
+            <p className="settings-form__profile-role">{CURRENT_STUDIO}</p>
           </div>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader><CardTitle>Studio Profile</CardTitle></CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
+        <CardContent className="settings-form__studio-content">
+          <div className="settings-form__field">
             <Label>Studio Name</Label>
-            <Input value={studioName} onChange={(e) => setStudioName(e.target.value)} className="rounded-xl"/>
+            <Input value={studioName} onChange={(e) => setStudioName(e.target.value)}/>
           </div>
-          <div className="space-y-2">
+          <div className="settings-form__field">
             <Label>Email</Label>
-            <Input value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-xl"/>
+            <Input value={email} onChange={(e) => setEmail(e.target.value)}/>
           </div>
-          <div className="space-y-2">
+          <div className="settings-form__field">
             <Label>Phone</Label>
-            <Input value={phone} onChange={(e) => setPhone(e.target.value)} className="rounded-xl"/>
+            <Input value={phone} onChange={(e) => setPhone(e.target.value)}/>
           </div>
-          <Button className="rounded-xl" onClick={handleSave}>Save Changes</Button>
+          <Button onClick={handleSave}>Save Changes</Button>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader><CardTitle>Team Members</CardTitle></CardHeader>
-        <CardContent className="space-y-3">
-          {team.map((member) => (<div key={member.id} className="flex items-center gap-3 p-3 rounded-xl border">
+        <CardContent className="settings-form__team-content">
+          {team.map((member) => (<div key={member.id} className="settings-form__team-member">
               <Avatar>
                 {member.avatar ? <AvatarImage src={member.avatar} alt={member.name}/> : null}
-                <AvatarFallback className="bg-primary text-white text-sm">{getInitials(member.name)}</AvatarFallback>
+                <AvatarFallback className="settings-form__team-avatar-fallback">{getInitials(member.name)}</AvatarFallback>
               </Avatar>
-              <div className="flex-1">
-                <p className="font-medium text-sm">{member.name}</p>
-                <p className="text-xs text-muted-foreground">{member.role}</p>
+              <div className="settings-form__team-info">
+                <p className="settings-form__team-name">{member.name}</p>
+                <p className="settings-form__team-role">{member.role}</p>
               </div>
               <Badge variant="outline">Active</Badge>
             </div>))}
-          <Button variant="outline" className="rounded-xl w-full" onClick={() => toast.info("Invite link copied to clipboard")}>
+          <Button variant="outline" className="settings-form__invite-btn" onClick={() => toast.info("Invite link copied to clipboard")}>
             Invite Team Member
           </Button>
         </CardContent>
@@ -81,38 +83,38 @@ export function SettingsForm() {
 
       <Card>
         <CardHeader><CardTitle>Integrations</CardTitle></CardHeader>
-        <CardContent className="space-y-3">
-          <div className="flex items-center justify-between p-4 rounded-xl border">
-            <div className="flex items-center gap-3">
-              <MessageCircle className="h-5 w-5 text-success"/>
+        <CardContent className="settings-form__integrations">
+          <div className="settings-form__integration-row">
+            <div className="settings-form__integration-main">
+              <MessageCircle className="settings-form__integration-icon"/>
               <div>
-                <p className="font-medium text-sm">WhatsApp Business</p>
-                <p className="text-xs text-muted-foreground">Sync client messages</p>
+                <p className="settings-form__integration-name">WhatsApp Business</p>
+                <p className="settings-form__integration-desc">Sync client messages</p>
               </div>
             </div>
-            <Button variant="outline" size="sm" className="rounded-xl" onClick={() => toast.info("WhatsApp integration setup started")}>Connect</Button>
+            <Button variant="outline" size="sm" onClick={() => toast.info("WhatsApp integration setup started")}>Connect</Button>
           </div>
-          <div className="flex items-center justify-between p-4 rounded-xl border">
+          <div className="settings-form__integration-row">
             <div>
-              <p className="font-medium text-sm">Tally ERP</p>
-              <p className="text-xs text-muted-foreground">Accounting sync</p>
+              <p className="settings-form__integration-name">Tally ERP</p>
+              <p className="settings-form__integration-desc">Accounting sync</p>
             </div>
-            <Button variant="outline" size="sm" className="rounded-xl" onClick={() => toast.info("Tally connection wizard opened")}>Connect</Button>
+            <Button variant="outline" size="sm" onClick={() => toast.info("Tally connection wizard opened")}>Connect</Button>
           </div>
         </CardContent>
       </Card>
 
-      <Card className="border-primary/20">
+      <Card className="settings-form__billing-card">
         <CardHeader><CardTitle>Billing Plan</CardTitle></CardHeader>
         <CardContent>
-          <div className="flex items-center justify-between">
+          <div className="settings-form__billing-row">
             <div>
-              <p className="font-semibold">Professional Plan</p>
-              <p className="text-sm text-muted-foreground">₹4,999/month · Up to 15 projects</p>
+              <p className="settings-form__billing-name">Professional Plan</p>
+              <p className="settings-form__billing-meta">₹4,999/month · Up to 15 projects</p>
             </div>
             <Badge>Active</Badge>
           </div>
-          <Button variant="outline" className="rounded-xl mt-4" onClick={() => toast.info("Subscription portal opened")}>Manage Subscription</Button>
+          <Button variant="outline" className="settings-form__billing-btn" onClick={() => toast.info("Subscription portal opened")}>Manage Subscription</Button>
         </CardContent>
       </Card>
     </div>);

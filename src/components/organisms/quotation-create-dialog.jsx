@@ -10,6 +10,8 @@ import { Select } from "@/components/ui/select";
 import { getProjectsForClient } from "@/lib/client-workspace";
 import { getClientById } from "@/lib/store/client-store";
 import { createQuotation } from "@/lib/store/quotation-store";
+import "@/assets/styles/components/QuotationCreateDialog.scss";
+
 export function QuotationCreateDialog({ open, onOpenChange, clientId }) {
     const navigate = useNavigate();
     const projects = getProjectsForClient(clientId);
@@ -41,38 +43,38 @@ export function QuotationCreateDialog({ open, onOpenChange, clientId }) {
         navigate(`/quotations/${quote.id}?client=${clientId}`);
     };
     return (<Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="quotation-create-dialog__content">
         <DialogHeader>
           <DialogTitle>New Quotation</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
+        <form onSubmit={handleSubmit} className="quotation-create-dialog__form">
+          <div className="quotation-create-dialog__field">
             <Label>Project</Label>
-            <Select value={projectId} onChange={(e) => setProjectId(e.target.value)} className="rounded-xl">
+            <Select value={projectId} onChange={(e) => setProjectId(e.target.value)}>
               {projects.map((p) => (<option key={p.id} value={p.id}>{p.name}</option>))}
             </Select>
           </div>
-          <div className="space-y-2">
+          <div className="quotation-create-dialog__field">
             <Label>Title</Label>
-            <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Interior Finishes Package" className="rounded-xl"/>
+            <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Interior Finishes Package"/>
           </div>
-          <div className="space-y-2">
+          <div className="quotation-create-dialog__field">
             <Label>Valid until</Label>
-            <Input type="date" value={validUntil} onChange={(e) => setValidUntil(e.target.value)} className="rounded-xl"/>
+            <Input type="date" value={validUntil} onChange={(e) => setValidUntil(e.target.value)}/>
           </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <div className="sm:col-span-2 space-y-2">
+          <div className="quotation-create-dialog__grid">
+            <div className="quotation-create-dialog__field quotation-create-dialog__field-span-2">
               <Label>Line item</Label>
-              <Input value={line1} onChange={(e) => setLine1(e.target.value)} placeholder="Living room finishes" className="rounded-xl"/>
+              <Input value={line1} onChange={(e) => setLine1(e.target.value)} placeholder="Living room finishes"/>
             </div>
-            <div className="space-y-2">
+            <div className="quotation-create-dialog__field">
               <Label>Amount (₹)</Label>
-              <Input type="number" value={amount1} onChange={(e) => setAmount1(e.target.value)} className="rounded-xl"/>
+              <Input type="number" value={amount1} onChange={(e) => setAmount1(e.target.value)}/>
             </div>
           </div>
-          <div className="flex justify-end gap-2">
-            <Button type="button" variant="outline" className="rounded-xl" onClick={() => onOpenChange(false)}>Cancel</Button>
-            <Button type="submit" className="rounded-xl">Create Draft</Button>
+          <div className="quotation-create-dialog__actions">
+            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
+            <Button type="submit">Create Draft</Button>
           </div>
         </form>
       </DialogContent>

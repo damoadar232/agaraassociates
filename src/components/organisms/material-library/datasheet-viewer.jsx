@@ -2,30 +2,36 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
+import "@/assets/styles/components/DatasheetViewer.scss";
+
 export function DatasheetViewer({ open, onOpenChange, materialName, datasheetUrl, sku, brand }) {
-    return (<Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl">
-        <DialogHeader>
-          <DialogTitle>Product Datasheet — {materialName}</DialogTitle>
-        </DialogHeader>
-        <div className="space-y-4">
-          <div className="rounded-xl border border-border/50 p-4 bg-muted/30 text-sm space-y-2">
-            <p><span className="text-muted-foreground">SKU:</span> {sku}</p>
-            <p><span className="text-muted-foreground">Brand:</span> {brand}</p>
-            <p className="text-muted-foreground pt-2">
-              Technical datasheet with specifications, installation guidelines, and warranty terms.
-              {datasheetUrl ? " Linked document available below." : " Preview generated from library metadata."}
-            </p>
-          </div>
-          <div className="h-64 rounded-xl border border-dashed border-border/60 bg-surface/50 flex items-center justify-center text-muted-foreground text-sm">
-            PDF preview — {materialName}
-          </div>
-          {datasheetUrl && (<Button variant="outline" className="rounded-xl gap-1.5" asChild>
-              <a href={datasheetUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4"/> Open full datasheet
-              </a>
-            </Button>)}
-        </div>
-      </DialogContent>
-    </Dialog>);
+    return (
+        <Dialog open={open} onOpenChange={onOpenChange}>
+            <DialogContent className="datasheet-viewer__content">
+                <DialogHeader>
+                    <DialogTitle>Product Datasheet — {materialName}</DialogTitle>
+                </DialogHeader>
+                <div className="datasheet-viewer__body">
+                    <div className="datasheet-viewer__meta">
+                        <p><span className="datasheet-viewer__meta-label">SKU:</span> {sku}</p>
+                        <p><span className="datasheet-viewer__meta-label">Brand:</span> {brand}</p>
+                        <p className="datasheet-viewer__meta-desc">
+                            Technical datasheet with specifications, installation guidelines, and warranty terms.
+                            {datasheetUrl ? " Linked document available below." : " Preview generated from library metadata."}
+                        </p>
+                    </div>
+                    <div className="datasheet-viewer__preview">
+                        PDF preview — {materialName}
+                    </div>
+                    {datasheetUrl && (
+                        <Button variant="outline" className="datasheet-viewer__link-btn" asChild>
+                            <a href={datasheetUrl} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="datasheet-viewer__link-icon" /> Open full datasheet
+                            </a>
+                        </Button>
+                    )}
+                </div>
+            </DialogContent>
+        </Dialog>
+    );
 }

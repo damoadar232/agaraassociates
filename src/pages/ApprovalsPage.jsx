@@ -7,6 +7,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
+import "@/assets/styles/pages/ApprovalsPage.scss";
+
 export function ApprovalsPage() {
     const [version, setVersion] = useState(0);
     void version;
@@ -18,51 +20,51 @@ export function ApprovalsPage() {
     };
     const pending = approvals.filter((approval) => approval.status === "pending");
     const completed = approvals.filter((approval) => approval.status !== "pending");
-    return (<div className="space-y-6 animate-in fade-in duration-500">
+    return (<div className="approvals-page">
       <PageHeader title="Approvals" description="Drawings, quotations, payments, and sign-offs awaiting action"/>
 
-      <section className="space-y-3">
-        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+      <section className="approvals-page__section">
+        <h2 className="approvals-page__section-title">
           Pending ({pending.length})
         </h2>
         {pending.map((approval) => (<ApprovalCard key={approval.id} approval={approval} onAction={handleAction}/>))}
-        {pending.length === 0 && <p className="text-sm text-muted-foreground">All caught up.</p>}
+        {pending.length === 0 && <p className="approvals-page__empty">All caught up.</p>}
       </section>
 
-      {completed.length > 0 && (<section className="space-y-3">
-          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Completed</h2>
+      {completed.length > 0 && (<section className="approvals-page__section">
+          <h2 className="approvals-page__section-title">Completed</h2>
           {completed.map((approval) => (<ApprovalCard key={approval.id} approval={approval}/>))}
         </section>)}
     </div>);
 }
 function ApprovalCard({ approval, onAction, }) {
-    return (<Card className="card-hover">
-      <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <p className="font-medium">{approval.title}</p>
-            <Badge variant="outline" className="capitalize text-[10px]">
+    return (<Card className="approval-card">
+      <CardContent className="approval-card__content">
+        <div className="approval-card__main">
+          <div className="approval-card__title-row">
+            <p className="approval-card__title">{approval.title}</p>
+            <Badge variant="outline" className="approval-card__type-badge">
               {approval.type}
             </Badge>
             <Badge variant={approval.priority === "high" ? "destructive" : approval.priority === "medium" ? "warning" : "outline"}>
               {approval.priority}
             </Badge>
           </div>
-          <p className="text-sm text-muted-foreground mt-1">{approval.description}</p>
-          <p className="text-xs text-muted-foreground mt-1">
+          <p className="approval-card__description">{approval.description}</p>
+          <p className="approval-card__meta">
             {approval.projectName} · Due {approval.dueDate}
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="approval-card__actions">
           {approval.status === "pending" && onAction ? (<>
-              <Button size="sm" className="rounded-xl gap-1" onClick={() => onAction(approval.id, "approved")}>
-                <Check className="h-3.5 w-3.5"/> Approve
+              <Button size="sm" className="approval-card__action-btn" onClick={() => onAction(approval.id, "approved")}>
+                <Check className="approval-card__action-icon"/> Approve
               </Button>
-              <Button size="sm" variant="outline" className="rounded-xl gap-1" onClick={() => onAction(approval.id, "rejected")}>
-                <X className="h-3.5 w-3.5"/> Reject
+              <Button size="sm" variant="outline" className="approval-card__action-btn" onClick={() => onAction(approval.id, "rejected")}>
+                <X className="approval-card__action-icon"/> Reject
               </Button>
             </>) : (<Badge variant={approval.status === "approved" ? "success" : "destructive"}>{approval.status}</Badge>)}
-          {approval.href && (<Button size="sm" variant="ghost" className="rounded-xl" asChild>
+          {approval.href && (<Button size="sm" variant="ghost" className="approval-card__view-btn" asChild>
               <Link to={approval.href}>View</Link>
             </Button>)}
         </div>

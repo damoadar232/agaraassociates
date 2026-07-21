@@ -1,8 +1,10 @@
 import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-export function cn(...inputs) {
-    return twMerge(clsx(inputs));
+
+/** BEM / SCSS class combiner */
+export function cx(...inputs) {
+    return clsx(inputs);
 }
+
 export function formatCurrency(amount) {
     if (amount >= 10000000) {
         return `₹${(amount / 10000000).toFixed(2)}Cr`;
@@ -15,9 +17,11 @@ export function formatCurrency(amount) {
     }
     return `₹${amount.toLocaleString("en-IN")}`;
 }
+
 export function formatPercent(value) {
     return `${value > 0 ? "+" : ""}${value.toFixed(1)}%`;
 }
+
 export function getInitials(name) {
     return name
         .split(" ")

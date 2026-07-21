@@ -16,8 +16,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { cn, formatCurrency } from "@/lib/utils";
+import { cx, formatCurrency } from "@/lib/utils";
+import "@/assets/styles/components/ProjectOnboardingWizard.scss";
+
 const TEAM_OPTIONS = ["Adarsh P", "Priya Nair", "Amit Joshi", "Sneha Iyer"];
+
 export function ProjectOnboardingWizard() {
     const navigate = useNavigate();
     const [step, setStep] = useState(0);
@@ -117,38 +120,34 @@ export function ProjectOnboardingWizard() {
             setSubmitting(false);
         }
     };
-    return (<div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-500">
+    return (<div className="project-onboarding-wizard">
       <div>
-        <Link to="/app/projects" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4">
-          <ArrowLeft className="h-4 w-4"/> Back to Projects
+        <Link to="/app/projects" className="project-onboarding-wizard__back-link">
+          <ArrowLeft className="project-onboarding-wizard__back-icon"/> Back to Projects
         </Link>
-        <h1 className="text-3xl font-bold tracking-tight">New Project</h1>
-        <p className="text-muted-foreground mt-1">Set up your project workspace in a few steps</p>
+        <h1 className="project-onboarding-wizard__heading">New Project</h1>
+        <p className="project-onboarding-wizard__subheading">Set up your project workspace in a few steps</p>
       </div>
 
-      {/* Step indicator */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2">
-        {visibleSteps.map((s, i) => (<div key={s.id} className="flex items-center gap-2 shrink-0">
-            <div className={cn("flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold transition-colors", i < step ? "bg-primary text-white" :
-                i === step ? "bg-primary text-white ring-4 ring-primary/20" :
-                    "bg-muted text-muted-foreground")}>
-              {i < step ? <Check className="h-4 w-4"/> : i + 1}
+      <div className="project-onboarding-wizard__steps">
+        {visibleSteps.map((s, i) => (<div key={s.id} className="project-onboarding-wizard__step-group">
+            <div className={cx("project-onboarding-wizard__step-indicator", i < step && "project-onboarding-wizard__step-indicator--complete", i === step && "project-onboarding-wizard__step-indicator--current", i > step && "project-onboarding-wizard__step-indicator--upcoming")}>
+              {i < step ? <Check className="project-onboarding-wizard__step-check"/> : i + 1}
             </div>
-            <span className={cn("text-sm font-medium hidden sm:inline", i === step ? "text-foreground" : "text-muted-foreground")}>
+            <span className={cx("project-onboarding-wizard__step-label", i === step ? "project-onboarding-wizard__step-label--current" : "project-onboarding-wizard__step-label--muted")}>
               {s.label}
             </span>
-            {i < visibleSteps.length - 1 && <div className="w-8 h-px bg-border mx-1"/>}
+            {i < visibleSteps.length - 1 && <div className="project-onboarding-wizard__step-divider"/>}
           </div>))}
       </div>
 
-      {/* Step content */}
       {currentStep.id === "basics" && (<Card>
           <CardHeader><CardTitle>Project Basics</CardTitle></CardHeader>
-          <CardContent className="grid gap-4 sm:grid-cols-2">
-            <FormField label="Project Name" required className="sm:col-span-2">
-              <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Lakeside Residence" className="rounded-xl"/>
+          <CardContent className="project-onboarding-wizard__basics-grid">
+            <FormField label="Project Name" required className="project-onboarding-wizard__field-span-2">
+              <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Lakeside Residence"/>
             </FormField>
-            <ClientPicker mode={clientMode} clientId={clientId} newClientName={newClientName} onModeChange={setClientMode} onClientIdChange={setClientId} onNewClientNameChange={setNewClientName} className="sm:col-span-2"/>
+            <ClientPicker mode={clientMode} clientId={clientId} newClientName={newClientName} onModeChange={setClientMode} onClientIdChange={setClientId} onNewClientNameChange={setNewClientName} className="project-onboarding-wizard__field-span-2"/>
             <FormField label="Project Category">
               <Select value={type} onChange={(e) => setType(e.target.value)}>
                 <option value="residential">Residential</option>
@@ -164,16 +163,16 @@ export function ProjectOnboardingWizard() {
             <FormField label="City" required>
               <Input value={city} onChange={(e) => setCity(e.target.value)} placeholder="Mumbai"/>
             </FormField>
-            <FormField label="Description" className="sm:col-span-2">
+            <FormField label="Description" className="project-onboarding-wizard__field-span-2">
               <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Brief project description..." rows={3}/>
             </FormField>
           </CardContent>
         </Card>)}
 
-      {currentStep.id === "services" && (<div className="space-y-4">
+      {currentStep.id === "services" && (<div className="project-onboarding-wizard__services">
           <div>
-            <h2 className="text-lg font-semibold">What services will this project include?</h2>
-            <p className="text-sm text-muted-foreground mt-1">Select all that apply. Choosing Construction unlocks additional project-specific fields.</p>
+            <h2 className="project-onboarding-wizard__services-title">What services will this project include?</h2>
+            <p className="project-onboarding-wizard__services-text">Select all that apply. Choosing Construction unlocks additional project-specific fields.</p>
           </div>
           <ServiceTypeSelector selected={serviceTypes} onChange={setServiceTypes}/>
         </div>)}
@@ -182,8 +181,8 @@ export function ProjectOnboardingWizard() {
 
       {currentStep.id === "team" && (<Card>
           <CardHeader><CardTitle>Team & Timeline</CardTitle></CardHeader>
-          <CardContent className="space-y-6">
-            <div className="grid gap-4 sm:grid-cols-2">
+          <CardContent className="project-onboarding-wizard__team-content">
+            <div className="project-onboarding-wizard__team-grid">
               <FormField label="Start Date" required>
                 <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
               </FormField>
@@ -192,8 +191,8 @@ export function ProjectOnboardingWizard() {
               </FormField>
             </div>
             <FormField label="Assign Team Members">
-              <div className="flex flex-wrap gap-2">
-                {TEAM_OPTIONS.map((member) => (<button key={member} type="button" onClick={() => toggleTeam(member)} className={cn("rounded-xl border px-3 py-1.5 text-sm font-medium transition-colors", team.includes(member) ? "border-primary bg-primary/10 text-primary" : "hover:bg-muted")}>
+              <div className="project-onboarding-wizard__team-list">
+                {TEAM_OPTIONS.map((member) => (<button key={member} type="button" onClick={() => toggleTeam(member)} className={cx("project-onboarding-wizard__team-member", team.includes(member) && "project-onboarding-wizard__team-member--selected")}>
                     {member}
                   </button>))}
               </div>
@@ -203,48 +202,47 @@ export function ProjectOnboardingWizard() {
 
       {currentStep.id === "review" && (<Card>
           <CardHeader><CardTitle>Review & Create</CardTitle></CardHeader>
-          <CardContent className="space-y-6">
-            <div className="grid gap-4 sm:grid-cols-2 text-sm">
-              <div><span className="text-muted-foreground">Project</span><p className="font-semibold">{name}</p></div>
-              <div><span className="text-muted-foreground">Client</span><p className="font-semibold">{resolveClientDisplayName(clientMode, clientId, newClientName)}</p></div>
-              <div><span className="text-muted-foreground">Location</span><p className="font-semibold">{location}, {city}</p></div>
-              <div><span className="text-muted-foreground">Timeline</span><p className="font-semibold">{startDate} → {expectedCompletion}</p></div>
+          <CardContent className="project-onboarding-wizard__review-content">
+            <div className="project-onboarding-wizard__review-grid">
+              <div><span className="project-onboarding-wizard__review-label">Project</span><p className="project-onboarding-wizard__review-value">{name}</p></div>
+              <div><span className="project-onboarding-wizard__review-label">Client</span><p className="project-onboarding-wizard__review-value">{resolveClientDisplayName(clientMode, clientId, newClientName)}</p></div>
+              <div><span className="project-onboarding-wizard__review-label">Location</span><p className="project-onboarding-wizard__review-value">{location}, {city}</p></div>
+              <div><span className="project-onboarding-wizard__review-label">Timeline</span><p className="project-onboarding-wizard__review-value">{startDate} → {expectedCompletion}</p></div>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-2">Services</p>
-              <div className="flex flex-wrap gap-2">
+              <p className="project-onboarding-wizard__review-label">Services</p>
+              <div className="project-onboarding-wizard__services-badges">
                 {serviceTypes.map((s) => (<Badge key={s} variant={s === "construction" ? "secondary" : "default"}>
                     {SERVICE_TYPE_LABELS[s]}
                   </Badge>))}
               </div>
             </div>
-            {hasConstruction && (<div className="p-4 rounded-xl bg-secondary/5 border border-secondary/20 space-y-2 text-sm">
-                <p className="font-semibold text-secondary">Construction Summary</p>
-                <div className="grid gap-2 sm:grid-cols-2">
-                  <p><span className="text-muted-foreground">Type:</span> {constructionDetails.constructionType}</p>
-                  <p><span className="text-muted-foreground">Floors:</span> {constructionDetails.numberOfFloors}</p>
-                  <p><span className="text-muted-foreground">Built-up:</span> {constructionDetails.builtUpArea.toLocaleString()} sqft</p>
-                  <p><span className="text-muted-foreground">Budget:</span> {formatCurrency(constructionDetails.estimatedConstructionBudget)}</p>
-                  <p><span className="text-muted-foreground">Contractor:</span> {constructionDetails.contractor.company}</p>
-                  <p><span className="text-muted-foreground">Method:</span> {constructionDetails.constructionMethod}</p>
+            {hasConstruction && (<div className="project-onboarding-wizard__construction-summary">
+                <p className="project-onboarding-wizard__construction-title">Construction Summary</p>
+                <div className="project-onboarding-wizard__construction-grid">
+                  <p><span className="project-onboarding-wizard__review-label">Type:</span> {constructionDetails.constructionType}</p>
+                  <p><span className="project-onboarding-wizard__review-label">Floors:</span> {constructionDetails.numberOfFloors}</p>
+                  <p><span className="project-onboarding-wizard__review-label">Built-up:</span> {constructionDetails.builtUpArea.toLocaleString()} sqft</p>
+                  <p><span className="project-onboarding-wizard__review-label">Budget:</span> {formatCurrency(constructionDetails.estimatedConstructionBudget)}</p>
+                  <p><span className="project-onboarding-wizard__review-label">Contractor:</span> {constructionDetails.contractor.company}</p>
+                  <p><span className="project-onboarding-wizard__review-label">Method:</span> {constructionDetails.constructionMethod}</p>
                 </div>
-                <p className="text-xs text-muted-foreground pt-2">
+                <p className="project-onboarding-wizard__construction-note">
                   Will auto-create: {constructionDetails.milestones.length} timeline milestones, civil BOQ, and site kanban tasks.
                 </p>
               </div>)}
           </CardContent>
         </Card>)}
 
-      {/* Navigation */}
-      <div className="flex justify-between pt-4 border-t">
-        <Button variant="outline" className="rounded-xl" onClick={back} disabled={step === 0}>
-          <ArrowLeft className="h-4 w-4"/> Back
+      <div className="project-onboarding-wizard__nav">
+        <Button variant="outline" onClick={back} disabled={step === 0}>
+          <ArrowLeft className="project-onboarding-wizard__nav-icon"/> Back
         </Button>
-        {isLastStep ? (<Button className="rounded-xl" onClick={submit} disabled={submitting}>
-            {submitting ? <Loader2 className="h-4 w-4 animate-spin"/> : <Check className="h-4 w-4"/>}
+        {isLastStep ? (<Button onClick={submit} disabled={submitting}>
+            {submitting ? <Loader2 className="project-onboarding-wizard__nav-icon project-onboarding-wizard__spin"/> : <Check className="project-onboarding-wizard__nav-icon"/>}
             Create Project
-          </Button>) : (<Button className="rounded-xl" onClick={next}>
-            Continue <ArrowRight className="h-4 w-4"/>
+          </Button>) : (<Button onClick={next}>
+            Continue <ArrowRight className="project-onboarding-wizard__nav-icon"/>
           </Button>)}
       </div>
     </div>);

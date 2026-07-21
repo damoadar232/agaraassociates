@@ -1,13 +1,15 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
-const Card = React.forwardRef(({ className, ...props }, ref) => (<div ref={ref} className={cn("rounded-[24px] border border-border/40 bg-card text-card-foreground shadow-card transition-transform duration-300 ease-out", "hover:-translate-y-0.5 hover:shadow-card-hover", className)} {...props}/>));
+import { cx } from "@/lib/utils";
+import "@/assets/styles/components/Card.scss";
+
+const Card = React.forwardRef(({ className, ...props }, ref) => (<div ref={ref} className={cx("card", className)} {...props}/>));
 Card.displayName = "Card";
-const CardHeader = React.forwardRef(({ className, ...props }, ref) => (<div ref={ref} className={cn("flex flex-col space-y-1.5 p-6", className)} {...props}/>));
+const CardHeader = React.forwardRef(({ className, ...props }, ref) => (<div ref={ref} className={cx("card__header", className)} {...props}/>));
 CardHeader.displayName = "CardHeader";
-const CardTitle = React.forwardRef(({ className, ...props }, ref) => (<div ref={ref} className={cn("font-semibold leading-none tracking-tight", className)} {...props}/>));
+const CardTitle = React.forwardRef(({ className, ...props }, ref) => (<div ref={ref} className={cx("card__title", className)} {...props}/>));
 CardTitle.displayName = "CardTitle";
-const CardDescription = React.forwardRef(({ className, ...props }, ref) => (<div ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props}/>));
+const CardDescription = React.forwardRef(({ className, ...props }, ref) => (<div ref={ref} className={cx("card__description", className)} {...props}/>));
 CardDescription.displayName = "CardDescription";
-const CardContent = React.forwardRef(({ className, ...props }, ref) => (<div ref={ref} className={cn("p-6 pt-0", className)} {...props}/>));
+const CardContent = React.forwardRef(({ className, ...props }, ref) => (<div ref={ref} className={cx("card__content", className)} {...props}/>));
 CardContent.displayName = "CardContent";
 export { Card, CardHeader, CardTitle, CardDescription, CardContent };

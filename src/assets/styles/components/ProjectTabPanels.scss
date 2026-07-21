@@ -1,0 +1,180 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.project-tab-panels {
+  &__grid {
+    display: grid;
+    gap: $space-3;
+
+    @include respond-to(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__grid-photos {
+    display: grid;
+    gap: $space-4;
+
+    @include respond-to(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include respond-to(lg) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+  }
+
+  &__card-content {
+    padding: $space-4;
+    display: flex;
+    justify-content: space-between;
+    gap: $space-3;
+  }
+
+  &__card-content--row {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    @include respond-to(sm) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__card-main {
+    min-width: 0;
+  }
+
+  &__card-title {
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__card-meta {
+    font-size: $space-3;
+    color: $color-muted-foreground;
+  }
+
+  &__card-side {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  &__price {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__badge {
+    font-size: 10px;
+    text-transform: capitalize;
+    margin-top: $space-1;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+  }
+
+  &__actions--badges {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+  }
+
+  &__amount {
+    font-weight: 700;
+  }
+
+  &__activity-content {
+    padding: $space-4;
+  }
+
+  &__activity-header {
+    display: flex;
+    justify-content: space-between;
+    gap: $space-2;
+  }
+
+  &__activity-title {
+    font-weight: 500;
+    font-size: $space-3 + $space-0_5;
+  }
+
+  &__activity-date {
+    font-size: 10px;
+    color: $color-muted-foreground;
+    flex-shrink: 0;
+  }
+
+  &__activity-desc {
+    font-size: $space-3;
+    color: $color-muted-foreground;
+    margin-top: $space-1;
+  }
+
+  &__activity-user {
+    font-size: 10px;
+    color: $color-muted-foreground;
+    margin-top: $space-2;
+  }
+
+  &__photo-card {
+    overflow: hidden;
+  }
+
+  &__photo-preview {
+    height: 9rem;
+    background: linear-gradient(to bottom right, #e2e8f0, #cbd5e1);
+  }
+
+  &__photo-body {
+    padding: $space-3;
+  }
+
+  &__photo-caption {
+    font-size: $space-3 + $space-0_5;
+    font-weight: 500;
+  }
+
+  &__photo-date {
+    font-size: $space-3;
+    color: $color-muted-foreground;
+  }
+
+  &__empty-message {
+    color: $color-muted-foreground;
+    font-size: $space-3 + $space-0_5;
+    padding: $space-4;
+  }
+
+  &__empty-content {
+    padding: $space-8;
+    text-align: center;
+    color: $color-muted-foreground;
+  }
+
+  &__empty-link {
+    display: inline-flex;
+    margin-top: $space-3;
+    font-size: $space-3 + $space-0_5;
+    color: $color-primary;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

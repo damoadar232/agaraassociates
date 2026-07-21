@@ -1,24 +1,54 @@
 import { APP_LOGO, APP_NAME } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import "@/assets/styles/components/AppLogo.scss";
+
 const sizes = {
-    sm: { box: "h-8 w-8", image: 32 },
-    md: { box: "h-9 w-9", image: 36 },
-    lg: { box: "h-12 w-12", image: 48 },
-    xl: { box: "h-16 w-16", image: 64 },
+  sm: { box: "sm", image: 32 },
+  md: { box: "md", image: 36 },
+  lg: { box: "lg", image: 48 },
+  xl: { box: "xl", image: 64 },
 };
-export function AppLogo({ size = "md", className, showName = false, tagline, variant = "default", }) {
-    const { box, image } = sizes[size];
-    return (<div className={cn("flex items-center gap-2.5 min-w-0", className)}>
-      <div className={cn("relative shrink-0 overflow-hidden rounded-xl", box)}>
-        <img src={APP_LOGO} alt={`${APP_NAME} logo`} width={image} height={image} className="h-full w-full object-cover"/>
+
+export function AppLogo({
+  size = "md",
+  className,
+  showName = false,
+  tagline,
+  variant = "default",
+}) {
+  const { box, image } = sizes[size];
+  const rootClassName = ["app-logo", className].filter(Boolean).join(" ");
+
+  return (
+    <div className={rootClassName}>
+      <div className={`app-logo__image-wrap app-logo__image-wrap--${box}`}>
+        <img
+          src={APP_LOGO}
+          alt={`${APP_NAME} logo`}
+          width={image}
+          height={image}
+          className="app-logo__image"
+        />
       </div>
-      {showName && (<div className="min-w-0">
-          <p className={cn("font-semibold text-sm tracking-tight truncate", variant === "light" && "text-white")}>
+      {showName && (
+        <div className="app-logo__text">
+          <p
+            className={`app-logo__name${
+              variant === "light" ? " app-logo__name--light" : ""
+            }`}
+          >
             {APP_NAME}
           </p>
-          {tagline && (<p className={cn("text-[10px] leading-tight truncate", variant === "light" ? "text-white/80" : "text-muted-foreground")}>
+          {tagline && (
+            <p
+              className={`app-logo__tagline${
+                variant === "light" ? " app-logo__tagline--light" : ""
+              }`}
+            >
               {tagline}
-            </p>)}
-        </div>)}
-    </div>);
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
 }

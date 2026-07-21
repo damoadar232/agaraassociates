@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getArticleBySlug } from "@/components/marketing/data";
+import "@/assets/styles/pages/MarketingJournalDetailPage.scss";
 
 export default function MarketingJournalDetailPage() {
   const { slug } = useParams();
@@ -8,16 +9,19 @@ export default function MarketingJournalDetailPage() {
 
   if (!article) {
     return (
-      <section className="px-6 pb-16 pt-28 lg:px-10 lg:pt-32">
-        <div className="agara-glass mx-auto max-w-[800px] rounded-[32px] px-8 py-12 text-center shadow-agara-soft">
-          <h1 className="font-serif text-3xl text-agara-charcoal">
+      <section className="marketing-journal-detail-page">
+        <div className="marketing-journal-detail-page__not-found agara-glass">
+          <h1 className="marketing-journal-detail-page__not-found-title">
             Article not found
           </h1>
           <Link
             to="/journal"
-            className="mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-agara-charcoal/70"
+            className="marketing-journal-detail-page__not-found-link"
           >
-            <ArrowLeft className="h-3.5 w-3.5" strokeWidth={1.5} />
+            <ArrowLeft
+              className="marketing-journal-detail-page__not-found-icon"
+              strokeWidth={1.5}
+            />
             Back to Journal
           </Link>
         </div>
@@ -26,48 +30,51 @@ export default function MarketingJournalDetailPage() {
   }
 
   return (
-    <article className="px-6 pb-16 pt-28 lg:px-10 lg:pt-32">
-      <div className="mx-auto max-w-[900px]">
+    <article className="marketing-journal-detail-page">
+      <div className="marketing-journal-detail-page__container">
         <Link
           to="/journal"
-          className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-agara-charcoal/60 transition-colors hover:text-agara-charcoal"
+          className="marketing-journal-detail-page__back-link"
         >
-          <ArrowLeft className="h-3.5 w-3.5" strokeWidth={1.5} />
+          <ArrowLeft
+            className="marketing-journal-detail-page__back-icon"
+            strokeWidth={1.5}
+          />
           Journal
         </Link>
 
-        <div className="mt-6 overflow-hidden rounded-[28px] shadow-agara-soft">
+        <div className="marketing-journal-detail-page__hero-wrap">
           <img
             src={article.image}
             alt={article.title}
-            className="h-[280px] w-full object-cover sm:h-[360px]"
+            className="marketing-journal-detail-page__hero-image"
           />
         </div>
 
-        <div className="agara-glass mt-6 rounded-[28px] px-6 py-8 shadow-agara-soft sm:px-8">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-agara-charcoal/50">
+        <div className="marketing-journal-detail-page__content agara-glass">
+          <p className="marketing-journal-detail-page__meta">
             {article.category}
-            <span className="mx-1.5 text-agara-charcoal/30">•</span>
+            <span className="marketing-journal-detail-page__meta-sep">•</span>
             {article.readTime}
           </p>
-          <h1 className="mt-3 font-serif text-3xl leading-tight text-agara-charcoal lg:text-4xl">
+          <h1 className="marketing-journal-detail-page__title">
             {article.title}
           </h1>
-          <p className="mt-5 text-[15px] leading-relaxed text-agara-charcoal/70">
+          <p className="marketing-journal-detail-page__excerpt">
             {article.excerpt}
           </p>
-          <p className="mt-4 text-[15px] leading-relaxed text-agara-charcoal/70">
+          <p className="marketing-journal-detail-page__body">
             Full article content will expand here — research notes, material
             studies, and project reflections — while preserving AGARA&apos;s
             existing typography and glass aesthetic.
           </p>
           <Link
             to="/contact"
-            className="group mt-8 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-agara-charcoal"
+            className="marketing-journal-detail-page__cta"
           >
             Discuss this idea
             <ArrowRight
-              className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+              className="marketing-journal-detail-page__cta-icon"
               strokeWidth={1.5}
             />
           </Link>

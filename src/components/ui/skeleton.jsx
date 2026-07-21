@@ -1,5 +1,7 @@
-import { cn } from "@/lib/utils";
+import { cx } from "@/lib/utils";
+import "@/assets/styles/components/Skeleton.scss";
+
 function Skeleton({ className, ...props }) {
-    return <div className={cn("animate-pulse rounded-xl bg-muted", className)} {...props}/>;
+    return <div className={cx("skeleton", className)} {...props}/>;
 }
 export { Skeleton };

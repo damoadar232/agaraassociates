@@ -10,7 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/utils";
-import { cn } from "@/lib/utils";
+import "@/assets/styles/components/ClientWorkspaceShell.scss";
+
 export function ClientWorkspaceShell({ moduleTitle, moduleDescription, basePath, statLabels, headerActions, children, }) {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -24,22 +25,22 @@ export function ClientWorkspaceShell({ moduleTitle, moduleDescription, basePath,
         navigate(basePath);
     }, [navigate, basePath]);
     if (!selectedClient) {
-        return (<div className="space-y-6 animate-in fade-in duration-500">
+        return (<div className="client-workspace-shell">
         <PageHeader title={moduleTitle} description={moduleDescription}/>
 
-        <Card className="border-accent/25 bg-accent/5">
-          <CardContent className="p-4 flex gap-3 items-start">
-            <Users className="h-5 w-5 text-accent shrink-0 mt-0.5"/>
+        <Card className="client-workspace-shell__prompt-card">
+          <CardContent className="client-workspace-shell__prompt-content">
+            <Users className="client-workspace-shell__prompt-icon"/>
             <div>
-              <p className="text-sm font-semibold">Select a client to continue</p>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="client-workspace-shell__prompt-title">Select a client to continue</p>
+              <p className="client-workspace-shell__prompt-text">
                 {moduleTitle} is organized by client. Choose a client to view their projects, files, and records.
               </p>
             </div>
           </CardContent>
         </Card>
 
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="client-workspace-shell__grid">
           {clients.map((client) => {
                 const stats = getClientWorkspaceStats(client.id);
                 const itemCount = statLabels?.items === "quotations"
@@ -49,26 +50,26 @@ export function ClientWorkspaceShell({ moduleTitle, moduleDescription, basePath,
                         : statLabels?.items === "drawings"
                             ? stats.drawingCount
                             : stats.projectCount;
-                return (<button key={client.id} type="button" onClick={() => selectClient(client.id)} className="text-left rounded-2xl border border-border/50 bg-surface/50 p-5 hover:bg-surface-hover hover:border-accent/30 transition-all card-hover group">
-                <div className="flex items-start gap-3">
-                  <Avatar className="h-10 w-10 shrink-0">
-                    <AvatarFallback className="bg-primary text-foreground text-sm">
+                return (<button key={client.id} type="button" onClick={() => selectClient(client.id)} className="client-workspace-shell__client-card">
+                <div className="client-workspace-shell__client-card-inner">
+                  <Avatar className="client-workspace-shell__avatar">
+                    <AvatarFallback className="client-workspace-shell__avatar-fallback">
                       {getInitials(client.name)}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold truncate">{client.name}</p>
-                    {client.company && (<p className="text-xs text-muted-foreground truncate">{client.company}</p>)}
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      <Badge variant="outline" className="text-[10px]">
+                  <div className="client-workspace-shell__client-info">
+                    <p className="client-workspace-shell__client-name">{client.name}</p>
+                    {client.company && (<p className="client-workspace-shell__client-company">{client.company}</p>)}
+                    <div className="client-workspace-shell__badges">
+                      <Badge variant="outline" className="client-workspace-shell__badge">
                         {stats.projectCount} project{stats.projectCount !== 1 ? "s" : ""}
                       </Badge>
-                      {itemCount > 0 && (<Badge variant="secondary" className="text-[10px]">
+                      {itemCount > 0 && (<Badge variant="secondary" className="client-workspace-shell__badge">
                           {itemCount} {statLabels?.itemLabel ?? "items"}
                         </Badge>)}
                     </div>
                   </div>
-                  <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"/>
+                  <ChevronRight className="client-workspace-shell__chevron"/>
                 </div>
               </button>);
             })}
@@ -77,33 +78,33 @@ export function ClientWorkspaceShell({ moduleTitle, moduleDescription, basePath,
     }
     const clientName = resolveClientLabel(clientId);
     const stats = getClientWorkspaceStats(clientId);
-    return (<div className="space-y-6 animate-in fade-in duration-500">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        <div className="space-y-3 min-w-0 flex-1">
-          <Button variant="ghost" size="sm" className="rounded-xl -ml-2 h-8 px-2 text-muted-foreground" onClick={clearClient}>
-            <ArrowLeft className="h-4 w-4 mr-1"/> Change client
+    return (<div className="client-workspace-shell">
+      <div className="client-workspace-shell__header-row">
+        <div className="client-workspace-shell__header-main">
+          <Button variant="ghost" size="sm" className="client-workspace-shell__back-btn" onClick={clearClient}>
+            <ArrowLeft className="client-workspace-shell__back-icon"/> Change client
           </Button>
           <PageHeader title={moduleTitle} description={<span>
-                <span className="font-medium text-foreground">{clientName}</span>
-                <span className="text-muted-foreground"> · {stats.projectCount} active project{stats.projectCount !== 1 ? "s" : ""}</span>
+                <span className="client-workspace-shell__description-name">{clientName}</span>
+                <span className="client-workspace-shell__description-meta"> · {stats.projectCount} active project{stats.projectCount !== 1 ? "s" : ""}</span>
               </span>}/>
         </div>
-        {headerActions && <div className="flex items-center gap-2 shrink-0">{headerActions}</div>}
+        {headerActions && <div className="client-workspace-shell__header-actions">{headerActions}</div>}
       </div>
 
-      <div className={cn("flex items-center gap-2 px-4 py-2.5 rounded-2xl border border-border/50 bg-surface/60")}>
-        <Avatar className="h-8 w-8">
-          <AvatarFallback className="bg-primary text-foreground text-xs">
+      <div className="client-workspace-shell__context-bar">
+        <Avatar className="client-workspace-shell__context-avatar">
+          <AvatarFallback className="client-workspace-shell__context-avatar-fallback">
             {getInitials(selectedClient.name)}
           </AvatarFallback>
         </Avatar>
-        <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium truncate">{selectedClient.name}</p>
-          <p className="text-[11px] text-muted-foreground truncate">
+        <div className="client-workspace-shell__context-info">
+          <p className="client-workspace-shell__context-name">{selectedClient.name}</p>
+          <p className="client-workspace-shell__context-meta">
             {selectedClient.city}{selectedClient.type ? ` · ${selectedClient.type}` : ""}
           </p>
         </div>
-        <Badge variant="outline" className="shrink-0 text-[10px]">Client workspace</Badge>
+        <Badge variant="outline" className="client-workspace-shell__context-badge">Client workspace</Badge>
       </div>
 
       {children({ clientId, clientName: selectedClient.name })}

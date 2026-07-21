@@ -3,15 +3,17 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Download, PenLine } from "lucide-react";
 import { updateQuotationStatus } from "@/lib/store/quotation-store";
+import "@/assets/styles/components/QuotationDetailActions.scss";
+
 export function QuotationDetailActions({ quoteId, status }) {
-    return (<div className="flex gap-2 flex-wrap">
-      <Button variant="outline" className="rounded-xl" onClick={() => toast.success("PDF generated", { description: "Quotation PDF downloaded to your device" })}>
-        <Download className="h-4 w-4"/> Generate PDF
+    return (<div className="quotation-detail-actions">
+      <Button variant="outline" onClick={() => toast.success("PDF generated", { description: "Quotation PDF downloaded to your device" })}>
+        <Download className="quotation-detail-actions__icon"/> Generate PDF
       </Button>
-      <Button variant="outline" className="rounded-xl" onClick={() => toast.info("E-signature link sent", { description: "Client will receive a secure signing link via email" })}>
-        <PenLine className="h-4 w-4"/> E-Signature
+      <Button variant="outline" onClick={() => toast.info("E-signature link sent", { description: "Client will receive a secure signing link via email" })}>
+        <PenLine className="quotation-detail-actions__icon"/> E-Signature
       </Button>
-      <Button className="rounded-xl" onClick={() => {
+      <Button onClick={() => {
             updateQuotationStatus(quoteId, "sent");
             toast.success("Sent for approval", { description: "Quotation status updated to Sent" });
         }} disabled={status === "sent" || status === "approved"}>

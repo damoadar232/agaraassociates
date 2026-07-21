@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { toast } from "sonner";
 import { findUserByCredentials } from "@/lib/auth/users";
 import { setSessionCookie, signSession } from "@/lib/auth/session";
+import "@/assets/styles/pages/LoginPage.scss";
+
 export function LoginPage() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -40,30 +42,28 @@ export function LoginPage() {
             setLoading(false);
         }
     }
-    return (<Card className="border-0 shadow-none lg:glass lg:shadow-card lg:border">
-      <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
+    return (<Card className="login-page__card">
+      <CardHeader className="login-page__header">
+        <CardTitle className="login-page__title">Welcome back</CardTitle>
         <CardDescription>Sign in to your ArchiFlow workspace</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
+      <CardContent className="login-page__content">
+        <form onSubmit={handleSubmit} className="login-page__form">
+          <div className="login-page__field">
             <Label htmlFor="email">Email</Label>
             <Input id="email" name="email" type="email" placeholder="you@studio.com" defaultValue="adarsh@agaraassociates.com" required/>
           </div>
-          <div className="space-y-2">
+          <div className="login-page__field">
             <Label htmlFor="password">Password</Label>
             <Input id="password" name="password" type="password" defaultValue="agara2026" required/>
           </div>
-          <Button type="submit" className="w-full rounded-xl h-11" disabled={loading}>
+          <Button type="submit" className="login-page__submit" disabled={loading}>
             {loading ? "Signing in..." : "Sign in"}
           </Button>
         </form>
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="login-page__footer">
           Don&apos;t have an account?{" "}
-          <Link to="/signup" className="text-primary font-medium hover:underline">
-            Create one
-          </Link>
+          <Link to="/signup">Create one</Link>
         </p>
       </CardContent>
     </Card>);

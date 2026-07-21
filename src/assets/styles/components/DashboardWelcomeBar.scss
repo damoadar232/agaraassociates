@@ -1,0 +1,193 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.dashboard-welcome-bar {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  flex-shrink: 0;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: $space-4;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2_5;
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__studio {
+    font-size: $space-3;
+    color: $color-muted-foreground;
+    font-weight: 500;
+  }
+
+  &__title {
+    font-size: $space-5;
+    font-weight: 600;
+    letter-spacing: $tracking-tight;
+    margin-top: $space-0_5;
+
+    @include respond-to(sm) {
+      font-size: $space-6;
+    }
+
+    @include respond-to(lg) {
+      font-size: $space-7 + $space-1;
+    }
+  }
+
+  &__pills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-2;
+
+    @include respond-to(sm) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__pill {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    padding: $space-1_5 $space-2_5;
+    min-width: 0;
+
+    @include respond-to(sm) {
+      padding-left: $space-3;
+      padding-right: $space-3;
+      min-width: 120px;
+    }
+  }
+
+  &__pill-label {
+    font-size: 10px;
+    color: $color-muted-foreground;
+    flex-shrink: 0;
+
+    @include respond-to(sm) {
+      font-size: 11px;
+    }
+  }
+
+  &__progress-track {
+    flex: 1;
+    height: $space-1_5;
+    border-radius: $radius-full;
+    background-color: $color-surface-hover;
+    overflow: hidden;
+    min-width: 28px;
+  }
+
+  &__progress-fill {
+    height: 100%;
+    border-radius: $radius-full;
+    width: var(--progress-width, 0%);
+    @include transition(width);
+
+    &--primary {
+      background-color: $color-primary;
+    }
+
+    &--accent {
+      background-color: $color-accent;
+    }
+
+    &--secondary {
+      background-color: $color-secondary;
+    }
+  }
+
+  &__pill-value {
+    font-size: 10px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+
+    @include respond-to(sm) {
+      font-size: 11px;
+    }
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $space-2;
+    width: 100%;
+
+    @include respond-to(lg) {
+      display: flex;
+      width: auto;
+      margin-left: $space-10;
+      margin-right: $space-2;
+      flex-shrink: 0;
+    }
+  }
+
+  &__stat-card {
+    padding: $space-2 $space-2_5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-1;
+    min-width: 0;
+
+    @include respond-to(sm) {
+      flex-direction: row;
+      align-items: center;
+      gap: $space-2_5;
+      padding: $space-2_5 $space-4;
+    }
+  }
+
+  &__stat-icon {
+    width: $space-3_5;
+    height: $space-3_5;
+    color: $color-muted-foreground;
+    flex-shrink: 0;
+
+    @include respond-to(sm) {
+      width: $space-4;
+      height: $space-4;
+    }
+  }
+
+  &__stat-text {
+    text-align: center;
+    min-width: 0;
+
+    @include respond-to(sm) {
+      text-align: left;
+    }
+  }
+
+  &__stat-value {
+    font-size: $space-3 + $space-0_5;
+    font-weight: 600;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include respond-to(sm) {
+      font-size: $space-4 + $space-0_5;
+    }
+  }
+
+  &__stat-label {
+    font-size: 9px;
+    color: $color-muted-foreground;
+    margin-top: $space-0_5;
+
+    @include respond-to(sm) {
+      font-size: 10px;
+    }
+  }
+}

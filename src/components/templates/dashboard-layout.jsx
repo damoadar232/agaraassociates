@@ -6,46 +6,88 @@ import { Sidebar } from "@/components/organisms/sidebar";
 import { AppHeader } from "@/components/organisms/app-header";
 import { NAV_ITEMS } from "@/lib/constants";
 import { AppLogo } from "@/components/atoms/app-logo";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import "@/assets/styles/layout/DashboardLayout.scss";
+
 export function DashboardLayout() {
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const { pathname } = useLocation();
-    const isDashboard = pathname === "/dashboard";
-    return (<div className={cn("flex min-h-screen", isDashboard ? "dashboard-bg" : "bg-background")}>
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isDashboard = pathname === "/dashboard";
+
+  return (
+    <div
+      className={`dashboard-layout${
+        isDashboard ? " dashboard-layout--dashboard-bg" : ""
+      }`}
+    >
       <Sidebar />
 
-      {mobileOpen && (<div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setMobileOpen(false)}/>
-          <aside className="absolute left-0 top-0 h-full w-[280px] glass shadow-glass">
-            <div className="flex h-16 items-center justify-between px-4 border-b border-divider">
+      {mobileOpen && (
+        <div className="dashboard-layout__mobile-overlay">
+          <div
+            className="dashboard-layout__mobile-backdrop"
+            onClick={() => setMobileOpen(false)}
+          />
+          <aside className="dashboard-layout__mobile-sidebar">
+            <div className="dashboard-layout__mobile-header">
               <Link to="/dashboard" onClick={() => setMobileOpen(false)}>
-                <AppLogo size="md" showName/>
+                <AppLogo size="md" showName />
               </Link>
-              <Button variant="ghost" size="icon" onClick={() => setMobileOpen(false)}>
-                <X className="h-5 w-5" strokeWidth={1.5}/>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setMobileOpen(false)}
+              >
+                <X
+                  className="dashboard-layout__mobile-close-icon"
+                  strokeWidth={1.5}
+                />
               </Button>
             </div>
-            <nav className="p-4 space-y-1">
-              {NAV_ITEMS.map((item) => (<Link key={item.href} to={item.href} onClick={() => setMobileOpen(false)} className={cn("flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium", pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
-                    ? "glass-pill-active"
-                    : "text-foreground hover:bg-surface-hover")}>
-                  <item.icon className="h-4 w-4" strokeWidth={1.5}/>
-                  {item.title}
-                </Link>))}
+            <nav className="dashboard-layout__mobile-nav">
+              {NAV_ITEMS.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href));
+
+                return (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`dashboard-layout__mobile-nav-link${
+                      isActive
+                        ? " dashboard-layout__mobile-nav-link--active"
+                        : ""
+                    }`}
+                  >
+                    <item.icon
+                      className="dashboard-layout__mobile-nav-icon"
+                      strokeWidth={1.5}
+                    />
+                    {item.title}
+                  </Link>
+                );
+              })}
             </nav>
           </aside>
-        </div>)}
+        </div>
+      )}
 
-      <div className="flex-1 flex flex-col min-w-0">
-        <AppHeader onMenuClick={() => setMobileOpen(true)} glass={isDashboard}/>
-        <main className={cn("flex-1 overflow-auto", isDashboard ? "p-3 lg:p-5" : "p-3 lg:p-4")}>
+      <div className="dashboard-layout__main">
+        <AppHeader onMenuClick={() => setMobileOpen(true)} glass={isDashboard} />
+        <main
+          className={`dashboard-layout__content${
+            isDashboard ? " dashboard-layout__content--dashboard" : ""
+          }`}
+        >
           <Outlet />
         </main>
       </div>
 
-      <Link to="/app/projects/new" className="fixed bottom-6 right-6 lg:hidden flex h-14 w-14 items-center justify-center rounded-full bg-primary border border-border/60 text-foreground shadow-glass hover:scale-105 transition-all z-40">
-        <span className="text-2xl font-light">+</span>
+      <Link to="/app/projects/new" className="dashboard-layout__fab">
+        <span className="dashboard-layout__fab-icon">+</span>
       </Link>
-    </div>);
+    </div>
+  );
 }

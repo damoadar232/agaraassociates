@@ -1,21 +1,36 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import "@/assets/styles/components/StatCard.scss";
+
 export function StatCard({ title, value, subtitle, icon: Icon, trend, className }) {
-    return (<Card className={cn("card-hover", className)}>
-      <CardContent className="p-6">
-        <div className="flex items-start justify-between">
-          <div className="space-y-2">
-            <p className="text-sm font-medium text-muted-foreground">{title}</p>
-            <p className="text-3xl font-bold tracking-tight">{value}</p>
-            {subtitle && <p className="text-xs text-muted-foreground">{subtitle}</p>}
-            {trend && (<p className={cn("text-xs font-medium", trend.positive ? "text-success" : "text-destructive")}>
+  const rootClassName = ["stat-card", className].filter(Boolean).join(" ");
+
+  return (
+    <Card className={rootClassName}>
+      <CardContent className="stat-card__content">
+        <div className="stat-card__body">
+          <div className="stat-card__text">
+            <p className="stat-card__title">{title}</p>
+            <p className="stat-card__value">{value}</p>
+            {subtitle && <p className="stat-card__subtitle">{subtitle}</p>}
+            {trend && (
+              <p
+                className={`stat-card__trend${
+                  trend.positive
+                    ? " stat-card__trend--positive"
+                    : " stat-card__trend--negative"
+                }`}
+              >
                 {trend.value}
-              </p>)}
+              </p>
+            )}
           </div>
-          {Icon && (<div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-              <Icon className="h-5 w-5 text-primary"/>
-            </div>)}
+          {Icon && (
+            <div className="stat-card__icon-wrap">
+              <Icon className="stat-card__icon" />
+            </div>
+          )}
         </div>
       </CardContent>
-    </Card>);
+    </Card>
+  );
 }

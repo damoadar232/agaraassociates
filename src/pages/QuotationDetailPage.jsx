@@ -6,54 +6,56 @@ import { StatusChip } from "@/components/atoms/status-chip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency } from "@/lib/utils";
+import "@/assets/styles/pages/QuotationDetailPage.scss";
+
 export function QuotationDetailPage() {
     const { id } = useParams();
     const quote = getQuotationById(id);
     if (!quote)
         return <Navigate to="/quotations" replace/>;
-    return (<div className="space-y-6 animate-in fade-in duration-500">
-      <Link to="/quotations" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
-        <ArrowLeft className="h-4 w-4"/> Back to Quotations
+    return (<div className="quotation-detail-page">
+      <Link to="/quotations" className="quotation-detail-page__back-link">
+        <ArrowLeft /> Back to Quotations
       </Link>
 
-      <div className="flex flex-col lg:flex-row gap-6">
-        <div className="lg:w-64 space-y-4">
-          <h3 className="font-semibold">Version History</h3>
-          {quote.versions.map((v) => (<Card key={v.version} className={v.version === quote.versions.length ? "border-primary" : "card-hover"}>
-              <CardContent className="p-4">
-                <p className="font-medium">Version {v.version}</p>
-                <p className="text-sm font-bold mt-1">{formatCurrency(v.amount)}</p>
-                <p className="text-xs text-muted-foreground mt-1">{v.changes}</p>
-                <p className="text-xs text-muted-foreground">{v.createdAt}</p>
+      <div className="quotation-detail-page__layout">
+        <div className="quotation-detail-page__sidebar">
+          <h3 className="quotation-detail-page__sidebar-title">Version History</h3>
+          {quote.versions.map((v) => (<Card key={v.version} className={v.version === quote.versions.length ? "quotation-detail-page__version-card quotation-detail-page__version-card--active" : "quotation-detail-page__version-card"}>
+              <CardContent className="quotation-detail-page__version-content">
+                <p className="quotation-detail-page__version-label">Version {v.version}</p>
+                <p className="quotation-detail-page__version-amount">{formatCurrency(v.amount)}</p>
+                <p className="quotation-detail-page__version-meta">{v.changes}</p>
+                <p className="quotation-detail-page__version-meta">{v.createdAt}</p>
               </CardContent>
             </Card>))}
         </div>
 
-        <Card className="flex-1">
-          <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <div className="min-w-0">
-              <CardTitle className="text-xl sm:text-2xl">{quote.title}</CardTitle>
-              <p className="text-muted-foreground mt-1">{quote.clientName} · {quote.projectName}</p>
+        <Card className="quotation-detail-page__main-card">
+          <CardHeader className="quotation-detail-page__main-header">
+            <div className="quotation-detail-page__main-heading">
+              <CardTitle className="quotation-detail-page__main-title">{quote.title}</CardTitle>
+              <p className="quotation-detail-page__main-subtitle">{quote.clientName} · {quote.projectName}</p>
             </div>
-            <div className="shrink-0">
+            <div className="quotation-detail-page__main-status">
               <StatusChip status={quote.status} type="quotation"/>
             </div>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="quotation-detail-page__main-content">
             <QuotationDetailActions quoteId={quote.id} status={quote.status}/>
             <Separator />
-            <div className="space-y-4">
-              {quote.items.map((item, i) => (<div key={i} className="flex justify-between py-2 border-b">
+            <div className="quotation-detail-page__line-items">
+              {quote.items.map((item, i) => (<div key={i} className="quotation-detail-page__line-item">
                   <span>{item.description}</span>
-                  <span className="font-medium">{formatCurrency(item.amount)}</span>
+                  <span className="quotation-detail-page__line-amount">{formatCurrency(item.amount)}</span>
                 </div>))}
             </div>
-            <div className="flex justify-between text-xl font-bold pt-4 border-t">
+            <div className="quotation-detail-page__total-row">
               <span>Total</span>
               <span>{formatCurrency(quote.amount)}</span>
             </div>
-            <Card className="border-dashed bg-muted/30">
-              <CardContent className="p-4 text-center text-sm text-muted-foreground">
+            <Card className="quotation-detail-page__signature-card">
+              <CardContent className="quotation-detail-page__signature-content">
                 Client approval workflow — electronic signature placeholder
               </CardContent>
             </Card>

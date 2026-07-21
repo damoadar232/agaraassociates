@@ -1,20 +1,12 @@
 import * as React from "react";
-import { cva } from "class-variance-authority";
-import { cn } from "@/lib/utils";
-const badgeVariants = cva("inline-flex items-center rounded-lg border px-2.5 py-0.5 text-xs font-medium transition-colors", {
-    variants: {
-        variant: {
-            default: "border-transparent bg-primary text-primary-foreground",
-            secondary: "border-transparent bg-secondary text-secondary-foreground",
-            destructive: "border-transparent bg-destructive text-destructive-foreground",
-            outline: "text-foreground",
-            success: "border-transparent bg-success text-success-foreground",
-            warning: "border-transparent bg-accent text-accent-foreground",
-        },
-    },
-    defaultVariants: { variant: "default" },
-});
+import { cx } from "@/lib/utils";
+import "@/assets/styles/components/Badge.scss";
+
+function badgeVariants({ variant = "default", className } = {}) {
+    return cx("badge", `badge--${variant}`, className);
+}
+
 function Badge({ className, variant, ...props }) {
-    return <div className={cn(badgeVariants({ variant }), className)} {...props}/>;
+    return <div className={badgeVariants({ variant, className })} {...props}/>;
 }
 export { Badge, badgeVariants };

@@ -1,39 +1,40 @@
 import { Instagram, Linkedin } from "lucide-react";
 import { PinterestIcon } from "@/components/marketing/icons";
+import "@/assets/styles/components/SocialScrollBar.scss";
 
 export function SocialScrollBar() {
   return (
-    <aside className="absolute right-5 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-5 lg:flex xl:right-8">
-      <div className="agara-glass flex flex-col items-center gap-3.5 rounded-full px-2.5 py-3">
+    <aside className="social-scroll-bar">
+      <div className="social-scroll-bar__pill">
         <a
           href="https://instagram.com"
           target="_blank"
           rel="noreferrer"
           aria-label="Instagram"
-          className="text-agara-charcoal/65 transition-colors hover:text-agara-charcoal"
+          className="social-scroll-bar__link"
         >
-          <Instagram className="h-3.5 w-3.5" strokeWidth={1.5} />
+          <Instagram className="social-scroll-bar__icon" strokeWidth={1.5} />
         </a>
         <a
           href="https://pinterest.com"
           target="_blank"
           rel="noreferrer"
           aria-label="Pinterest"
-          className="text-agara-charcoal/65 transition-colors hover:text-agara-charcoal"
+          className="social-scroll-bar__link"
         >
-          <PinterestIcon className="h-3.5 w-3.5" />
+          <PinterestIcon className="social-scroll-bar__icon" />
         </a>
         <a
           href="https://linkedin.com"
           target="_blank"
           rel="noreferrer"
           aria-label="LinkedIn"
-          className="text-agara-charcoal/65 transition-colors hover:text-agara-charcoal"
+          className="social-scroll-bar__link"
         >
-          <Linkedin className="h-3.5 w-3.5" strokeWidth={1.5} />
+          <Linkedin className="social-scroll-bar__icon" strokeWidth={1.5} />
         </a>
-        <div className="flex flex-col items-center gap-2">
-          <span className="h-8 w-px bg-agara-charcoal/20" />
+        <div className="social-scroll-bar__divider-wrap">
+          <span className="social-scroll-bar__divider" />
         </div>
       </div>
     </aside>

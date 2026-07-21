@@ -1,9 +1,15 @@
+import "@/assets/styles/components/PageHeader.scss";
+
 export function PageHeader({ title, description, children }) {
-    return (<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
-      <div className="min-w-0">
-        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{title}</h1>
-        {description && <p className="text-muted-foreground mt-1">{description}</p>}
+  return (
+    <div className="page-header">
+      <div className="page-header__text">
+        <h1 className="page-header__title">{title}</h1>
+        {description && (
+          <p className="page-header__description">{description}</p>
+        )}
       </div>
-      {children && <div className="flex flex-wrap items-center gap-2">{children}</div>}
-    </div>);
+      {children && <div className="page-header__actions">{children}</div>}
+    </div>
+  );
 }

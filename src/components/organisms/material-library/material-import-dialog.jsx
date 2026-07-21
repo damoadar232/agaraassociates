@@ -6,8 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { importMaterialRecords } from "@/services/materialsService";
+import "@/assets/styles/components/MaterialImportDialog.scss";
+
 const SAMPLE = `name,sku,categoryId,subcategoryId,brand,supplier,unit,currentPrice,gst
 Sample Tile,AF-TIL-001,interior,flooring_tiles,Kajaria,Kajaria Ceramics,sqft,95,18`;
+
 export function MaterialImportDialog({ open, onOpenChange, onImported }) {
     const [csv, setCsv] = useState("");
     const handleImport = async () => {
@@ -47,22 +50,24 @@ export function MaterialImportDialog({ open, onOpenChange, onImported }) {
         onOpenChange(false);
         setCsv("");
     };
-    return (<Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg">
-        <DialogHeader>
-          <DialogTitle>Import Materials (CSV)</DialogTitle>
-        </DialogHeader>
-        <div className="space-y-3">
-          <p className="text-sm text-muted-foreground">
-            Columns: name, sku, categoryId, subcategoryId, brand, supplier, unit, currentPrice, gst
-          </p>
-          <Label>Paste CSV</Label>
-          <Textarea value={csv} onChange={(e) => setCsv(e.target.value)} rows={8} className="rounded-xl font-mono text-xs" placeholder={SAMPLE}/>
-          <div className="flex justify-end gap-2">
-            <Button variant="outline" className="rounded-xl" onClick={() => { setCsv(SAMPLE); }}>Load Sample</Button>
-            <Button className="rounded-xl" onClick={handleImport}>Import</Button>
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>);
+    return (
+        <Dialog open={open} onOpenChange={onOpenChange}>
+            <DialogContent className="material-import-dialog__content">
+                <DialogHeader>
+                    <DialogTitle>Import Materials (CSV)</DialogTitle>
+                </DialogHeader>
+                <div className="material-import-dialog__body">
+                    <p className="material-import-dialog__hint">
+                        Columns: name, sku, categoryId, subcategoryId, brand, supplier, unit, currentPrice, gst
+                    </p>
+                    <Label>Paste CSV</Label>
+                    <Textarea value={csv} onChange={(e) => setCsv(e.target.value)} rows={8} className="material-import-dialog__textarea" placeholder={SAMPLE} />
+                    <div className="material-import-dialog__actions">
+                        <Button variant="outline" className="material-import-dialog__btn" onClick={() => { setCsv(SAMPLE); }}>Load Sample</Button>
+                        <Button className="material-import-dialog__btn" onClick={handleImport}>Import</Button>
+                    </div>
+                </div>
+            </DialogContent>
+        </Dialog>
+    );
 }

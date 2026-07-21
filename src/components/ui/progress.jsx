@@ -1,8 +1,20 @@
 import * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
-import { cn } from "@/lib/utils";
-const Progress = React.forwardRef(({ className, value, ...props }, ref) => (<ProgressPrimitive.Root ref={ref} className={cn("relative h-2 w-full overflow-hidden rounded-full bg-muted", className)} {...props}>
-    <ProgressPrimitive.Indicator className="h-full w-full flex-1 bg-primary transition-all duration-500" style={{ transform: `translateX(-${100 - (value || 0)}%)` }}/>
-  </ProgressPrimitive.Root>));
+import { cx } from "@/lib/utils";
+import "@/assets/styles/components/Progress.scss";
+
+const Progress = React.forwardRef(({ className, value, ...props }, ref) => {
+    const indicatorRef = React.useRef(null);
+
+    React.useLayoutEffect(() => {
+        if (indicatorRef.current) {
+            indicatorRef.current.style.setProperty("--progress-offset", `${100 - (value || 0)}%`);
+        }
+    }, [value]);
+
+    return (<ProgressPrimitive.Root ref={ref} className={cx("progress", className)} {...props}>
+        <ProgressPrimitive.Indicator ref={indicatorRef} className="progress__indicator"/>
+    </ProgressPrimitive.Root>);
+});
 Progress.displayName = ProgressPrimitive.Root.displayName;
 export { Progress };

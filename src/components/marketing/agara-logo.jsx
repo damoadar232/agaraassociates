@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
+import "@/assets/styles/components/AgaraLogo.scss";
 
 export function AgaraLogo() {
   return (
-    <Link to="/" className="flex items-center gap-2.5 shrink-0">
+    <Link to="/" className="agara-logo">
       <img
         src="/logo.png"
         alt="Agara Architects logo"
-        className="h-10 w-10 shrink-0 object-contain"
+        className="agara-logo__image"
       />
-      <span className="hidden sm:block text-[11px] font-medium uppercase tracking-[0.22em] text-agara-charcoal">
-        Agara Architects
-      </span>
+      <span className="agara-logo__text">Agara Architects</span>
     </Link>
   );
 }

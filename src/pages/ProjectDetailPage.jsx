@@ -14,10 +14,23 @@ import { formatCurrency } from "@/lib/utils";
 import { getDrawingsByProjectId } from "@/lib/store/drawing-store";
 import { getQuotationsByProjectId } from "@/lib/store/quotation-store";
 import { ProjectMaterialsTab, ProjectProcurementTab, ProjectPaymentsTab, ProjectApprovalsTab, ProjectDocumentsTab, ProjectActivityTab, ProjectSitePhotosTab, } from "@/components/organisms/project-tab-panels";
+import "@/assets/styles/pages/ProjectDetailPage.scss";
+
 const TAB_ITEMS = [
     "Overview", "Design Files", "BOQ", "Materials", "Quotation",
     "Procurement", "Timeline", "Payments", "Approvals", "Site Photos", "Documents", "Activity",
 ];
+
+const MILESTONE_DOT_CLASS = {
+    completed: "project-detail-page__milestone-dot--completed",
+    in_progress: "project-detail-page__milestone-dot--in-progress",
+    delayed: "project-detail-page__milestone-dot--delayed",
+};
+
+function getMilestoneDotClass(status) {
+    return `project-detail-page__milestone-dot ${MILESTONE_DOT_CLASS[status] ?? "project-detail-page__milestone-dot--pending"}`;
+}
+
 export function ProjectDetailPage() {
     const { id } = useParams();
     const project = getProjectByIdFromStore(id);
@@ -29,22 +42,22 @@ export function ProjectDetailPage() {
     const projectBOQs = getBoqsByProjectId(id);
     const projectBOQ = projectBOQs[0];
     const projectQuotes = getQuotationsByProjectId(id);
-    return (<div className="space-y-6 animate-in fade-in duration-500">
-      <Link to="/app/projects" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
-        <ArrowLeft className="h-4 w-4"/> Back to Projects
+    return (<div className="project-detail-page">
+      <Link to="/app/projects" className="project-detail-page__back-link">
+        <ArrowLeft /> Back to Projects
       </Link>
 
       <PageHeader title={project.name} description={project.description}>
         <StatusChip status={project.status}/>
       </PageHeader>
 
-      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-        <span className="flex items-center gap-1"><MapPin className="h-4 w-4"/>{project.location}, {project.city}</span>
-        <span className="flex items-center gap-1"><Calendar className="h-4 w-4"/>Due {project.expectedCompletion}</span>
+      <div className="project-detail-page__meta-row">
+        <span><MapPin />{project.location}, {project.city}</span>
+        <span><Calendar />Due {project.expectedCompletion}</span>
         <span>{project.clientName}</span>
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="project-detail-page__badges">
         {project.serviceTypes.map((s) => (<Badge key={s} variant={s === "construction" ? "secondary" : "outline"}>
             {SERVICE_TYPE_LABELS[s]}
           </Badge>))}
@@ -53,15 +66,15 @@ export function ProjectDetailPage() {
       {project.constructionDetails && (<ConstructionDetailsPanel details={project.constructionDetails}/>)}
 
       <Tabs defaultValue="overview">
-        <TabsList className="flex-wrap h-auto gap-1">
-          {TAB_ITEMS.map((tab) => (<TabsTrigger key={tab} value={tab.toLowerCase().replace(/\s+/g, "-")} className="text-xs sm:text-sm">
+        <TabsList className="project-detail-page__tabs-list">
+          {TAB_ITEMS.map((tab) => (<TabsTrigger key={tab} value={tab.toLowerCase().replace(/\s+/g, "-")} className="project-detail-page__tab-trigger">
               {tab}
             </TabsTrigger>))}
         </TabsList>
 
-        <TabsContent value="overview" className="space-y-6 mt-6">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="flex items-center justify-center p-6 card-hover">
+        <TabsContent value="overview" className="project-detail-page__tab-panel project-detail-page__tab-panel--stack">
+          <div className="project-detail-page__overview-grid">
+            <Card className="project-detail-page__progress-card">
               <ProgressRing value={project.progress} label="Complete"/>
             </Card>
             <StatCard title="Budget" value={formatCurrency(project.budget)}/>
@@ -69,19 +82,19 @@ export function ProjectDetailPage() {
             <StatCard title="Profit" value={formatCurrency(project.profit)} trend={{ value: `${Math.round((project.profit / project.budget) * 100)}% margin`, positive: true }}/>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
-            <Card className="card-hover">
-              <CardHeader><CardTitle className="text-lg">Budget vs Actual</CardTitle></CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Budget</span>
-                  <span className="font-medium">{formatCurrency(project.budget)}</span>
+          <div className="project-detail-page__detail-grid">
+            <Card className="project-detail-page__budget-card">
+              <CardHeader><CardTitle className="project-detail-page__card-title">Budget vs Actual</CardTitle></CardHeader>
+              <CardContent className="project-detail-page__budget-content">
+                <div className="project-detail-page__budget-row">
+                  <span className="project-detail-page__budget-label">Budget</span>
+                  <span className="project-detail-page__budget-value">{formatCurrency(project.budget)}</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Spent</span>
-                  <span className="font-medium">{formatCurrency(project.spent)}</span>
+                <div className="project-detail-page__budget-row">
+                  <span className="project-detail-page__budget-label">Spent</span>
+                  <span className="project-detail-page__budget-value">{formatCurrency(project.spent)}</span>
                 </div>
-                <div className="flex justify-between text-sm font-semibold border-t pt-2">
+                <div className="project-detail-page__budget-total">
                   <span>Remaining</span>
                   <span>{formatCurrency(project.budget - project.spent)}</span>
                 </div>
@@ -89,16 +102,14 @@ export function ProjectDetailPage() {
               </CardContent>
             </Card>
 
-            <Card className="lg:col-span-2 card-hover">
-              <CardHeader><CardTitle className="text-lg">Project Timeline</CardTitle></CardHeader>
-              <CardContent className="space-y-4">
-                {projectMilestones.map((ms) => (<div key={ms.id} className="flex items-center gap-4">
-                    <div className={`h-3 w-3 rounded-full shrink-0 ${ms.status === "completed" ? "bg-success" :
-                ms.status === "in_progress" ? "bg-primary" :
-                    ms.status === "delayed" ? "bg-destructive" : "bg-muted"}`}/>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">{ms.title}</p>
-                      <p className="text-xs text-muted-foreground">{ms.date}</p>
+            <Card className="project-detail-page__timeline-card">
+              <CardHeader><CardTitle className="project-detail-page__card-title">Project Timeline</CardTitle></CardHeader>
+              <CardContent className="project-detail-page__timeline-content">
+                {projectMilestones.map((ms) => (<div key={ms.id} className="project-detail-page__milestone">
+                    <div className={getMilestoneDotClass(ms.status)}/>
+                    <div className="project-detail-page__milestone-info">
+                      <p className="project-detail-page__milestone-title">{ms.title}</p>
+                      <p className="project-detail-page__milestone-date">{ms.date}</p>
                     </div>
                     <Badge variant={ms.status === "completed" ? "success" : ms.status === "in_progress" ? "default" : "outline"}>
                       {ms.status.replace("_", " ")}
@@ -108,34 +119,34 @@ export function ProjectDetailPage() {
             </Card>
           </div>
 
-          {projectRisks.length > 0 && (<Card className="border-accent/30 card-hover">
+          {projectRisks.length > 0 && (<Card className="project-detail-page__risk-card">
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-accent"/> Risk Indicators
+                <CardTitle className="project-detail-page__risk-title">
+                  <AlertTriangle /> Risk Indicators
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                {projectRisks.map((risk) => (<div key={risk.id} className="flex items-start gap-3 p-3 rounded-xl bg-accent/5">
-                    <AlertTriangle className="h-4 w-4 text-accent mt-0.5"/>
+              <CardContent className="project-detail-page__risk-content">
+                {projectRisks.map((risk) => (<div key={risk.id} className="project-detail-page__risk-item">
+                    <AlertTriangle />
                     <div>
-                      <p className="text-sm font-medium">{risk.type}</p>
-                      <p className="text-sm text-muted-foreground">{risk.description}</p>
+                      <p className="project-detail-page__risk-type">{risk.type}</p>
+                      <p className="project-detail-page__risk-description">{risk.description}</p>
                     </div>
                   </div>))}
               </CardContent>
             </Card>)}
         </TabsContent>
 
-        <TabsContent value="design-files" className="mt-6">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {projectDrawings.map((d) => (<Card key={d.id} className="card-hover cursor-pointer">
-                <CardContent className="p-4 space-y-3">
-                  <div className="h-32 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                    <span className="text-sm font-medium text-muted-foreground">{d.type.replace("_", " ").toUpperCase()}</span>
+        <TabsContent value="design-files" className="project-detail-page__tab-panel">
+          <div className="project-detail-page__drawings-grid">
+            {projectDrawings.map((d) => (<Card key={d.id} className="project-detail-page__drawing-card">
+                <CardContent className="project-detail-page__drawing-content">
+                  <div className="project-detail-page__drawing-preview">
+                    <span className="project-detail-page__drawing-type">{d.type.replace("_", " ")}</span>
                   </div>
                   <div>
-                    <p className="font-medium">{d.name}</p>
-                    <p className="text-xs text-muted-foreground">{d.version} · {d.updatedAt}</p>
+                    <p className="project-detail-page__drawing-name">{d.name}</p>
+                    <p className="project-detail-page__drawing-meta">{d.version} · {d.updatedAt}</p>
                   </div>
                   <Badge variant={d.status === "approved" ? "success" : "warning"}>{d.status.replace("_", " ")}</Badge>
                 </CardContent>
@@ -143,32 +154,32 @@ export function ProjectDetailPage() {
           </div>
         </TabsContent>
 
-        <TabsContent value="boq" className="mt-6">
+        <TabsContent value="boq" className="project-detail-page__tab-panel">
           {projectBOQ ? (<Card>
               <CardHeader>
                 <CardTitle>{projectBOQ.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
+                <div className="project-detail-page__boq-table-wrap">
+                  <table className="project-detail-page__boq-table">
                     <thead>
-                      <tr className="border-b text-left text-muted-foreground">
-                        <th className="pb-3 pr-4">Room</th>
-                        <th className="pb-3 pr-4">Item</th>
-                        <th className="pb-3 pr-4">Qty</th>
-                        <th className="pb-3 pr-4">Rate</th>
-                        <th className="pb-3">Total</th>
+                      <tr>
+                        <th>Room</th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Rate</th>
+                        <th>Total</th>
                       </tr>
                     </thead>
                     <tbody>
                       {projectBOQ.items.map((item) => {
                 const total = item.quantity * item.rate * (1 + item.gst / 100) + item.labour;
-                return (<tr key={item.id} className="border-b">
-                            <td className="py-3 pr-4">{item.room}</td>
-                            <td className="py-3 pr-4">{item.item}</td>
-                            <td className="py-3 pr-4">{item.quantity} {item.unit}</td>
-                            <td className="py-3 pr-4">₹{item.rate}</td>
-                            <td className="py-3">{formatCurrency(total)}</td>
+                return (<tr key={item.id}>
+                            <td>{item.room}</td>
+                            <td>{item.item}</td>
+                            <td>{item.quantity} {item.unit}</td>
+                            <td>₹{item.rate}</td>
+                            <td>{formatCurrency(total)}</td>
                           </tr>);
             })}
                     </tbody>
@@ -176,19 +187,19 @@ export function ProjectDetailPage() {
                 </div>
                 <ButtonLink to={`/boq/${projectBOQ.id}`}/>
               </CardContent>
-            </Card>) : (<p className="text-muted-foreground">No BOQ created yet.</p>)}
+            </Card>) : (<p className="project-detail-page__empty-text">No BOQ created yet.</p>)}
         </TabsContent>
 
-        <TabsContent value="quotation" className="mt-6">
-          <div className="space-y-4">
-            {projectQuotes.map((q) => (<Card key={q.id} className="card-hover">
-                <CardContent className="p-6 flex items-center justify-between">
+        <TabsContent value="quotation" className="project-detail-page__tab-panel">
+          <div className="project-detail-page__quotes-list">
+            {projectQuotes.map((q) => (<Card key={q.id}>
+                <CardContent className="project-detail-page__quote-content">
                   <div>
-                    <p className="font-semibold">{q.title}</p>
-                    <p className="text-sm text-muted-foreground">{q.versions.length} versions</p>
+                    <p className="project-detail-page__quote-title">{q.title}</p>
+                    <p className="project-detail-page__quote-meta">{q.versions.length} versions</p>
                   </div>
-                  <div className="text-right">
-                    <p className="text-lg font-bold">{formatCurrency(q.amount)}</p>
+                  <div className="project-detail-page__quote-right">
+                    <p className="project-detail-page__quote-amount">{formatCurrency(q.amount)}</p>
                     <StatusChip status={q.status} type="quotation"/>
                   </div>
                 </CardContent>
@@ -196,58 +207,56 @@ export function ProjectDetailPage() {
           </div>
         </TabsContent>
 
-        <TabsContent value="site-photos" className="mt-6">
+        <TabsContent value="site-photos" className="project-detail-page__tab-panel">
           <ProjectSitePhotosTab projectId={id}/>
         </TabsContent>
 
-        <TabsContent value="timeline" className="mt-6">
-          <Card className="card-hover">
-            <CardHeader><CardTitle className="text-lg">Project Timeline</CardTitle></CardHeader>
-            <CardContent className="space-y-4">
-              {projectMilestones.length > 0 ? projectMilestones.map((ms) => (<div key={ms.id} className="flex items-center gap-4">
-                  <div className={`h-3 w-3 rounded-full shrink-0 ${ms.status === "completed" ? "bg-success" :
-                ms.status === "in_progress" ? "bg-primary" :
-                    ms.status === "delayed" ? "bg-destructive" : "bg-muted"}`}/>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">{ms.title}</p>
-                    <p className="text-xs text-muted-foreground">{ms.date}</p>
+        <TabsContent value="timeline" className="project-detail-page__tab-panel">
+          <Card>
+            <CardHeader><CardTitle className="project-detail-page__card-title">Project Timeline</CardTitle></CardHeader>
+            <CardContent className="project-detail-page__timeline-content">
+              {projectMilestones.length > 0 ? projectMilestones.map((ms) => (<div key={ms.id} className="project-detail-page__milestone">
+                  <div className={getMilestoneDotClass(ms.status)}/>
+                  <div className="project-detail-page__milestone-info">
+                    <p className="project-detail-page__milestone-title">{ms.title}</p>
+                    <p className="project-detail-page__milestone-date">{ms.date}</p>
                   </div>
                   <Badge variant={ms.status === "completed" ? "success" : ms.status === "in_progress" ? "default" : "outline"}>
                     {ms.status.replace("_", " ")}
                   </Badge>
-                </div>)) : (<p className="text-muted-foreground text-sm">No milestones yet.</p>)}
+                </div>)) : (<p className="project-detail-page__empty-text">No milestones yet.</p>)}
             </CardContent>
           </Card>
         </TabsContent>
 
-        <TabsContent value="materials" className="mt-6">
+        <TabsContent value="materials" className="project-detail-page__tab-panel">
           <ProjectMaterialsTab projectId={id}/>
         </TabsContent>
 
-        <TabsContent value="procurement" className="mt-6">
+        <TabsContent value="procurement" className="project-detail-page__tab-panel">
           <ProjectProcurementTab projectId={id}/>
         </TabsContent>
 
-        <TabsContent value="payments" className="mt-6">
+        <TabsContent value="payments" className="project-detail-page__tab-panel">
           <ProjectPaymentsTab projectId={id}/>
         </TabsContent>
 
-        <TabsContent value="approvals" className="mt-6">
+        <TabsContent value="approvals" className="project-detail-page__tab-panel">
           <ProjectApprovalsTab projectId={id}/>
         </TabsContent>
 
-        <TabsContent value="documents" className="mt-6">
+        <TabsContent value="documents" className="project-detail-page__tab-panel">
           <ProjectDocumentsTab projectId={id}/>
         </TabsContent>
 
-        <TabsContent value="activity" className="mt-6">
+        <TabsContent value="activity" className="project-detail-page__tab-panel">
           <ProjectActivityTab projectId={id}/>
         </TabsContent>
       </Tabs>
     </div>);
 }
 function ButtonLink({ to }) {
-    return (<Link to={to} className="inline-flex mt-4 text-sm text-primary font-medium hover:underline">
+    return (<Link to={to} className="project-detail-page__boq-link">
       Open full BOQ builder →
     </Link>);
 }

@@ -7,27 +7,29 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/utils";
+import "@/assets/styles/pages/TeamPage.scss";
+
 export function TeamPage() {
     const [version, setVersion] = useState(0);
     void version;
     const team = getTeamMembers();
     const tasks = getAllTasks();
     const openTasks = tasks.filter((t) => !t.completed);
-    return (<div className="space-y-6 animate-in fade-in duration-500">
+    return (<div className="team-page">
       <PageHeader title="Team & Tasks" description="Studio roster and cross-project task queue"/>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="team-page__layout">
         <Card>
-          <CardHeader><CardTitle className="text-lg">Team ({team.length})</CardTitle></CardHeader>
-          <CardContent className="space-y-3">
-            {team.map((member) => (<div key={member.id} className="flex items-center gap-3 p-3 rounded-xl border">
+          <CardHeader><CardTitle className="team-page__section-title">Team ({team.length})</CardTitle></CardHeader>
+          <CardContent className="team-page__member-list">
+            {team.map((member) => (<div key={member.id} className="team-page__member-row">
                 <Avatar>
                   {member.avatar ? <AvatarImage src={member.avatar} alt={member.name}/> : null}
-                  <AvatarFallback className="bg-primary text-white text-sm">{getInitials(member.name)}</AvatarFallback>
+                  <AvatarFallback className="team-page__avatar-fallback">{getInitials(member.name)}</AvatarFallback>
                 </Avatar>
-                <div className="flex-1 min-w-0">
-                  <p className="font-medium text-sm">{member.name}</p>
-                  <p className="text-xs text-muted-foreground truncate">{member.role}</p>
+                <div className="team-page__member-info">
+                  <p className="team-page__member-name">{member.name}</p>
+                  <p className="team-page__member-role">{member.role}</p>
                 </div>
                 <Badge variant={member.active ? "success" : "outline"}>{member.active ? "Active" : "Away"}</Badge>
               </div>))}
@@ -35,17 +37,17 @@ export function TeamPage() {
         </Card>
 
         <Card>
-          <CardHeader><CardTitle className="text-lg">Open Tasks ({openTasks.length})</CardTitle></CardHeader>
-          <CardContent className="space-y-2">
-            {tasks.map((task) => (<div key={task.id} className="flex items-start gap-3 p-3 rounded-xl border">
-                <input type="checkbox" checked={task.completed} className="mt-1 h-4 w-4 rounded border-border accent-primary" onChange={() => {
+          <CardHeader><CardTitle className="team-page__section-title">Open Tasks ({openTasks.length})</CardTitle></CardHeader>
+          <CardContent className="team-page__task-list">
+            {tasks.map((task) => (<div key={task.id} className="team-page__task-row">
+                <input type="checkbox" checked={task.completed} className="team-page__checkbox" onChange={() => {
                 toggleTaskCompleted(task.id);
                 setVersion((v) => v + 1);
                 toast.success(task.completed ? "Task reopened" : "Task completed");
             }}/>
-                <div className="flex-1 min-w-0">
-                  <p className={`text-sm font-medium ${task.completed ? "line-through text-muted-foreground" : ""}`}>{task.title}</p>
-                  <p className="text-xs text-muted-foreground">{task.projectName} · Due {task.dueDate}</p>
+                <div className="team-page__task-info">
+                  <p className={task.completed ? "team-page__task-title team-page__task-title--completed" : "team-page__task-title"}>{task.title}</p>
+                  <p className="team-page__task-meta">{task.projectName} · Due {task.dueDate}</p>
                 </div>
                 <Badge variant={task.priority === "high" ? "destructive" : task.priority === "medium" ? "warning" : "outline"}>{task.priority}</Badge>
               </div>))}

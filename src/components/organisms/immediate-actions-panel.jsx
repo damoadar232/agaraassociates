@@ -4,40 +4,42 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { GlassCard } from "@/components/ui/glass-card";
 import { QuickActionsStrip } from "@/components/organisms/quick-actions-panel";
 import { ArrowRight, CheckCircle2, Circle } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cx } from "@/lib/utils";
+import "@/assets/styles/components/ImmediateActionsPanel.scss";
+
 export function ImmediateActionsPanel({ actions, className }) {
     const completedCount = 0;
-    return (<GlassCard className={cn("flex flex-col overflow-hidden border-accent/20", "lg:flex-1 lg:min-h-0", className)}>
-      <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 border-b border-divider shrink-0">
-        <div className="min-w-0">
-          <h2 className="text-sm font-semibold text-foreground">Approval Queue</h2>
-          <p className="text-[10px] text-foreground mt-0.5">Pending reviews and action items</p>
+    return (<GlassCard className={cx("immediate-actions-panel", className)}>
+      <div className="immediate-actions-panel__header">
+        <div className="immediate-actions-panel__header-text">
+          <h2 className="immediate-actions-panel__title">Approval Queue</h2>
+          <p className="immediate-actions-panel__subtitle">Pending reviews and action items</p>
         </div>
-        <span className="text-xs font-medium text-foreground tabular-nums shrink-0">
+        <span className="immediate-actions-panel__count">
           {completedCount}/{actions.length}
         </span>
       </div>
 
-      <ScrollArea className="lg:flex-1 lg:h-0 lg:min-h-0 max-h-[220px] sm:max-h-[260px] lg:max-h-none">
-        <div className="space-y-0.5 p-2">
-          {actions.map((action, index) => (<div key={action.id} className="flex items-start sm:items-center gap-2 px-2 py-2 sm:px-2.5 rounded-xl hover:bg-surface-hover transition-colors group">
-              {index === 0 ? (<CheckCircle2 className="h-3.5 w-3.5 text-accent shrink-0 mt-0.5 sm:mt-0" strokeWidth={1.5}/>) : (<Circle className="h-3.5 w-3.5 text-foreground/40 shrink-0 mt-0.5 sm:mt-0" strokeWidth={1.5}/>)}
-              <div className="flex-1 min-w-0">
-                <p className="text-[11px] font-medium line-clamp-2 sm:truncate text-foreground">{action.title}</p>
-                <p className="text-[10px] text-foreground truncate">{action.projectName}</p>
+      <ScrollArea className="immediate-actions-panel__scroll">
+        <div className="immediate-actions-panel__list">
+          {actions.map((action, index) => (<div key={action.id} className="immediate-actions-panel__item">
+              {index === 0 ? (<CheckCircle2 className="immediate-actions-panel__item-icon immediate-actions-panel__item-icon--active" strokeWidth={1.5}/>) : (<Circle className="immediate-actions-panel__item-icon immediate-actions-panel__item-icon--pending" strokeWidth={1.5}/>)}
+              <div className="immediate-actions-panel__item-body">
+                <p className="immediate-actions-panel__item-title">{action.title}</p>
+                <p className="immediate-actions-panel__item-project">{action.projectName}</p>
               </div>
-              <Button size="sm" variant="ghost" className="h-7 px-1.5 text-[10px] rounded-lg text-foreground hover:bg-surface-hover shrink-0 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity" asChild>
-                <Link to={action.href} className="flex items-center gap-0.5">
-                  <span className="hidden sm:inline">{action.actionLabel}</span>
-                  <ArrowRight className="h-3 w-3" strokeWidth={1.5}/>
+              <Button size="sm" variant="ghost" className="immediate-actions-panel__item-action" asChild>
+                <Link to={action.href} className="immediate-actions-panel__item-action-link">
+                  <span className="immediate-actions-panel__item-action-label">{action.actionLabel}</span>
+                  <ArrowRight className="immediate-actions-panel__item-action-icon" strokeWidth={1.5}/>
                 </Link>
               </Button>
             </div>))}
         </div>
       </ScrollArea>
 
-      <div className="hidden lg:block shrink-0 border-t border-divider px-3 py-2.5">
-        <p className="text-[10px] font-semibold text-foreground mb-2">Quick Actions</p>
+      <div className="immediate-actions-panel__footer">
+        <p className="immediate-actions-panel__footer-title">Quick Actions</p>
         <QuickActionsStrip compact/>
       </div>
     </GlassCard>);

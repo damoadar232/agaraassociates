@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/zoom";
+import "@/assets/styles/components/ProjectLightbox.scss";
 
 function ProjectLightboxComponent({
   items = [],
@@ -86,38 +87,44 @@ function ProjectLightboxComponent({
       role="dialog"
       aria-modal="true"
       aria-label="Project media gallery"
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md"
+      className="project-lightbox"
       onClick={handleBackdropClick}
     >
       <button
         type="button"
         onClick={onClose}
         aria-label="Close gallery"
-        className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white/85 backdrop-blur-xl transition-all duration-300 hover:scale-110 hover:bg-black/60 hover:text-white sm:right-6 sm:top-6"
+        className="project-lightbox__close"
       >
-        <X className="h-4 w-4" strokeWidth={1.5} />
+        <X className="project-lightbox__close-icon" strokeWidth={1.5} />
       </button>
 
       <button
         ref={prevRef}
         type="button"
-        className="absolute left-3 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white/85 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:bg-black/60 hover:text-white sm:left-6"
+        className="project-lightbox__nav project-lightbox__nav--prev"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-5 w-5" strokeWidth={1.5} />
+        <ChevronLeft
+          className="project-lightbox__nav-icon"
+          strokeWidth={1.5}
+        />
       </button>
 
       <button
         ref={nextRef}
         type="button"
-        className="absolute right-3 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white/85 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:bg-black/60 hover:text-white sm:right-6"
+        className="project-lightbox__nav project-lightbox__nav--next"
         aria-label="Next slide"
       >
-        <ChevronRight className="h-5 w-5" strokeWidth={1.5} />
+        <ChevronRight
+          className="project-lightbox__nav-icon"
+          strokeWidth={1.5}
+        />
       </button>
 
       <div
-        className="relative h-[78vh] w-[94vw] max-w-[1200px] overflow-hidden rounded-3xl border border-white/10 bg-[#111] shadow-2xl"
+        className="project-lightbox__frame"
         onClick={(e) => e.stopPropagation()}
       >
         <Swiper
@@ -141,24 +148,24 @@ function ProjectLightboxComponent({
             prevEl: prevRef.current,
             nextEl: nextRef.current,
           }}
-          className="project-lightbox-swiper h-full w-full"
+          className="project-lightbox__swiper"
         >
           {items.map((item, index) => (
             <SwiperSlide key={`${item.type}-${index}`}>
-              <div className="swiper-zoom-container flex h-full w-full items-center justify-center bg-black">
+              <div className="swiper-zoom-container project-lightbox__slide-inner">
                 {item.type === "video" ? (
                   <video
                     src={item.src}
                     muted
                     controls
                     playsInline
-                    className="max-h-full max-w-full object-contain"
+                    className="project-lightbox__media"
                   />
                 ) : (
                   <img
                     src={item.src}
                     alt={`Gallery item ${index + 1}`}
-                    className="max-h-full max-w-full object-contain"
+                    className="project-lightbox__media"
                   />
                 )}
               </div>
@@ -166,16 +173,6 @@ function ProjectLightboxComponent({
           ))}
         </Swiper>
       </div>
-
-      <style>{`
-        .project-lightbox-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.45);
-          opacity: 1;
-        }
-        .project-lightbox-swiper .swiper-pagination-bullet-active {
-          background: #fff;
-        }
-      `}</style>
     </div>
   );
 }

@@ -4,6 +4,8 @@ import { vendorQuotes } from "@/lib/mock/data";
 import { getAllProjects } from "@/lib/store/project-store";
 import { getLegacyMaterials } from "@/lib/materials/legacy-materials.server";
 import { ReportsClient } from "@/components/features/reports/reports-client";
+import "@/assets/styles/pages/ReportsPage.scss";
+
 export function ReportsPage() {
     const dashboard = getDashboardData();
     const projects = getAllProjects();
@@ -25,7 +27,7 @@ export function ReportsPage() {
         delivery: quote.deliveryDays,
     })), []);
     if (loading) {
-        return <div className="p-8 text-muted-foreground">Loading reports...</div>;
+        return <div className="reports-page__loading">Loading reports...</div>;
     }
     return (<ReportsClient dashboard={dashboard} projects={projects} materialCostByCategory={materialCostByCategory} vendorPerformance={vendorPerformance}/>);
 }

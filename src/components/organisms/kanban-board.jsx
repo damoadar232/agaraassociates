@@ -1,40 +1,44 @@
 "use client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { cx } from "@/lib/utils";
+import "@/assets/styles/components/KanbanBoard.scss";
+
 const columns = [
-    { id: "todo", title: "To Do", color: "bg-slate-100" },
-    { id: "in_progress", title: "In Progress", color: "bg-blue-50" },
-    { id: "inspection", title: "Inspection", color: "bg-amber-50" },
-    { id: "done", title: "Done", color: "bg-green-50" },
+    { id: "todo", title: "To Do", modifier: "todo" },
+    { id: "in_progress", title: "In Progress", modifier: "in-progress" },
+    { id: "inspection", title: "Inspection", modifier: "inspection" },
+    { id: "done", title: "Done", modifier: "done" },
 ];
+
 const priorityColors = {
     high: "destructive",
     medium: "warning",
     low: "outline",
 };
+
 export function KanbanBoard({ tasks, className }) {
-    return (<div className={cn("grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4", className)}>
+    return (<div className={cx("kanban-board", className)}>
       {columns.map((col) => {
             const colTasks = tasks.filter((t) => t.column === col.id);
-            return (<div key={col.id} className={cn("rounded-2xl p-4", col.color)}>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-semibold">{col.title}</h3>
-              <span className="text-xs text-muted-foreground bg-white rounded-full px-2 py-0.5">
+            return (<div key={col.id} className={cx("kanban-board__column", `kanban-board__column--${col.modifier}`)}>
+            <div className="kanban-board__column-header">
+              <h3 className="kanban-board__column-title">{col.title}</h3>
+              <span className="kanban-board__column-count">
                 {colTasks.length}
               </span>
             </div>
-            <div className="space-y-3">
-              {colTasks.map((task) => (<Card key={task.id} className="card-hover cursor-pointer shadow-sm">
-                  <CardContent className="p-4 space-y-2">
-                    <div className="flex items-start justify-between gap-2">
-                      <p className="text-sm font-medium leading-snug">{task.title}</p>
-                      <Badge variant={priorityColors[task.priority]} className="shrink-0 text-[10px]">
+            <div className="kanban-board__tasks">
+              {colTasks.map((task) => (<Card key={task.id} className="kanban-board__task">
+                  <CardContent className="kanban-board__task-content">
+                    <div className="kanban-board__task-header">
+                      <p className="kanban-board__task-title">{task.title}</p>
+                      <Badge variant={priorityColors[task.priority]} className="kanban-board__task-badge">
                         {task.priority}
                       </Badge>
                     </div>
-                    <p className="text-xs text-muted-foreground">{task.description}</p>
-                    <p className="text-xs text-muted-foreground">{task.assignee}</p>
+                    <p className="kanban-board__task-description">{task.description}</p>
+                    <p className="kanban-board__task-assignee">{task.assignee}</p>
                   </CardContent>
                 </Card>))}
             </div>

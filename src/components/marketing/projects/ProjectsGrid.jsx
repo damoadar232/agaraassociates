@@ -2,6 +2,7 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import { fadeUp } from "@/components/marketing/motion";
 import { ProjectCard } from "@/components/marketing/projects/ProjectCard";
+import "@/assets/styles/components/ProjectsGrid.scss";
 
 function ProjectsGridComponent({ projects }) {
   return (
@@ -10,7 +11,7 @@ function ProjectsGridComponent({ projects }) {
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
       variants={fadeUp}
-      className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5"
+      className="projects-grid"
     >
       {projects.map((project) => (
         <ProjectCard key={project.id} project={project} />

@@ -1,12 +1,26 @@
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
-export function FormField({ label, htmlFor, hint, required, children, className }) {
-    return (<div className={cn("space-y-2", className)}>
-      {label && (<Label htmlFor={htmlFor} className="text-sm font-medium">
+import "@/assets/styles/components/FormField.scss";
+
+export function FormField({
+  label,
+  htmlFor,
+  hint,
+  required,
+  children,
+  className,
+}) {
+  const rootClassName = ["form-field", className].filter(Boolean).join(" ");
+
+  return (
+    <div className={rootClassName}>
+      {label && (
+        <Label htmlFor={htmlFor} className="form-field__label">
           {label}
-          {required && <span className="text-destructive ml-0.5">*</span>}
-        </Label>)}
+          {required && <span className="form-field__required">*</span>}
+        </Label>
+      )}
       {children}
-      {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
-    </div>);
+      {hint && <p className="form-field__hint">{hint}</p>}
+    </div>
+  );
 }

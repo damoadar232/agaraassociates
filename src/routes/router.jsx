@@ -32,6 +32,7 @@ import { ReportsPage } from "@/pages/ReportsPage";
 import { SettingsPage } from "@/pages/SettingsPage";
 import { AiAssistantPage } from "@/pages/AiAssistantPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
+import "@/assets/styles/pages/RouterFallback.scss";
 
 const MarketingProjectsPage = lazy(
   () => import("@/pages/marketing/MarketingProjectsPage")
@@ -58,7 +59,7 @@ const MarketingContactPage = lazy(
 function withMarketingSuspense(element) {
   return (
     <Suspense
-      fallback={<div className="min-h-[50vh] animate-pulse bg-agara-cream" />}
+      fallback={<div className="router-fallback" />}
     >
       {element}
     </Suspense>

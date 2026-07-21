@@ -9,6 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { MATERIAL_CATEGORIES } from "@/lib/materials/categories";
 import { addMaterialRecord, updateMaterialRecord } from "@/services/materialsService";
+import "@/assets/styles/components/MaterialFormDialog.scss";
+
 export function MaterialFormDialog({ open, onOpenChange, material, onSaved }) {
     const isEdit = Boolean(material);
     const [name, setName] = useState(material?.name ?? "");
@@ -54,70 +56,72 @@ export function MaterialFormDialog({ open, onOpenChange, material, onSaved }) {
         onSaved();
         onOpenChange(false);
     };
-    return (<Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>{isEdit ? "Edit Material" : "Add Material"}</DialogTitle>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <div className="col-span-2 space-y-2">
-              <Label>Name</Label>
-              <Input value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl" required/>
-            </div>
-            <div className="space-y-2">
-              <Label>SKU</Label>
-              <Input value={sku} onChange={(e) => setSku(e.target.value)} className="rounded-xl" required/>
-            </div>
-            <div className="space-y-2">
-              <Label>Unit</Label>
-              <Input value={unit} onChange={(e) => setUnit(e.target.value)} className="rounded-xl"/>
-            </div>
-            <div className="space-y-2">
-              <Label>Category</Label>
-              <Select value={categoryId} onChange={(e) => { setCategoryId(e.target.value); setSubcategoryId(""); }} className="rounded-xl">
-                {MATERIAL_CATEGORIES.map((c) => (<option key={c.id} value={c.id}>{c.label}</option>))}
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label>Subcategory</Label>
-              <Select value={subcategoryId} onChange={(e) => setSubcategoryId(e.target.value)} className="rounded-xl">
-                <option value="">Select...</option>
-                {subcategories.map((s) => (<option key={s.id} value={s.id}>{s.label}</option>))}
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label>Brand</Label>
-              <Input value={brand} onChange={(e) => setBrand(e.target.value)} className="rounded-xl"/>
-            </div>
-            <div className="space-y-2">
-              <Label>Supplier</Label>
-              <Input value={supplier} onChange={(e) => setSupplier(e.target.value)} className="rounded-xl"/>
-            </div>
-            <div className="space-y-2">
-              <Label>Price (₹)</Label>
-              <Input type="number" value={currentPrice} onChange={(e) => setCurrentPrice(e.target.value)} className="rounded-xl"/>
-            </div>
-            <div className="space-y-2">
-              <Label>GST %</Label>
-              <Input type="number" value={gst} onChange={(e) => setGst(e.target.value)} className="rounded-xl"/>
-            </div>
-            <div className="col-span-2 space-y-2">
-              <Label>Availability</Label>
-              <Select value={availability} onChange={(e) => setAvailability(e.target.value)} className="rounded-xl">
-                {["in_stock", "low_stock", "out_of_stock", "made_to_order"].map((a) => (<option key={a} value={a}>{a.replace(/_/g, " ")}</option>))}
-              </Select>
-            </div>
-            <div className="col-span-2 space-y-2">
-              <Label>Specification</Label>
-              <Textarea value={specification} onChange={(e) => setSpecification(e.target.value)} rows={2} className="rounded-xl"/>
-            </div>
-          </div>
-          <div className="flex justify-end gap-2">
-            <Button type="button" variant="outline" className="rounded-xl" onClick={() => onOpenChange(false)}>Cancel</Button>
-            <Button type="submit" className="rounded-xl">{isEdit ? "Save" : "Add Material"}</Button>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>);
+    return (
+        <Dialog open={open} onOpenChange={onOpenChange}>
+            <DialogContent className="material-form-dialog__content">
+                <DialogHeader>
+                    <DialogTitle>{isEdit ? "Edit Material" : "Add Material"}</DialogTitle>
+                </DialogHeader>
+                <form onSubmit={handleSubmit} className="material-form-dialog__form">
+                    <div className="material-form-dialog__grid">
+                        <div className="material-form-dialog__field material-form-dialog__field--full">
+                            <Label>Name</Label>
+                            <Input value={name} onChange={(e) => setName(e.target.value)} className="material-form-dialog__input" required />
+                        </div>
+                        <div className="material-form-dialog__field">
+                            <Label>SKU</Label>
+                            <Input value={sku} onChange={(e) => setSku(e.target.value)} className="material-form-dialog__input" required />
+                        </div>
+                        <div className="material-form-dialog__field">
+                            <Label>Unit</Label>
+                            <Input value={unit} onChange={(e) => setUnit(e.target.value)} className="material-form-dialog__input" />
+                        </div>
+                        <div className="material-form-dialog__field">
+                            <Label>Category</Label>
+                            <Select value={categoryId} onChange={(e) => { setCategoryId(e.target.value); setSubcategoryId(""); }} className="material-form-dialog__input">
+                                {MATERIAL_CATEGORIES.map((c) => (<option key={c.id} value={c.id}>{c.label}</option>))}
+                            </Select>
+                        </div>
+                        <div className="material-form-dialog__field">
+                            <Label>Subcategory</Label>
+                            <Select value={subcategoryId} onChange={(e) => setSubcategoryId(e.target.value)} className="material-form-dialog__input">
+                                <option value="">Select...</option>
+                                {subcategories.map((s) => (<option key={s.id} value={s.id}>{s.label}</option>))}
+                            </Select>
+                        </div>
+                        <div className="material-form-dialog__field">
+                            <Label>Brand</Label>
+                            <Input value={brand} onChange={(e) => setBrand(e.target.value)} className="material-form-dialog__input" />
+                        </div>
+                        <div className="material-form-dialog__field">
+                            <Label>Supplier</Label>
+                            <Input value={supplier} onChange={(e) => setSupplier(e.target.value)} className="material-form-dialog__input" />
+                        </div>
+                        <div className="material-form-dialog__field">
+                            <Label>Price (₹)</Label>
+                            <Input type="number" value={currentPrice} onChange={(e) => setCurrentPrice(e.target.value)} className="material-form-dialog__input" />
+                        </div>
+                        <div className="material-form-dialog__field">
+                            <Label>GST %</Label>
+                            <Input type="number" value={gst} onChange={(e) => setGst(e.target.value)} className="material-form-dialog__input" />
+                        </div>
+                        <div className="material-form-dialog__field material-form-dialog__field--full">
+                            <Label>Availability</Label>
+                            <Select value={availability} onChange={(e) => setAvailability(e.target.value)} className="material-form-dialog__input">
+                                {["in_stock", "low_stock", "out_of_stock", "made_to_order"].map((a) => (<option key={a} value={a}>{a.replace(/_/g, " ")}</option>))}
+                            </Select>
+                        </div>
+                        <div className="material-form-dialog__field material-form-dialog__field--full">
+                            <Label>Specification</Label>
+                            <Textarea value={specification} onChange={(e) => setSpecification(e.target.value)} rows={2} className="material-form-dialog__textarea" />
+                        </div>
+                    </div>
+                    <div className="material-form-dialog__actions">
+                        <Button type="button" variant="outline" className="material-form-dialog__btn" onClick={() => onOpenChange(false)}>Cancel</Button>
+                        <Button type="submit" className="material-form-dialog__btn">{isEdit ? "Save" : "Add Material"}</Button>
+                    </div>
+                </form>
+            </DialogContent>
+        </Dialog>
+    );
 }
