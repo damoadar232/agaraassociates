@@ -44,7 +44,7 @@ export function DashboardLayout() {
         </main>
       </div>
 
-      <Link to="/projects/new" className="fixed bottom-6 right-6 lg:hidden flex h-14 w-14 items-center justify-center rounded-full bg-primary border border-border/60 text-foreground shadow-glass hover:scale-105 transition-all z-40">
+      <Link to="/app/projects/new" className="fixed bottom-6 right-6 lg:hidden flex h-14 w-14 items-center justify-center rounded-full bg-primary border border-border/60 text-foreground shadow-glass hover:scale-105 transition-all z-40">
         <span className="text-2xl font-light">+</span>
       </Link>
     </div>);

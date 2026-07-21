@@ -10,7 +10,7 @@ const seedApprovals = [
         status: "pending",
         priority: "high",
         dueDate: "2026-07-01",
-        href: "/projects/proj-skyline-villa",
+        href: "/app/projects/proj-skyline-villa",
     },
     {
         id: "appr-2",
@@ -23,7 +23,7 @@ const seedApprovals = [
         status: "pending",
         priority: "high",
         dueDate: "2026-07-02",
-        href: "/projects/proj-emerald-retail",
+        href: "/app/projects/proj-emerald-retail",
     },
     {
         id: "appr-3",
@@ -49,7 +49,7 @@ const seedApprovals = [
         status: "pending",
         priority: "high",
         dueDate: "2026-07-03",
-        href: "/projects/proj-emerald-retail",
+        href: "/app/projects/proj-emerald-retail",
     },
     {
         id: "appr-5",
@@ -62,7 +62,7 @@ const seedApprovals = [
         status: "approved",
         priority: "low",
         dueDate: "2026-06-28",
-        href: "/projects/proj-skyline-villa",
+        href: "/app/projects/proj-skyline-villa",
     },
 ];
 let approvals = [...seedApprovals];

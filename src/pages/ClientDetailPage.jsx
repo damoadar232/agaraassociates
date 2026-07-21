@@ -56,7 +56,7 @@ export function ClientDetailPage() {
           <Card>
             <CardHeader><CardTitle className="text-lg">Projects</CardTitle></CardHeader>
             <CardContent className="space-y-3">
-              {projects.length === 0 ? (<p className="text-sm text-muted-foreground">No projects linked.</p>) : projects.map((p) => (<Link key={p.id} to={`/projects/${p.id}`} className="flex items-center justify-between p-3 rounded-xl border hover:bg-muted/30">
+              {projects.length === 0 ? (<p className="text-sm text-muted-foreground">No projects linked.</p>) : projects.map((p) => (<Link key={p.id} to={`/app/projects/${p.id}`} className="flex items-center justify-between p-3 rounded-xl border hover:bg-muted/30">
                   <div>
                     <p className="font-medium">{p.name}</p>
                     <p className="text-xs text-muted-foreground">{p.city} · {p.progress}% complete</p>

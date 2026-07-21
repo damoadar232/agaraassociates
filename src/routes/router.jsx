@@ -1,7 +1,9 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { DashboardLayout } from "@/components/templates/dashboard-layout";
 import { AuthLayout } from "@/layouts/AuthLayout";
+import { MainLayout } from "@/layouts/MainLayout";
 import { HomePage } from "@/pages/HomePage";
 import { DashboardPage } from "@/pages/DashboardPage";
 import { LoginPage } from "@/pages/LoginPage";
@@ -30,45 +32,113 @@ import { ReportsPage } from "@/pages/ReportsPage";
 import { SettingsPage } from "@/pages/SettingsPage";
 import { AiAssistantPage } from "@/pages/AiAssistantPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
+
+const MarketingProjectsPage = lazy(
+  () => import("@/pages/marketing/MarketingProjectsPage")
+);
+const MarketingProjectDetailPage = lazy(
+  () => import("@/pages/marketing/MarketingProjectDetailPage")
+);
+const MarketingServicesPage = lazy(
+  () => import("@/pages/marketing/MarketingServicesPage")
+);
+const MarketingAboutPage = lazy(
+  () => import("@/pages/marketing/MarketingAboutPage")
+);
+const MarketingJournalPage = lazy(
+  () => import("@/pages/marketing/MarketingJournalPage")
+);
+const MarketingJournalDetailPage = lazy(
+  () => import("@/pages/marketing/MarketingJournalDetailPage")
+);
+const MarketingContactPage = lazy(
+  () => import("@/pages/marketing/MarketingContactPage")
+);
+
+function withMarketingSuspense(element) {
+  return (
+    <Suspense
+      fallback={<div className="min-h-[50vh] animate-pulse bg-agara-cream" />}
+    >
+      {element}
+    </Suspense>
+  );
+}
+
 export const router = createBrowserRouter([
-    { path: "/", element: <HomePage /> },
-    {
-        element: <AuthLayout />,
-        children: [
-            { path: "/login", element: <LoginPage /> },
-            { path: "/signup", element: <SignupPage /> },
-        ],
-    },
-    {
-        element: (<ProtectedRoute>
+  {
+    element: <MainLayout />,
+    children: [
+      { path: "/", element: <HomePage /> },
+      {
+        path: "/projects",
+        element: withMarketingSuspense(<MarketingProjectsPage />),
+      },
+      {
+        path: "/projects/:slug",
+        element: withMarketingSuspense(<MarketingProjectDetailPage />),
+      },
+      {
+        path: "/services",
+        element: withMarketingSuspense(<MarketingServicesPage />),
+      },
+      {
+        path: "/about",
+        element: withMarketingSuspense(<MarketingAboutPage />),
+      },
+      {
+        path: "/journal",
+        element: withMarketingSuspense(<MarketingJournalPage />),
+      },
+      {
+        path: "/journal/:slug",
+        element: withMarketingSuspense(<MarketingJournalDetailPage />),
+      },
+      {
+        path: "/contact",
+        element: withMarketingSuspense(<MarketingContactPage />),
+      },
+    ],
+  },
+  {
+    element: <AuthLayout />,
+    children: [
+      { path: "/login", element: <LoginPage /> },
+      { path: "/signup", element: <SignupPage /> },
+    ],
+  },
+  {
+    element: (
+      <ProtectedRoute>
         <DashboardLayout />
-      </ProtectedRoute>),
-        children: [
-            { path: "/dashboard", element: <DashboardPage /> },
-            { path: "/projects", element: <ProjectsPage /> },
-            { path: "/projects/new", element: <NewProjectPage /> },
-            { path: "/projects/:id", element: <ProjectDetailPage /> },
-            { path: "/clients", element: <ClientsPage /> },
-            { path: "/clients/:id", element: <ClientDetailPage /> },
-            { path: "/design-studio", element: <DesignStudioPage /> },
-            { path: "/boq", element: <BoqListPage /> },
-            { path: "/boq/new", element: <BoqNewPage /> },
-            { path: "/boq/:id", element: <BoqDetailPage /> },
-            { path: "/quotations", element: <QuotationsPage /> },
-            { path: "/quotations/:id", element: <QuotationDetailPage /> },
-            { path: "/materials", element: <MaterialsPage /> },
-            { path: "/vendors", element: <VendorsPage /> },
-            { path: "/procurement", element: <ProcurementPage /> },
-            { path: "/site-progress", element: <SiteProgressPage /> },
-            { path: "/documents", element: <DocumentsPage /> },
-            { path: "/approvals", element: <ApprovalsPage /> },
-            { path: "/team", element: <TeamPage /> },
-            { path: "/calendar", element: <CalendarPage /> },
-            { path: "/finance", element: <FinancePage /> },
-            { path: "/reports", element: <ReportsPage /> },
-            { path: "/settings", element: <SettingsPage /> },
-            { path: "/ai-assistant", element: <AiAssistantPage /> },
-        ],
-    },
-    { path: "*", element: <NotFoundPage /> },
+      </ProtectedRoute>
+    ),
+    children: [
+      { path: "/dashboard", element: <DashboardPage /> },
+      { path: "/app/projects", element: <ProjectsPage /> },
+      { path: "/app/projects/new", element: <NewProjectPage /> },
+      { path: "/app/projects/:id", element: <ProjectDetailPage /> },
+      { path: "/clients", element: <ClientsPage /> },
+      { path: "/clients/:id", element: <ClientDetailPage /> },
+      { path: "/design-studio", element: <DesignStudioPage /> },
+      { path: "/boq", element: <BoqListPage /> },
+      { path: "/boq/new", element: <BoqNewPage /> },
+      { path: "/boq/:id", element: <BoqDetailPage /> },
+      { path: "/quotations", element: <QuotationsPage /> },
+      { path: "/quotations/:id", element: <QuotationDetailPage /> },
+      { path: "/materials", element: <MaterialsPage /> },
+      { path: "/vendors", element: <VendorsPage /> },
+      { path: "/procurement", element: <ProcurementPage /> },
+      { path: "/site-progress", element: <SiteProgressPage /> },
+      { path: "/documents", element: <DocumentsPage /> },
+      { path: "/approvals", element: <ApprovalsPage /> },
+      { path: "/team", element: <TeamPage /> },
+      { path: "/calendar", element: <CalendarPage /> },
+      { path: "/finance", element: <FinancePage /> },
+      { path: "/reports", element: <ReportsPage /> },
+      { path: "/settings", element: <SettingsPage /> },
+      { path: "/ai-assistant", element: <AiAssistantPage /> },
+    ],
+  },
+  { path: "*", element: <NotFoundPage /> },
 ]);

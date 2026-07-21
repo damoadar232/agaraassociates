@@ -16,14 +16,14 @@ export function ProjectsPage() {
     return (<div className="space-y-6 animate-in fade-in duration-500">
       <PageHeader title="Projects" description="Manage your architecture and design projects">
         <Button className="rounded-xl" asChild>
-          <Link to="/projects/new">
+          <Link to="/app/projects/new">
             <Plus className="h-4 w-4"/> New Project
           </Link>
         </Button>
       </PageHeader>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {projects.map((project) => (<Link key={project.id} to={`/projects/${project.id}`}>
+        {projects.map((project) => (<Link key={project.id} to={`/app/projects/${project.id}`}>
             <Card className="card-hover h-full">
               <CardContent className="p-6 space-y-4">
                 <div className="flex items-start justify-between">

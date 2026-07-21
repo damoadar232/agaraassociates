@@ -42,7 +42,7 @@ export function CommandPalette({ open, onOpenChange }) {
             </CommandItem>))}
         </CommandGroup>
         <CommandGroup heading="Projects">
-          {projects.map((project) => (<CommandItem key={project.id} onSelect={() => run(`/projects/${project.id}`)}>
+          {projects.map((project) => (<CommandItem key={project.id} onSelect={() => run(`/app/projects/${project.id}`)}>
               {project.name}
             </CommandItem>))}
         </CommandGroup>

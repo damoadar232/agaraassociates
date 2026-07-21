@@ -62,7 +62,7 @@ export function AppHeader({ onMenuClick, glass = false }) {
               <DropdownMenuLabel>Switch Project</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {projects.slice(0, 6).map((p) => (<DropdownMenuItem key={p.id} asChild>
-                  <Link to={`/projects/${p.id}`}>{p.name}</Link>
+                  <Link to={`/app/projects/${p.id}`}>{p.name}</Link>
                 </DropdownMenuItem>))}
             </DropdownMenuContent>
           </DropdownMenu>

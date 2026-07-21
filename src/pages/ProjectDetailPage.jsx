@@ -22,7 +22,7 @@ export function ProjectDetailPage() {
     const { id } = useParams();
     const project = getProjectByIdFromStore(id);
     if (!project)
-        return <Navigate to="/projects" replace/>;
+        return <Navigate to="/app/projects" replace/>;
     const projectMilestones = getMilestonesByProjectId(id);
     const projectRisks = getRisksByProjectId(id);
     const projectDrawings = getDrawingsByProjectId(id);
@@ -30,7 +30,7 @@ export function ProjectDetailPage() {
     const projectBOQ = projectBOQs[0];
     const projectQuotes = getQuotationsByProjectId(id);
     return (<div className="space-y-6 animate-in fade-in duration-500">
-      <Link to="/projects" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+      <Link to="/app/projects" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
         <ArrowLeft className="h-4 w-4"/> Back to Projects
       </Link>
 

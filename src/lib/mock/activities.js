@@ -30,7 +30,7 @@ export const aiInsights = [
         projectId: "proj-skyline-villa",
         projectName: "Skyline Villa",
         actionLabel: "View Project",
-        actionHref: "/projects/proj-skyline-villa",
+        actionHref: "/app/projects/proj-skyline-villa",
     },
     {
         id: "insight-4",
@@ -75,10 +75,10 @@ export const activities = [
     { id: "act-8", type: "boq", title: "BOQ updated", description: "Ground floor civil BOQ revised — 3 new line items", projectId: "proj-skyline-villa", projectName: "Skyline Villa", userId: "user-3", userName: "Amit Joshi", timestamp: "2026-06-27T15:45:00" },
 ];
 export const notifications = [
-    { id: "notif-1", title: "Approval pending", message: "Skyline Villa — Master bedroom layout needs your sign-off", type: "approval", read: false, timestamp: "2026-06-30T08:00:00", href: "/projects/proj-skyline-villa" },
+    { id: "notif-1", title: "Approval pending", message: "Skyline Villa — Master bedroom layout needs your sign-off", type: "approval", read: false, timestamp: "2026-06-30T08:00:00", href: "/app/projects/proj-skyline-villa" },
     { id: "notif-2", title: "Quotation viewed", message: "Rajesh Mehta viewed Kitchen Renovation quote v2", type: "quotation", read: false, timestamp: "2026-06-29T19:30:00", href: "/quotations" },
     { id: "notif-3", title: "Low stock alert", message: "Century Ply Club Prime — only 18 sheets remaining", type: "material", read: false, timestamp: "2026-06-29T10:00:00", href: "/materials" },
-    { id: "notif-4", title: "Payment reminder", message: "Emerald Retail — ₹8.5L invoice due in 3 days", type: "finance", read: true, timestamp: "2026-06-28T09:00:00", href: "/projects/proj-emerald-retail" },
+    { id: "notif-4", title: "Payment reminder", message: "Emerald Retail — ₹8.5L invoice due in 3 days", type: "finance", read: true, timestamp: "2026-06-28T09:00:00", href: "/app/projects/proj-emerald-retail" },
     { id: "notif-5", title: "Site visit tomorrow", message: "Skyline Villa — Interior finishes inspection at 10 AM", type: "site", read: true, timestamp: "2026-06-27T16:00:00", href: "/site-progress" },
 ];
 export const tasks = [

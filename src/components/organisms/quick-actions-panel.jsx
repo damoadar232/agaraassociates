@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Plus, FileText, Users, Calendar, ClipboardList, HardHat, Package, Palette, } from "lucide-react";
 import { cn } from "@/lib/utils";
 export const quickActions = [
-    { label: "Project", icon: Plus, href: "/projects/new", color: "bg-primary border border-border/50 text-foreground" },
+    { label: "Project", icon: Plus, href: "/app/projects/new", color: "bg-primary border border-border/50 text-foreground" },
     { label: "Client", icon: Users, href: "/clients", color: "bg-surface text-heading" },
     { label: "Design", icon: Palette, href: "/design-studio", color: "bg-accent/20 text-foreground" },
     { label: "Quote", icon: FileText, href: "/quotations", color: "bg-surface text-heading" },

@@ -12,7 +12,7 @@ export function ClientsPage() {
     return (<div className="space-y-6 animate-in fade-in duration-500">
       <PageHeader title="Clients" description="Client relationship management and contact directory">
         <Button className="rounded-xl" asChild>
-          <Link to="/projects/new"><Plus className="h-4 w-4"/> Add via Project</Link>
+          <Link to="/app/projects/new"><Plus className="h-4 w-4"/> Add via Project</Link>
         </Button>
       </PageHeader>
 

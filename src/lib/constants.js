@@ -1,7 +1,7 @@
 import { LayoutDashboard, FolderKanban, Users, Palette, FileText, ClipboardList, Package, ShoppingCart, Truck, HardHat, Settings, FolderOpen, CheckSquare, UserCog, CalendarDays, } from "lucide-react";
 export const NAV_ITEMS = [
     { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard, group: "Main" },
-    { title: "Projects", href: "/projects", icon: FolderKanban, group: "Main" },
+    { title: "Projects", href: "/app/projects", icon: FolderKanban, group: "Main" },
     { title: "Clients", href: "/clients", icon: Users, group: "Main" },
     { title: "Design", href: "/design-studio", icon: Palette, group: "Design & Estimation" },
     { title: "BOQ", href: "/boq", icon: ClipboardList, group: "Design & Estimation" },

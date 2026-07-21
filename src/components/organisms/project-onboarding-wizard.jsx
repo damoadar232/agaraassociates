@@ -108,7 +108,7 @@ export function ProjectOnboardingWizard() {
                     ? "Construction details synced to BOQ, timeline, and site modules."
                     : "Your project workspace is ready.",
             });
-            navigate(`/projects/${project.id}`);
+            navigate(`/app/projects/${project.id}`);
         }
         catch (err) {
             toast.error(err instanceof Error ? err.message : "Something went wrong");
@@ -119,7 +119,7 @@ export function ProjectOnboardingWizard() {
     };
     return (<div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-500">
       <div>
-        <Link to="/projects" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4">
+        <Link to="/app/projects" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4">
           <ArrowLeft className="h-4 w-4"/> Back to Projects
         </Link>
         <h1 className="text-3xl font-bold tracking-tight">New Project</h1>

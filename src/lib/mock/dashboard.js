@@ -22,7 +22,7 @@ export function getDashboardData() {
                 projectName: "Skyline Villa",
                 dueAt: "2026-07-01T10:00:00",
                 severity: "info",
-                href: "/projects/proj-skyline-villa",
+                href: "/app/projects/proj-skyline-villa",
             },
             {
                 id: "alert-2",
@@ -32,7 +32,7 @@ export function getDashboardData() {
                 projectName: "Emerald Retail Flagship",
                 dueAt: "2026-07-02T17:00:00",
                 severity: "critical",
-                href: "/projects/proj-emerald-retail",
+                href: "/app/projects/proj-emerald-retail",
             },
             {
                 id: "alert-3",
@@ -42,7 +42,7 @@ export function getDashboardData() {
                 projectName: "Skyline Villa",
                 dueAt: "2026-07-01T18:00:00",
                 severity: "critical",
-                href: "/projects/proj-skyline-villa",
+                href: "/app/projects/proj-skyline-villa",
             },
             {
                 id: "alert-4",
@@ -72,7 +72,7 @@ export function getDashboardData() {
                 projectName: "Royal Banquet Hall",
                 dueAt: "2026-07-03T18:00:00",
                 severity: "warning",
-                href: "/projects/proj-royal-banquet",
+                href: "/app/projects/proj-royal-banquet",
             },
             {
                 id: "alert-7",
@@ -82,7 +82,7 @@ export function getDashboardData() {
                 projectName: "Emerald Retail Flagship",
                 dueAt: "2026-07-02T12:00:00",
                 severity: "warning",
-                href: "/projects/proj-emerald-retail",
+                href: "/app/projects/proj-emerald-retail",
             },
             {
                 id: "alert-8",
@@ -102,7 +102,7 @@ export function getDashboardData() {
                 projectName: "Multiple",
                 dueAt: "2026-07-04T17:00:00",
                 severity: "warning",
-                href: "/projects",
+                href: "/app/projects",
             },
             {
                 id: "alert-10",
@@ -112,7 +112,7 @@ export function getDashboardData() {
                 projectName: "Emerald Retail Flagship",
                 dueAt: "2026-07-03T23:59:00",
                 severity: "critical",
-                href: "/projects/proj-emerald-retail",
+                href: "/app/projects/proj-emerald-retail",
             },
             {
                 id: "alert-11",
@@ -122,7 +122,7 @@ export function getDashboardData() {
                 projectName: "Aurora Tech Office",
                 dueAt: "2026-07-05T11:00:00",
                 severity: "info",
-                href: "/projects/proj-aurora-office",
+                href: "/app/projects/proj-aurora-office",
             },
             {
                 id: "alert-12",
@@ -143,7 +143,7 @@ export function getDashboardData() {
                 projectName: "Skyline Villa",
                 priority: "high",
                 actionLabel: "Review",
-                href: "/projects/proj-skyline-villa",
+                href: "/app/projects/proj-skyline-villa",
             },
             {
                 id: "ia-2",
@@ -152,7 +152,7 @@ export function getDashboardData() {
                 projectName: "Emerald Retail Flagship",
                 priority: "high",
                 actionLabel: "Approvals",
-                href: "/projects/proj-emerald-retail",
+                href: "/app/projects/proj-emerald-retail",
             },
             {
                 id: "ia-3",
@@ -179,7 +179,7 @@ export function getDashboardData() {
                 projectName: "Emerald Retail Flagship",
                 priority: "medium",
                 actionLabel: "Projects",
-                href: "/projects/proj-emerald-retail",
+                href: "/app/projects/proj-emerald-retail",
             },
             {
                 id: "ia-6",
