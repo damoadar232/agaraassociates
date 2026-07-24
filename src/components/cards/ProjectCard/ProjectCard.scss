@@ -78,12 +78,28 @@
   }
 
   &__category {
-    height: 16px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    min-height: 16px;
+    overflow: hidden;
+    font-size: 11px;
+    color: rgba($agara-charcoal, 0.65);
+  }
+
+  &__category-item {
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 11px;
-    color: rgba($agara-charcoal, 0.65);
+  }
+
+  &__category-separator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: rgba($agara-charcoal, 0.55);
   }
 
   &__arrow {

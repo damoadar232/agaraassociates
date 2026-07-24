@@ -45,16 +45,16 @@ export function AboutSection({ variant = "home" }) {
                 construction solutions that are contextually rooted, functionally
                 driven and aesthetically timeless.
               </p>
-              <Link
+              {/* <Link
                 to={isPage ? "/contact" : "/about"}
                 className="about-section__link"
               >
-                {isPage ? "Learn More" : "Our Story"}
+
                 <ArrowRight
                   className="about-section__link-icon"
                   strokeWidth={1.5}
                 />
-              </Link>
+              </Link>*/}
             </div>
 
             <div className="about-section__pillars">
@@ -63,9 +63,8 @@ export function AboutSection({ variant = "home" }) {
                 return (
                   <div
                     key={pillar.title}
-                    className={`about-section__pillar${
-                      index > 0 ? " about-section__pillar--bordered" : ""
-                    }`}
+                    className={`about-section__pillar${index > 0 ? " about-section__pillar--bordered" : ""
+                      }`}
                   >
                     <Icon
                       className="about-section__pillar-icon"

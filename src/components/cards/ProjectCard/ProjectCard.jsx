@@ -4,7 +4,9 @@ import { ArrowRight } from "lucide-react";
 import "./ProjectCard.scss";
 
 function ProjectCardComponent({ project }) {
-  const category = project.subTittle || project.subTitle || "";
+  const category = project.subTittle || project.subTitle || "Residential";
+  const plotArea = project.plotArea || "420 SQ.YD";
+  const location = "Hyderabad" || project.location;
 
   return (
     <article className="project-card">
@@ -21,7 +23,20 @@ function ProjectCardComponent({ project }) {
             <div className="project-card__caption agara-glass">
               <div className="project-card__caption-content">
                 <h3 className="project-card__title">{project.title}</h3>
-                <p className="project-card__category">{category}</p>
+                <div
+                  className="project-card__category"
+                  aria-label={`${category} • ${plotArea} • ${location}`}
+                >
+                  <span className="project-card__category-item">{category}</span>
+                  <span className="project-card__category-separator" aria-hidden="true">
+                    •
+                  </span>
+                  <span className="project-card__category-item">{plotArea}</span>
+                  <span className="project-card__category-separator" aria-hidden="true">
+                    •
+                  </span>
+                  <span className="project-card__category-item">{location}</span>
+                </div>
               </div>
               <span className="project-card__arrow">
                 <ArrowRight

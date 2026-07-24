@@ -177,6 +177,8 @@ export const project_info = [
     id: 1,
     title: "Flat No 102, Narsingi",
     subTittle: "Residential",
+    plotArea: "420 SQ.YD",
+    location: "Narsingi, Hyderabad",
     img: project1Img,
     images: project1_Images,
     description: `A refined residential interior that blends timeless elegance with modern functionality. 
@@ -188,6 +190,8 @@ export const project_info = [
     id: 2,
     title: "Penthouse, Hi-tech city",
     subTittle: "Mixed Use",
+    plotArea: "1800 SQ.FT",
+    location: "Hi-Tech City, Hyderabad",
     img: project2Img,
     images: project2_Images,
     description: `This mixed-use penthouse embraces a rustic design language that blends natural charm with contemporary living.
@@ -199,6 +203,8 @@ export const project_info = [
     id: 3,
     title: "Farm House, Maheswaram",
     subTittle: "Residential",
+    plotArea: "6500 SQ.YD",
+    location: "Maheshwaram, Hyderabad",
     img: project3Img,
     images: project3_Images,
     description: `This modern villa is designed as a serene retreat, seamlessly merging architecture with expansive landscape. 
@@ -209,6 +215,8 @@ export const project_info = [
     id: 13,
     title: "Landscape layout, Nagarkurnool",
     subTittle: "Residential",
+    plotArea: "3200 SQ.YD",
+    location: "Nagarkurnool",
     img: project13Img,
     images: project13_Images,
     description: `This modern landscape project transforms public space into a vibrant and welcoming environment. Thoughtfully designed parks, recreational areas, and open spaces encourage community engagement and outdoor activity.
@@ -221,6 +229,8 @@ export const project_info = [
     id: 5,
     title: "White Ridge Hotel, Hi-tech City",
     subTittle: "Hospitality",
+    plotArea: "5400 SQ.FT",
+    location: "Hi-Tech City, Hyderabad",
     img: project5Img,
     images: project5_Images,
     description: `A landmark in luxury hospitality, this project embodies refined design and impeccable construction.
@@ -232,6 +242,8 @@ export const project_info = [
     id: 14,
     title: "White ridge farmhouse, Yadagiri",
     subTittle: "Residential",
+    plotArea: "7200 SQ.YD",
+    location: "Yadadri",
     img: project14Img,
     images: project14_Images,
     description: `This elegant residential project offers a serene countryside retreat that blends rustic charm with modern comforts. Thoughtfully designed living spaces, open landscapes, and natural surroundings create an atmosphere of tranquility and privacy.
@@ -243,6 +255,8 @@ export const project_info = [
     id: 4,
     title: "Villa–Bowenpally, Hyderabad",
     subTittle: "Residential",
+    plotArea: "380 SQ.YD",
+    location: "Bowenpally, Hyderabad",
     img: project4Img,
     images: project4_Images,
     description: `This residence showcases a refined transformation through thoughtfully renovated interiors with a modern touch.
@@ -254,6 +268,8 @@ export const project_info = [
     id: 6,
     title: "Aparatment, Machilipatnam",
     subTittle: "Residential",
+    plotArea: "2600 SQ.YD",
+    location: "Machilipatnam",
     img: project6Img,
     images: project6_Images,
     description: `This residential project stands out with a striking modern elevation that blends innovation with visual appeal.
@@ -276,6 +292,8 @@ export const project_info = [
     id: 8,
     title: "Vasavika Brindavanam Layout, Bengaluru",
     subTittle: "Hospitality",
+    plotArea: "1800 SQ.FT",
+    location: "Bengaluru",
     img: project8Img,
     images: project8_Images,
     description: `This hospitality project embodies modern design principles that blend elegance with functionality. 
@@ -287,6 +305,8 @@ export const project_info = [
 
     title: "Villa Layout, Kadthal",
     subTittle: "Residential",
+    plotArea: "4500 SQ.YD",
+    location: "Kadthal",
     img: project9Img,
     images: project9_Images,
     description: `This residential plotted layout is thoughtfully designed to offer a harmonious living environment with all modern amenities.
@@ -297,6 +317,8 @@ export const project_info = [
     id: 10,
     title: "Chinthala Residence, Bollaram",
     subTittle: "Residential",
+    plotArea: "500 SQ.YD",
+    location: "Bollaram",
     img: project10Img,
     images: project10_Images,
     description: `This modern residential project combines striking elevation with luxurious, spacious interiors. Thoughtful layouts and contemporary design elements create a sense of openness and sophistication.
@@ -308,6 +330,8 @@ export const project_info = [
     id: 11,
     title: "Club Taberna, Jublee Hills",
     subTittle: "F&B Interior",
+    plotArea: "1200 SQ.FT",
+    location: "Jubilee Hills, Hyderabad",
     img: project11Img,
     images: project11_Images,
     description: `This F&B interior project revitalizes the space with a striking elevation design complemented by carefully executed interior renovations.
@@ -319,6 +343,8 @@ export const project_info = [
     id: 12,
     title: "Farmland Layout, Kotra",
     subTittle: "Residential",
+    plotArea: "2800 SQ.YD",
+    location: "Kotra",
     img: project12Img,
     images: project2_Images,
     description: `This residential farmland layout is thoughtfully designed to optimize land use while maintaining a natural, open environment.
