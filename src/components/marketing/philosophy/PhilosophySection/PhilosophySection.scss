@@ -22,12 +22,9 @@
   }
 
   &__intro {
-    @include agara-glass;
+    @include agara-card-surface(28px);
 
-    border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: $space-8 $space-9;
-    box-shadow: $shadow-agara-soft;
   }
 
   &__eyebrow {
@@ -75,11 +72,7 @@
   }
 
   &__panel {
-    @include agara-glass;
-
-    border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: $shadow-agara-soft;
+    @include agara-card-surface(28px);
   }
 
   &__grid {
