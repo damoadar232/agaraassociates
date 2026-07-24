@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { fadeUp } from "@/components/marketing/motion";
-import { STUDIO_ADDRESS } from "@/components/marketing/contact/contact-content";
+import { STUDIO_ADDRESS } from "@/constants";
 import "@/assets/styles/components/ContactLocation.scss";
 
 export function ContactLocation() {

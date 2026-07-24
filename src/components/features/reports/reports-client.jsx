@@ -2,9 +2,9 @@
 import { memo, useMemo, useState } from "react";
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, } from "recharts";
 import { PageHeader } from "@/components/templates/page-header";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/Button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/Card";
 import { Download } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 import { COLORS } from "@/lib/constants";

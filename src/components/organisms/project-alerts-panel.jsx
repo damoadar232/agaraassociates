@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/common/Badge";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Calendar, Clock, Package, AlertTriangle, ChevronRight, FolderKanban, FileCheck, HardHat, Activity, TrendingUp, IndianRupee, Users, CircleDot, } from "lucide-react";
 import { cx } from "@/lib/utils";

@@ -2,10 +2,10 @@
 import { memo } from "react";
 import { MATERIAL_CATEGORIES, getSubcategoryLabel } from "@/lib/materials/categories";
 import { PriceChangeBadge } from "@/components/atoms/price-change-badge";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/common/Badge";
 import { cx } from "@/lib/utils";
 import { Star, GitCompare, Eye, Package } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/Button";
 import "@/assets/styles/components/MaterialViews.scss";
 
 const MATERIAL_GRADIENT_MAP = {

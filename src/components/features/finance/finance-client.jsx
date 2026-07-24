@@ -2,10 +2,10 @@
 import { memo, useMemo, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, } from "recharts";
 import { PageHeader } from "@/components/templates/page-header";
-import { StatCard } from "@/components/molecules/stat-card";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { StatCard } from "@/components/cards/StatCard";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
+import { Button } from "@/components/common/Button";
 import { IndianRupee, TrendingDown, TrendingUp } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 import { COLORS } from "@/lib/constants";

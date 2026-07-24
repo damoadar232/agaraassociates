@@ -1,8 +1,8 @@
 import { kanbanTasks as storeKanbanTasks } from "@/lib/store/project-store";
 import { PageHeader } from "@/components/templates/page-header";
 import { KanbanBoard } from "@/components/organisms/kanban-board";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { HardHat } from "lucide-react";
 import "@/assets/styles/pages/SiteProgressPage.scss";

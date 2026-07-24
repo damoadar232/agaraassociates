@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/Button";
 import { Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import "@/assets/styles/components/BoqHeaderActions.scss";

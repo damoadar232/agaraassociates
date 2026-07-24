@@ -1,6 +1,6 @@
 "use client";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
 import { cx } from "@/lib/utils";
 import "@/assets/styles/components/KanbanBoard.scss";
 

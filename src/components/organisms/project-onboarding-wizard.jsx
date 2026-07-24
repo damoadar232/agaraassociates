@@ -10,12 +10,12 @@ import { ServiceTypeSelector } from "@/components/molecules/service-type-selecto
 import { ClientPicker, resolveClientDisplayName } from "@/components/molecules/client-picker";
 import { ConstructionDetailsForm, EMPTY_CONSTRUCTION_DETAILS, } from "@/components/molecules/construction-details-form";
 import { FormField } from "@/components/molecules/form-field";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/Card";
+import { Button } from "@/components/common/Button";
+import { Input } from "@/components/common/Input";
+import { Textarea } from "@/components/common/Textarea";
+import { Select } from "@/components/common/Select";
+import { Badge } from "@/components/common/Badge";
 import { cx, formatCurrency } from "@/lib/utils";
 import "@/assets/styles/components/ProjectOnboardingWizard.scss";
 

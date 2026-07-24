@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { getDrawingsForClient } from "@/lib/client-workspace";
 import { DrawingUploadDialog } from "@/components/organisms/drawing-upload-dialog";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
+import { Button } from "@/components/common/Button";
 import { Upload, FileCheck } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import "@/assets/styles/components/DesignStudioClientView.scss";

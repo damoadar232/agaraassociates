@@ -4,11 +4,11 @@ import { getProjectByIdFromStore, getMilestonesByProjectId, getRisksByProjectId,
 import { PageHeader } from "@/components/templates/page-header";
 import { StatusChip } from "@/components/atoms/status-chip";
 import { ProgressRing } from "@/components/atoms/progress-ring";
-import { StatCard } from "@/components/molecules/stat-card";
+import { StatCard } from "@/components/cards/StatCard";
 import { ConstructionDetailsPanel } from "@/components/organisms/construction-details-panel";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/Card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/common/Badge";
 import { SERVICE_TYPE_LABELS } from "@/lib/constants/onboarding";
 import { formatCurrency } from "@/lib/utils";
 import { getDrawingsByProjectId } from "@/lib/store/drawing-store";

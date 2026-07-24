@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { getAllApprovals, updateApprovalStatus } from "@/lib/store/approval-store";
 import { PageHeader } from "@/components/templates/page-header";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
+import { Button } from "@/components/common/Button";
 import { Check, X } from "lucide-react";
 import "@/assets/styles/pages/ApprovalsPage.scss";
 

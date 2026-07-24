@@ -1,9 +1,9 @@
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/common/Button";
+import { Input } from "@/components/common/Input";
+import { Label } from "@/components/common/Label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/common/Card";
 import { toast } from "sonner";
 import { findUserByCredentials } from "@/lib/auth/users";
 import { setSessionCookie, signSession } from "@/lib/auth/session";

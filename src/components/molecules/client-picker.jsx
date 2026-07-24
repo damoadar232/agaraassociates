@@ -1,8 +1,8 @@
 "use client";
 import { getAllClients } from "@/lib/store/client-store";
 import { FormField } from "@/components/molecules/form-field";
-import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import { Input } from "@/components/common/Input";
+import { Select } from "@/components/common/Select";
 import "@/assets/styles/components/ClientPicker.scss";
 
 export function ClientPicker({

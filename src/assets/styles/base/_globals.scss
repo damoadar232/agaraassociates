@@ -1,5 +1,24 @@
+// =============================================================================
+// Global SCSS entry (Stage 4)
+// Imported once from main.jsx. Pulls in the full foundation stack, then emits
+// application-wide rules. Component/page SCSS remain imported by their JSX.
+// =============================================================================
+
 @use "variables" as *;
 @use "mixins" as *;
+@use "helpers" as *;
+@use "reset";
+@use "typography";
+@use "../animations/keyframes";
+@use "../animations/transitions";
+@use "../utilities/spacing";
+@use "../utilities/flex";
+@use "../utilities/grid";
+@use "../utilities/helpers" as util-helpers;
+
+// -----------------------------------------------------------------------------
+// Design tokens as CSS custom properties (parity with legacy globals.css :root)
+// -----------------------------------------------------------------------------
 
 :root {
   --primary: #{$primary-h};
@@ -51,6 +70,10 @@
   --font-serif-display: #{$font-serif};
 }
 
+// -----------------------------------------------------------------------------
+// Body / document chrome (from legacy globals.css @layer base)
+// -----------------------------------------------------------------------------
+
 .agara-page section[id] {
   scroll-margin-top: 5.5rem;
 }
@@ -65,6 +88,10 @@ body {
   overflow-x: clip;
   max-width: 100%;
 }
+
+// -----------------------------------------------------------------------------
+// Shared surface utilities (from legacy globals.css @layer utilities)
+// -----------------------------------------------------------------------------
 
 .dashboard-bg {
   background:

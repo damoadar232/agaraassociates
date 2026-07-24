@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { getQuotationsForClient } from "@/lib/client-workspace";
 import { StatusChip } from "@/components/atoms/status-chip";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/common/Card";
 import { formatCurrency } from "@/lib/utils";
 import "@/assets/styles/components/QuotationsClientView.scss";
 

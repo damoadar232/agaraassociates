@@ -1,7 +1,7 @@
 "use client";
 import { Link } from "react-router-dom";
 import { getBoqsForClient } from "@/lib/client-workspace";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/common/Card";
 import { ClipboardList } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 import { calculateBoqEstimate } from "@/lib/boq/estimate-calculator";

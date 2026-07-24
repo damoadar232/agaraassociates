@@ -6,9 +6,9 @@ import { MaterialCategorySidebar } from "@/components/organisms/material-library
 import { MaterialViews } from "@/components/organisms/material-library/material-views";
 import { MaterialDetailSheet } from "@/components/organisms/material-library/material-detail-sheet";
 import { PageHeader } from "@/components/templates/page-header";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/common/Button";
+import { Input } from "@/components/common/Input";
+import { Badge } from "@/components/common/Badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu";
 import { DEFAULT_MATERIAL_FILTERS } from "@/lib/materials/default-filters";
 import { getCategoryLabel, getSubcategoryLabel } from "@/lib/materials/categories";

@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/components/common/Button";
+import { Textarea } from "@/components/common/Textarea";
+import { Label } from "@/components/common/Label";
 import { importMaterialRecords } from "@/services/materialsService";
 import "@/assets/styles/components/MaterialImportDialog.scss";
 

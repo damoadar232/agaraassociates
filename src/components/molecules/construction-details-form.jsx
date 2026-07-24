@@ -9,10 +9,10 @@ import {
   SAFETY_COMPLIANCE_OPTIONS,
 } from "@/lib/constants/onboarding";
 import { FormField } from "@/components/molecules/form-field";
-import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/common/Input";
+import { Select } from "@/components/common/Select";
+import { Button } from "@/components/common/Button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/Card";
 import { HardHat, Plus, Trash2 } from "lucide-react";
 import "@/assets/styles/components/ConstructionDetailsForm.scss";
 

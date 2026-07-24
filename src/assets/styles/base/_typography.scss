@@ -1,5 +1,9 @@
 @use "variables" as *;
 
+// Typography tokens are defined in _variables.scss:
+// $font-serif, $font-inter, $font-elms
+// $font-size-*, $font-weight-*, $line-height-*, $tracking-*
+
 h1,
 h2,
 h3,
@@ -9,7 +13,7 @@ h6 {
   color: $color-heading;
   font-family: $font-serif;
   letter-spacing: $tracking-tight;
-  line-height: 1.05;
+  line-height: $line-height-tight;
 }
 
 p,

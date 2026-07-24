@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { getArticleBySlug } from "@/components/marketing/data";
+import { getArticleBySlug } from "@/constants";
 import "@/assets/styles/pages/MarketingJournalDetailPage.scss";
 
 export default function MarketingJournalDetailPage() {

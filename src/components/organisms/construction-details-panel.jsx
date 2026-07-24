@@ -1,6 +1,6 @@
 import { CONSTRUCTION_TYPE_OPTIONS, FOUNDATION_TYPE_OPTIONS, STRUCTURAL_SYSTEM_OPTIONS, CONSTRUCTION_METHOD_OPTIONS, } from "@/lib/constants/onboarding";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
 import { formatCurrency } from "@/lib/utils";
 import { HardHat, Building, Ruler, Wallet, Users, Calendar, Wrench, Shield, FileCheck } from "lucide-react";
 import "@/assets/styles/components/ConstructionDetailsPanel.scss";

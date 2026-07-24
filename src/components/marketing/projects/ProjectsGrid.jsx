@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
 import { fadeUp } from "@/components/marketing/motion";
-import { ProjectCard } from "@/components/marketing/projects/ProjectCard";
+import { ProjectCard } from "@/components/cards/ProjectCard";
 import "@/assets/styles/components/ProjectsGrid.scss";
 
 function ProjectsGridComponent({ projects }) {

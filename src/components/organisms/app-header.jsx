@@ -9,8 +9,8 @@ import {
   ChevronDown,
   Menu,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/common/Button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/common/Avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,

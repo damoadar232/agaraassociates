@@ -1,23 +1,11 @@
 import { motion } from "framer-motion";
 import { Compass, Eye, Hammer, Lightbulb, PencilRuler } from "lucide-react";
 import { fadeUp } from "@/components/marketing/motion";
-import { DESIGN_PROCESS_STEPS } from "@/components/marketing/contact/contact-content";
+import { DESIGN_PROCESS_STEPS } from "@/constants";
+import { ProcessCard } from "@/components/cards/ProcessCard";
 import "@/assets/styles/components/ContactProcess.scss";
 
 const ICONS = [Compass, Eye, Lightbulb, PencilRuler, Hammer];
-
-const stepVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
 
 export function ContactProcess() {
   return (
@@ -40,27 +28,13 @@ export function ContactProcess() {
             {DESIGN_PROCESS_STEPS.map((step, index) => {
               const Icon = ICONS[index];
               return (
-                <motion.div
+                <ProcessCard
                   key={step.id}
-                  custom={index}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-40px" }}
-                  variants={stepVariant}
-                  className="contact-process__step contact-process__step--desktop"
-                >
-                  <div className="contact-process__icon-wrap">
-                    <Icon
-                      className="contact-process__icon"
-                      strokeWidth={1.25}
-                    />
-                  </div>
-                  <p className="contact-process__step-id">{step.id}</p>
-                  <h3 className="contact-process__step-title">{step.title}</h3>
-                  <p className="contact-process__step-desc">
-                    {step.description}
-                  </p>
-                </motion.div>
+                  step={step}
+                  icon={Icon}
+                  index={index}
+                  variant="desktop"
+                />
               );
             })}
           </div>
@@ -71,26 +45,13 @@ export function ContactProcess() {
           {DESIGN_PROCESS_STEPS.map((step, index) => {
             const Icon = ICONS[index];
             return (
-              <motion.div
+              <ProcessCard
                 key={step.id}
-                custom={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-40px" }}
-                variants={stepVariant}
-                className="contact-process__step contact-process__step--mobile"
-              >
-                <div className="contact-process__icon-wrap">
-                  <Icon className="contact-process__icon" strokeWidth={1.25} />
-                </div>
-                <div className="contact-process__mobile-content">
-                  <p className="contact-process__step-id">{step.id}</p>
-                  <h3 className="contact-process__step-title">{step.title}</h3>
-                  <p className="contact-process__step-desc">
-                    {step.description}
-                  </p>
-                </div>
-              </motion.div>
+                step={step}
+                icon={Icon}
+                index={index}
+                variant="mobile"
+              />
             );
           })}
         </div>

@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { project_info } from "@/constants";
 import { ProjectHero } from "@/components/marketing/projects/ProjectHero";
 import { ProjectDescription } from "@/components/marketing/projects/ProjectDescription";
-import { ProjectGallery } from "@/components/marketing/projects/ProjectGallery";
+import { ProjectGallery } from "@/components/gallery/ProjectGallery";
 import "@/assets/styles/pages/MarketingProjectDetailPage.scss";
 
 export default function MarketingProjectDetailPage() {

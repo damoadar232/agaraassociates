@@ -1,4 +1,4 @@
-import { Label } from "@/components/ui/label";
+import { Label } from "@/components/common/Label";
 import "@/assets/styles/components/FormField.scss";
 
 export function FormField({

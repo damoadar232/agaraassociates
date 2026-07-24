@@ -1,6 +1,6 @@
 "use client";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/Button";
 import { Download, PenLine } from "lucide-react";
 import { updateQuotationStatus } from "@/lib/store/quotation-store";
 import "@/assets/styles/components/QuotationDetailActions.scss";

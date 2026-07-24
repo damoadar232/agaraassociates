@@ -2,11 +2,11 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select } from "@/components/ui/select";
+import { Button } from "@/components/common/Button";
+import { Input } from "@/components/common/Input";
+import { Label } from "@/components/common/Label";
+import { Textarea } from "@/components/common/Textarea";
+import { Select } from "@/components/common/Select";
 import { MATERIAL_CATEGORIES } from "@/lib/materials/categories";
 import { addMaterialRecord, updateMaterialRecord } from "@/services/materialsService";
 import "@/assets/styles/components/MaterialFormDialog.scss";

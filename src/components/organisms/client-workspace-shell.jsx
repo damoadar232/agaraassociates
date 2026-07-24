@@ -5,10 +5,10 @@ import { Users, ChevronRight, ArrowLeft } from "lucide-react";
 import { getAllClients } from "@/lib/store/client-store";
 import { getClientWorkspaceStats, resolveClientLabel } from "@/lib/client-workspace";
 import { PageHeader } from "@/components/templates/page-header";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/common/Card";
+import { Button } from "@/components/common/Button";
+import { Badge } from "@/components/common/Badge";
+import { Avatar, AvatarFallback } from "@/components/common/Avatar";
 import { getInitials } from "@/lib/utils";
 import "@/assets/styles/components/ClientWorkspaceShell.scss";
 

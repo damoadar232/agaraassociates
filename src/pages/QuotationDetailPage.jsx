@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { getQuotationById } from "@/lib/store/quotation-store";
 import { QuotationDetailActions } from "@/components/organisms/quotation-detail-actions";
 import { StatusChip } from "@/components/atoms/status-chip";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/Card";
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency } from "@/lib/utils";
 import "@/assets/styles/pages/QuotationDetailPage.scss";

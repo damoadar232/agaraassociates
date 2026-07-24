@@ -5,8 +5,8 @@ import { getCategoryLabel, getSubcategoryLabel } from "@/lib/materials/categorie
 import { PriceChangeBadge } from "@/components/atoms/price-change-badge";
 import { DatasheetViewer } from "@/components/organisms/material-library/datasheet-viewer";
 import { getMaterialGradientClass } from "@/components/organisms/material-library/material-views";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/common/Badge";
+import { Button } from "@/components/common/Button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { X, Star, Archive, Pencil, FileText, ExternalLink, Package, } from "lucide-react";

@@ -17,27 +17,37 @@
 }
 
 @mixin respond-to($bp) {
-  @if $bp == sm {
+  @if $bp ==sm {
     @media (min-width: $bp-sm) {
       @content;
     }
-  } @else if $bp == md {
+  }
+
+  @else if $bp ==md {
     @media (min-width: $bp-md) {
       @content;
     }
-  } @else if $bp == lg {
+  }
+
+  @else if $bp ==lg {
     @media (min-width: $bp-lg) {
       @content;
     }
-  } @else if $bp == xl {
+  }
+
+  @else if $bp ==xl {
     @media (min-width: $bp-xl) {
       @content;
     }
-  } @else if $bp == 2xl {
+  }
+
+  @else if $bp ==2xl {
     @media (min-width: $bp-2xl) {
       @content;
     }
-  } @else {
+  }
+
+  @else {
     @media (min-width: $bp) {
       @content;
     }
@@ -45,23 +55,31 @@
 }
 
 @mixin respond-max($bp) {
-  @if $bp == sm {
+  @if $bp ==sm {
     @media (max-width: #{$bp-sm - 1px}) {
       @content;
     }
-  } @else if $bp == md {
+  }
+
+  @else if $bp ==md {
     @media (max-width: #{$bp-md - 1px}) {
       @content;
     }
-  } @else if $bp == lg {
+  }
+
+  @else if $bp ==lg {
     @media (max-width: #{$bp-lg - 1px}) {
       @content;
     }
-  } @else if $bp == xl {
+  }
+
+  @else if $bp ==xl {
     @media (max-width: #{$bp-xl - 1px}) {
       @content;
     }
-  } @else {
+  }
+
+  @else {
     @media (max-width: $bp) {
       @content;
     }
@@ -74,6 +92,76 @@
   margin-right: auto;
   padding-left: $pad;
   padding-right: $pad;
+}
+
+@mixin container($max: 72rem, $pad: $space-6) {
+  @include container-x($pad);
+  max-width: $max;
+}
+
+@mixin hover-scale($scale: 1.05) {
+  @include transition(transform);
+
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+@mixin object-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+}
+
+@mixin button-primary {
+  @include flex-center;
+  @include transition;
+  display: inline-flex;
+  gap: $space-2;
+  height: $space-11;
+  padding: $space-2_5 $space-5;
+  border-radius: $radius-full;
+  background: $agara-charcoal;
+  color: #fff;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  border: none;
+  cursor: pointer;
+  box-shadow: $shadow-sm;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin button-outline {
+  @include flex-center;
+  @include transition;
+  display: inline-flex;
+  gap: $space-2;
+  height: $space-11;
+  padding: $space-2_5 $space-5;
+  border-radius: $radius-full;
+  background: transparent;
+  color: $color-foreground;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  border: 1px solid hsl-alpha($border-h, 0.4);
+  cursor: pointer;
+
+  &:hover {
+    border-color: $color-border;
+    background: rgba(255, 255, 255, 0.4);
+  }
 }
 
 @mixin glass-card {
@@ -104,12 +192,10 @@
 @mixin agara-glass {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.26) 0%,
-    rgba(255, 255, 255, 0.18) 45%,
-    rgba(255, 255, 255, 0.1) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.56) 0%,
+      rgba(255, 255, 255, 0.58) 45%,
+      rgba(255, 255, 255, 0.6) 100%);
   backdrop-filter: blur($glass-blur-premium) saturate(180%);
   -webkit-backdrop-filter: blur($glass-blur-premium) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -117,16 +203,16 @@
   box-shadow: $shadow-agara-glass;
   isolation: isolate;
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.38), transparent 55%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
-    opacity: 0.9;
-  }
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   inset: 0;
+  //   pointer-events: none;
+  //   background:
+  //     radial-gradient(circle at top left, rgba(255, 255, 255, 0.38), transparent 55%),
+  //     linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  //   opacity: 0.9;
+  // }
 }
 
 @mixin sr-only {
@@ -155,16 +241,7 @@
   }
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
+// Keyframes live in animations/_keyframes.scss (loaded via index.scss)
 @mixin fade-in($duration: 500ms) {
   animation: fade-in $duration ease-out;
 }

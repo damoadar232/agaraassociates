@@ -1,4 +1,2 @@
-@use "base/reset";
-@use "base/typography";
+// Compatibility shim — prefer importing base/_globals.scss from main.jsx (Stage 4).
 @use "base/globals";
-@use "utilities/helpers";

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { fadeUp } from "@/components/marketing/motion";
-import { CONTACT_FAQS } from "@/components/marketing/contact/contact-content";
+import { CONTACT_FAQS } from "@/constants";
 import "@/assets/styles/components/ContactBottom.scss";
 
 const CTA_IMAGE =

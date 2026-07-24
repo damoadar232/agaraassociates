@@ -10,7 +10,7 @@
   @return string.unquote("hsl(#{$channels} / #{$alpha})");
 }
 
-// Brand
+// Brand (hex aliases for readable token usage)
 $agara-cream: #f7f4ef;
 $agara-charcoal: #222222;
 $accent: #b89a72;
@@ -18,6 +18,15 @@ $background: #f8f5f1;
 $card: #fcfaf8;
 $text: #2b2825;
 $secondary-text: #706a63;
+$color-border-hex: #e7ded3;
+
+// Semantic hex aliases (Stage 3 architecture — values match existing design)
+$color-background-hex: $background;
+$color-card-hex: $card;
+$color-primary-hex: $text;
+$color-secondary-hex: $secondary-text;
+$color-accent-hex: $accent;
+
 
 // HSL channel tokens (match :root CSS vars)
 $primary-h: 33 27% 50%;
@@ -153,8 +162,28 @@ $shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)
 // Glass
 $glass-blur: 28px;
 $glass-blur-premium: 38px;
+$blur-glass: $glass-blur-premium;
 $glass-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.18));
 $glass-border: rgba(255, 255, 255, 0.4);
+
+// Font sizes (match existing UI scale — do not alter rendered type)
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 1.875rem;
+$font-size-4xl: 2.25rem;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.05;
+$line-height-snug: 1.25;
+$line-height-normal: 1.5;
 
 // Transitions
 $transition-fast: 150ms ease;

@@ -6,7 +6,7 @@ import { Sidebar } from "@/components/organisms/sidebar";
 import { AppHeader } from "@/components/organisms/app-header";
 import { NAV_ITEMS } from "@/lib/constants";
 import { AppLogo } from "@/components/atoms/app-logo";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/Button";
 import "@/assets/styles/layout/DashboardLayout.scss";
 
 export function DashboardLayout() {

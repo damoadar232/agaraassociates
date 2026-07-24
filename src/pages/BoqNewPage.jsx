@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { BoqWizardClient } from "@/components/features/lazy-modules";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/common/Card";
+import { Button } from "@/components/common/Button";
 import "@/assets/styles/pages/BoqNewPage.scss";
 
 function BoqNewContent() {

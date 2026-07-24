@@ -3,9 +3,9 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { getTeamMembers, getAllTasks, toggleTaskCompleted } from "@/lib/store/team-store";
 import { PageHeader } from "@/components/templates/page-header";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/common/Avatar";
 import { getInitials } from "@/lib/utils";
 import "@/assets/styles/pages/TeamPage.scss";
 

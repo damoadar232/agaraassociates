@@ -1,7 +1,7 @@
 import { getCalendarEvents, getUpcomingEvents } from "@/lib/calendar-events";
 import { PageHeader } from "@/components/templates/page-header";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
 import { Calendar, MapPin } from "lucide-react";
 import "@/assets/styles/pages/CalendarPage.scss";
 

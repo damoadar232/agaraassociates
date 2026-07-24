@@ -1,7 +1,7 @@
 import { purchaseOrders, vendorQuotes } from "@/lib/mock/data";
 import { PageHeader } from "@/components/templates/page-header";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
 import { ShoppingCart } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 import "@/assets/styles/pages/ProcurementPage.scss";

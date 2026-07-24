@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/common/Badge";
 import {
   PROJECT_STATUS_LABELS,
   QUOTATION_STATUS_LABELS,

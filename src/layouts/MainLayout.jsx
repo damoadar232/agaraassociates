@@ -1,16 +1,16 @@
 import { Outlet } from "react-router-dom";
-import { MarketingNavbar } from "@/components/marketing/marketing-navbar";
-import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import Navbar from "@/components/navigation/Navbar";
+import Footer from "@/components/navigation/Footer";
 import "@/assets/styles/layout/MainLayout.scss";
 
 export function MainLayout() {
   return (
     <div className="main-layout">
-      <MarketingNavbar />
+      <Navbar />
       <main>
         <Outlet />
       </main>
-      <MarketingFooter />
+      <Footer />
     </div>
   );
 }

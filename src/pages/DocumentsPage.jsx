@@ -1,7 +1,7 @@
 import { getAllDocuments } from "@/lib/store/document-store";
 import { PageHeader } from "@/components/templates/page-header";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
 import { FileText, FolderOpen } from "lucide-react";
 import "@/assets/styles/pages/DocumentsPage.scss";
 

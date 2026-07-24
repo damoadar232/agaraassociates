@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/Button";
 import { Plus } from "lucide-react";
 import { QuotationCreateDialog } from "@/components/organisms/quotation-create-dialog";
 import "@/assets/styles/components/QuotationsHeaderActions.scss";

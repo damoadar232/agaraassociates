@@ -15,11 +15,13 @@ html {
   scrollbar-gutter: stable;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   min-height: 100vh;
-  line-height: 1.5;
+  line-height: $line-height-normal;
 }
 
 img,
